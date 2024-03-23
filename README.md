@@ -1,2 +1,12 @@
 # SoSimple
-Repository of the desktop app "SoSimple" for the Software Product project
+
+## 🎯 Descrição
+Software de Gerenciamento de clientes, ordens de serviço e estoque.
+
+## 👦🏽👧🏼 Público-alvo
+Lojistas, assistências técnicas e similares.
+
+## 🖥️ Tecnologias usadas
+* Visual Studio
+* C#
+* SQL Server
