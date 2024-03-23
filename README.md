@@ -1,2 +1,2 @@
 # SoSimple
-Repository of the desktop app "SOsimple" for the Software Product project
+Repository of the desktop app "SoSimple" for the Software Product project
