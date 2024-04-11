@@ -28,140 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.idLabel = new System.Windows.Forms.Label();
-            this.nomeLabel = new System.Windows.Forms.Label();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.telefoneLabel = new System.Windows.Forms.Label();
-            this.idTextBox = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClienteIncluirForm));
             this.telefoneTextBox = new System.Windows.Forms.TextBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.nomeTextBox = new System.Windows.Forms.TextBox();
-            this.incluirButton = new System.Windows.Forms.Button();
-            this.voltarButton = new System.Windows.Forms.Button();
+            this.loginButton = new System.Windows.Forms.Button();
+            this.sairButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // idLabel
-            // 
-            this.idLabel.AutoSize = true;
-            this.idLabel.Location = new System.Drawing.Point(34, 31);
-            this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(21, 16);
-            this.idLabel.TabIndex = 0;
-            this.idLabel.Text = "Id:";
-            this.idLabel.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // nomeLabel
-            // 
-            this.nomeLabel.AutoSize = true;
-            this.nomeLabel.Location = new System.Drawing.Point(34, 70);
-            this.nomeLabel.Name = "nomeLabel";
-            this.nomeLabel.Size = new System.Drawing.Size(47, 16);
-            this.nomeLabel.TabIndex = 1;
-            this.nomeLabel.Text = "Nome:";
-            this.nomeLabel.UseWaitCursor = true;
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(34, 110);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(44, 16);
-            this.emailLabel.TabIndex = 2;
-            this.emailLabel.Text = "Email:";
-            // 
-            // telefoneLabel
-            // 
-            this.telefoneLabel.AutoSize = true;
-            this.telefoneLabel.Location = new System.Drawing.Point(34, 153);
-            this.telefoneLabel.Name = "telefoneLabel";
-            this.telefoneLabel.Size = new System.Drawing.Size(64, 16);
-            this.telefoneLabel.TabIndex = 3;
-            this.telefoneLabel.Text = "Telefone:";
-            // 
-            // idTextBox
-            // 
-            this.idTextBox.Location = new System.Drawing.Point(104, 31);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(100, 22);
-            this.idTextBox.TabIndex = 4;
-            this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
             // 
             // telefoneTextBox
             // 
-            this.telefoneTextBox.Location = new System.Drawing.Point(104, 150);
+            this.telefoneTextBox.Location = new System.Drawing.Point(107, 199);
+            this.telefoneTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.telefoneTextBox.Name = "telefoneTextBox";
-            this.telefoneTextBox.Size = new System.Drawing.Size(365, 22);
+            this.telefoneTextBox.Size = new System.Drawing.Size(275, 20);
             this.telefoneTextBox.TabIndex = 5;
             // 
             // emailTextBox
             // 
-            this.emailTextBox.Location = new System.Drawing.Point(104, 107);
+            this.emailTextBox.Location = new System.Drawing.Point(107, 161);
+            this.emailTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(365, 22);
+            this.emailTextBox.Size = new System.Drawing.Size(275, 20);
             this.emailTextBox.TabIndex = 6;
             this.emailTextBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // nomeTextBox
+            // loginButton
             // 
-            this.nomeTextBox.Location = new System.Drawing.Point(104, 67);
-            this.nomeTextBox.Name = "nomeTextBox";
-            this.nomeTextBox.Size = new System.Drawing.Size(365, 22);
-            this.nomeTextBox.TabIndex = 7;
+            this.loginButton.Location = new System.Drawing.Point(149, 237);
+            this.loginButton.Margin = new System.Windows.Forms.Padding(2);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(85, 28);
+            this.loginButton.TabIndex = 8;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = true;
             // 
-            // incluirButton
+            // sairButton
             // 
-            this.incluirButton.Location = new System.Drawing.Point(237, 215);
-            this.incluirButton.Name = "incluirButton";
-            this.incluirButton.Size = new System.Drawing.Size(113, 35);
-            this.incluirButton.TabIndex = 8;
-            this.incluirButton.Text = "Incluir";
-            this.incluirButton.UseVisualStyleBackColor = true;
+            this.sairButton.Location = new System.Drawing.Point(264, 237);
+            this.sairButton.Margin = new System.Windows.Forms.Padding(2);
+            this.sairButton.Name = "sairButton";
+            this.sairButton.Size = new System.Drawing.Size(85, 28);
+            this.sairButton.TabIndex = 9;
+            this.sairButton.Text = "Sair";
+            this.sairButton.UseVisualStyleBackColor = true;
             // 
-            // voltarButton
+            // pictureBox1
             // 
-            this.voltarButton.Location = new System.Drawing.Point(356, 215);
-            this.voltarButton.Name = "voltarButton";
-            this.voltarButton.Size = new System.Drawing.Size(113, 35);
-            this.voltarButton.TabIndex = 9;
-            this.voltarButton.Text = "Voltar";
-            this.voltarButton.UseVisualStyleBackColor = true;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(177, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(141, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
             // ClienteIncluirForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 265);
-            this.Controls.Add(this.voltarButton);
-            this.Controls.Add(this.incluirButton);
-            this.Controls.Add(this.nomeTextBox);
+            this.ClientSize = new System.Drawing.Size(454, 307);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.sairButton);
+            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.telefoneTextBox);
-            this.Controls.Add(this.idTextBox);
-            this.Controls.Add(this.telefoneLabel);
-            this.Controls.Add(this.emailLabel);
-            this.Controls.Add(this.nomeLabel);
-            this.Controls.Add(this.idLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ClienteIncluirForm";
-            this.Text = "Inclusão de Cliente";
+            this.Text = "SoSimple - Login";
+            this.Load += new System.EventHandler(this.ClienteIncluirForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label idLabel;
-        private System.Windows.Forms.Label nomeLabel;
-        private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.Label telefoneLabel;
-        private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox telefoneTextBox;
         private System.Windows.Forms.TextBox emailTextBox;
-        private System.Windows.Forms.TextBox nomeTextBox;
-        private System.Windows.Forms.Button incluirButton;
-        private System.Windows.Forms.Button voltarButton;
+        private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Button sairButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

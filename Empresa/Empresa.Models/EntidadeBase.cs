@@ -17,5 +17,8 @@ namespace Empresa.Models
         public string numEndCliente { get; set; }
         public string cidCliente { get; set; }
         public string ufCliente { get; set; }
+        public string loginFunc { get; set; }
+        public string senhaFunc { get; set; }
+  
     }
 }

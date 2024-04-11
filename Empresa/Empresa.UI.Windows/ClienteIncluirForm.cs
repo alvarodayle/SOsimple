@@ -31,5 +31,10 @@ namespace Empresa.UI.Windows
         {
 
         }
+
+        private void ClienteIncluirForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
