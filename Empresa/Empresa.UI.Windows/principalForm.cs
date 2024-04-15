@@ -19,8 +19,18 @@ namespace Empresa.UI.Windows
         }
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Hide();
             var f = new ClientesForm();
             f.ShowDialog();
+            
+        }
+
+        private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Hide();
+            var f = new ProdutoForm();
+            f.ShowDialog();
+            
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)

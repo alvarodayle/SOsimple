@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Empresa.UI.Windows
 {
-    public partial class ClienteIncluirForm : Form
+    public partial class LoginForm : Form
     {
-        public ClienteIncluirForm()
+        public LoginForm()
         {
             InitializeComponent();
         }

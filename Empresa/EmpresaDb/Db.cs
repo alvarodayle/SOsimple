@@ -13,7 +13,6 @@ namespace Empresa.Db
         {
             get 
             {
-                //return @"Data Source=DAYLES\SQLEXPRESS;Initial Catalog=SoSimple;Integrated Security=True;Encrypt=False;";
                 return @"Data Source=localhost\SQLEXPRESS;Initial Catalog=SoSimple;Integrated Security=True;Encrypt=False;";
             }
         }

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProdutoDb.cs" />
     <Compile Include="ClienteDb.cs" />
     <Compile Include="Db.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,11 +59,6 @@
       <Project>{b9908f9b-cf22-4949-9352-c3c604a21ce1}</Project>
       <Name>Empresa.Models</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="6_icone_fundo_preto_menor.ico" />
-    <Content Include="MainIcon.ico" />
-    <Content Include="order-icon_31865.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -104,6 +104,20 @@ namespace Empresa.UI.Windows
         }
         private void voltarButton_Click(object sender, EventArgs e)
         {
+            if (excluirAcionado)
+            {
+                excluirAcionado = false;
+
+                nomeTextBox.ReadOnly = false;
+                cpfTextBox.ReadOnly = false;
+                telefoneTextBox.ReadOnly = false;
+                cepTextBox.ReadOnly = false;
+                enderecoTextBox.ReadOnly = false;
+                numeroTextBox.ReadOnly = false;
+                cidadeTextBox.ReadOnly = false;
+                ufTextBox.ReadOnly = false;
+            }
+            
             ExibirGrid();
         }
 
@@ -127,21 +141,29 @@ namespace Empresa.UI.Windows
 
         private void alterarButton_Click(object sender, EventArgs e)
         {
-            Cliente cliente = (Cliente)listaDataGridView.CurrentRow.DataBoundItem;
-            idTextBox.Text = cliente.IdCliente.ToString();
-            nomeTextBox.Text = cliente.nomeCliente;
-            cpfTextBox.Text = cliente.cpfCliente;
-            telefoneTextBox.Text = cliente.telCliente;
-            cepTextBox.Text = cliente.cepCliente;
-            enderecoTextBox.Text = cliente.endCliente;
-            numeroTextBox.Text = cliente.numEndCliente;
-            cidadeTextBox.Text = cliente.cidCliente;
-            ufTextBox.Text = cliente.ufCliente;
-            ExibirFicha();
-            confirmarAlterarButton.Visible = true;
-            confirmarExclusaoButton.Visible = false;
-            confirmarNovoButton.Visible = false;
+            if (listaDataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Náo há nenhum registro selecionado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
 
+                Cliente cliente = (Cliente)listaDataGridView.CurrentRow.DataBoundItem;
+                idTextBox.Text = cliente.IdCliente.ToString();
+                nomeTextBox.Text = cliente.nomeCliente;
+                cpfTextBox.Text = cliente.cpfCliente;
+                telefoneTextBox.Text = cliente.telCliente;
+                cepTextBox.Text = cliente.cepCliente;
+                enderecoTextBox.Text = cliente.endCliente;
+                numeroTextBox.Text = cliente.numEndCliente;
+                cidadeTextBox.Text = cliente.cidCliente;
+                ufTextBox.Text = cliente.ufCliente;
+                ExibirFicha();
+                confirmarAlterarButton.Visible = true;
+                confirmarExclusaoButton.Visible = false;
+                confirmarNovoButton.Visible = false;
+
+            }
         }
 
         private void confirmarAlterarButton_Click(object sender, EventArgs e)
@@ -163,32 +185,45 @@ namespace Empresa.UI.Windows
             ExibirGrid();
         }
 
+        bool excluirAcionado = false;
+
         private void excluirButton_Click(object sender, EventArgs e)
         {
-            Cliente cliente = (Cliente)listaDataGridView.CurrentRow.DataBoundItem;
+            if (listaDataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Náo há nenhum registro selecionado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
 
-            nomeTextBox.ReadOnly = true;
-            cpfTextBox.ReadOnly = true;
-            telefoneTextBox.ReadOnly = true;
-            cepTextBox.ReadOnly = true;
-            enderecoTextBox.ReadOnly = true;
-            numeroTextBox.ReadOnly = true;
-            cidadeTextBox.ReadOnly = true;
-            ufTextBox.ReadOnly = true;
+                Cliente cliente = (Cliente)listaDataGridView.CurrentRow.DataBoundItem;
 
-            idTextBox.Text = cliente.IdCliente.ToString();
-            nomeTextBox.Text = cliente.nomeCliente.ToString();
-            cpfTextBox.Text = cliente.cpfCliente.ToString();
-            telefoneTextBox.Text = cliente.telCliente.ToString();
-            cepTextBox.Text = cliente.cepCliente.ToString();
-            enderecoTextBox.Text = cliente.endCliente.ToString();
-            numeroTextBox.Text = cliente.numEndCliente.ToString();
-            cidadeTextBox.Text = cliente.cidCliente.ToString();
-            ufTextBox.Text = cliente.ufCliente.ToString();
-            ExibirFicha();
-            confirmarAlterarButton.Visible = false;
-            confirmarExclusaoButton.Visible = true;
-            confirmarNovoButton.Visible = false;
+                excluirAcionado = true;
+
+                nomeTextBox.ReadOnly = true;
+                cpfTextBox.ReadOnly = true;
+                telefoneTextBox.ReadOnly = true;
+                cepTextBox.ReadOnly = true;
+                enderecoTextBox.ReadOnly = true;
+                numeroTextBox.ReadOnly = true;
+                cidadeTextBox.ReadOnly = true;
+                ufTextBox.ReadOnly = true;
+
+                idTextBox.Text = cliente.IdCliente.ToString();
+                nomeTextBox.Text = cliente.nomeCliente.ToString();
+                cpfTextBox.Text = cliente.cpfCliente.ToString();
+                telefoneTextBox.Text = cliente.telCliente.ToString();
+                cepTextBox.Text = cliente.cepCliente.ToString();
+                enderecoTextBox.Text = cliente.endCliente.ToString();
+                numeroTextBox.Text = cliente.numEndCliente.ToString();
+                cidadeTextBox.Text = cliente.cidCliente.ToString();
+                ufTextBox.Text = cliente.ufCliente.ToString();
+                ExibirFicha();
+                confirmarAlterarButton.Visible = false;
+                confirmarExclusaoButton.Visible = true;
+                confirmarNovoButton.Visible = false;
+
+            }
         }
 
         private void confirmarExclusaoButton_Click(object sender, EventArgs e)
@@ -199,12 +234,26 @@ namespace Empresa.UI.Windows
             var db = new ClienteDb();
             db.Excluir(cliente.IdCliente);
 
+            excluirAcionado = false;
+
+            nomeTextBox.ReadOnly = false;
+            cpfTextBox.ReadOnly = false;
+            telefoneTextBox.ReadOnly = false;
+            cepTextBox.ReadOnly = false;
+            enderecoTextBox.ReadOnly = false;
+            numeroTextBox.ReadOnly = false;
+            cidadeTextBox.ReadOnly = false;
+            ufTextBox.ReadOnly = false;
+
             ExibirGrid();
         }
 
         private void sairButton_Click(object sender, EventArgs e)
         {
             Close();
+
+            var pf = new principalForm();
+            pf.Show();
         }
     }
 }
