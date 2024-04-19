@@ -16,7 +16,7 @@ namespace Empresa.UI.Windows
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new principalForm());
+            Application.Run(new LoginForm());
         }
     }
 }

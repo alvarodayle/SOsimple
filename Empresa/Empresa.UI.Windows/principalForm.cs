@@ -35,7 +35,7 @@ namespace Empresa.UI.Windows
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
     }
 }

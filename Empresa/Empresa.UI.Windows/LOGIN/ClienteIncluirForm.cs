@@ -10,22 +10,15 @@ using System.Windows.Forms;
 
 namespace Empresa.UI.Windows
 {
-    public partial class LoginForm : Form
+    public partial class ClienteIncluirForm : Form
     {
-        public LoginForm()
+        public ClienteIncluirForm()
         {
             InitializeComponent();
         }
-
         private void sairButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void cadastrarButton_Click(object sender, EventArgs e)
-        {
-            CadastroUsuarioForm cad = new CadastroUsuarioForm();
-            cad.ShowDialog();
         }
     }
 }
