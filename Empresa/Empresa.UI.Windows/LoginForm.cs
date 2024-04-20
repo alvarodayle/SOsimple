@@ -44,7 +44,14 @@ namespace Empresa.UI.Windows
                 }
                 else
                 {
-                    MessageBox.Show("Login Não Encontrado, Verificar Usuario e Senha", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if(loginTextBox.Text == "" || senhaTextBox.Text == "")
+                    {
+                        mensagemErroLabel.Text = "Insira as Credênciais de Login";
+                    }
+                    else
+                    {
+                        mensagemErroLabel.Text = "Login ou Senha Incorretos";
+                    }
                 }
             }else
             {

@@ -208,6 +208,7 @@
             // 
             // ufTextBox
             // 
+            this.ufTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ufTextBox.Location = new System.Drawing.Point(80, 295);
             this.ufTextBox.Name = "ufTextBox";
             this.ufTextBox.Size = new System.Drawing.Size(365, 22);
@@ -224,6 +225,7 @@
             // 
             // cidadeTextBox
             // 
+            this.cidadeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cidadeTextBox.Location = new System.Drawing.Point(80, 256);
             this.cidadeTextBox.Name = "cidadeTextBox";
             this.cidadeTextBox.Size = new System.Drawing.Size(365, 22);
@@ -240,6 +242,7 @@
             // 
             // telefoneTextBox
             // 
+            this.telefoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.telefoneTextBox.Location = new System.Drawing.Point(80, 95);
             this.telefoneTextBox.Name = "telefoneTextBox";
             this.telefoneTextBox.Size = new System.Drawing.Size(365, 22);
@@ -256,6 +259,7 @@
             // 
             // numeroTextBox
             // 
+            this.numeroTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numeroTextBox.Location = new System.Drawing.Point(80, 215);
             this.numeroTextBox.Name = "numeroTextBox";
             this.numeroTextBox.Size = new System.Drawing.Size(365, 22);
@@ -272,6 +276,7 @@
             // 
             // enderecoTextBox
             // 
+            this.enderecoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.enderecoTextBox.Location = new System.Drawing.Point(80, 175);
             this.enderecoTextBox.Name = "enderecoTextBox";
             this.enderecoTextBox.Size = new System.Drawing.Size(365, 22);
@@ -288,6 +293,7 @@
             // 
             // cepTextBox
             // 
+            this.cepTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cepTextBox.Location = new System.Drawing.Point(80, 134);
             this.cepTextBox.Name = "cepTextBox";
             this.cepTextBox.Size = new System.Drawing.Size(365, 22);
@@ -304,6 +310,7 @@
             // 
             // nomeTextBox
             // 
+            this.nomeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nomeTextBox.Location = new System.Drawing.Point(80, 18);
             this.nomeTextBox.Name = "nomeTextBox";
             this.nomeTextBox.Size = new System.Drawing.Size(365, 22);
@@ -311,6 +318,7 @@
             // 
             // cpfTextBox
             // 
+            this.cpfTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cpfTextBox.Location = new System.Drawing.Point(80, 56);
             this.cpfTextBox.Name = "cpfTextBox";
             this.cpfTextBox.Size = new System.Drawing.Size(365, 22);

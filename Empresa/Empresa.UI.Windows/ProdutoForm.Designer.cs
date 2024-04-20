@@ -192,6 +192,7 @@
             // 
             // marcaTextBox
             // 
+            this.marcaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.marcaTextBox.Location = new System.Drawing.Point(81, 203);
             this.marcaTextBox.Name = "marcaTextBox";
             this.marcaTextBox.Size = new System.Drawing.Size(365, 22);
@@ -208,6 +209,7 @@
             // 
             // numSerieTextBox
             // 
+            this.numSerieTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numSerieTextBox.Location = new System.Drawing.Point(129, 242);
             this.numSerieTextBox.Name = "numSerieTextBox";
             this.numSerieTextBox.Size = new System.Drawing.Size(317, 22);
@@ -224,6 +226,7 @@
             // 
             // tipoTextBox
             // 
+            this.tipoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tipoTextBox.Location = new System.Drawing.Point(81, 126);
             this.tipoTextBox.Name = "tipoTextBox";
             this.tipoTextBox.Size = new System.Drawing.Size(365, 22);
@@ -231,6 +234,7 @@
             // 
             // modeloTextBox
             // 
+            this.modeloTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.modeloTextBox.Location = new System.Drawing.Point(81, 164);
             this.modeloTextBox.Name = "modeloTextBox";
             this.modeloTextBox.Size = new System.Drawing.Size(365, 22);
