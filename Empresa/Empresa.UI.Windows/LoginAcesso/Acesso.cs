@@ -20,7 +20,7 @@ namespace Empresa.UI.Windows.LoginAcesso
         public bool verificarLogin(String loginFunc, String senhaFunc)
         {
             // procurar no banco login e senha
-            cmd.CommandText = "SELECT * FROM TFUNC WHERE loginFunc='teste' and senhaFunc='123'";
+            cmd.CommandText = @"SELECT * FROM TFUNC WHERE loginFunc=@loginFunc and senhaFunc=@senhaFunc";
             cmd.Parameters.AddWithValue("@loginFunc", loginFunc);
             cmd.Parameters.AddWithValue("@senhaFunc", senhaFunc);
             try
@@ -31,6 +31,8 @@ namespace Empresa.UI.Windows.LoginAcesso
                 {
                     tem = true;
                 }
+                con.Desconectar();
+                dados.Close();
             }
             catch (SqlException)
             {
@@ -39,9 +41,35 @@ namespace Empresa.UI.Windows.LoginAcesso
             return tem;
         }
 
-        public String Cadastrar(String nome, String login, String senha, String departamento)
+        public String Cadastrar(String nomeFunc, String loginFunc, String senhaFunc, String deptFunc, String confSenha)
         {
+            tem = false;
             // comandos para inserir no banco
+            if (senhaFunc.Equals(confSenha))
+            {
+                cmd.CommandText = @"INSERT INTO TFUNC VALUES (@nomeFunc, @loginFunc, @senhaFunc, @deptFunc)";
+                cmd.Parameters.AddWithValue("@nomeFunc", nomeFunc);
+                cmd.Parameters.AddWithValue("@loginFunc", loginFunc);
+                cmd.Parameters.AddWithValue("@senhaFunc", senhaFunc);
+                cmd.Parameters.AddWithValue("@deptFunc", deptFunc);
+
+                try
+                {
+                    cmd.Connection = con.Conectar();
+                    cmd.ExecuteNonQuery();
+                    con.Desconectar();
+                    this.mensagem = "Cadastrado com Sucesso!";
+                    tem = true;
+                }
+                catch (SqlException)
+                {
+                    this.mensagem = "Erro com Banco de Dados";
+                }
+            }
+            else
+            {
+                this.mensagem = "Senhas não correspondem";
+            }
             return mensagem;
         }
     }

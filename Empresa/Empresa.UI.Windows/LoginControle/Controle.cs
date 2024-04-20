@@ -15,7 +15,7 @@ namespace Empresa.UI.Windows.LoginControle
         public bool Acessar(String loginFunc, String senhaFunc)
         {
             Acesso loginAcesso = new Acesso();
-            loginAcesso.verificarLogin(loginFunc, senhaFunc);
+            tem = loginAcesso.verificarLogin(loginFunc, senhaFunc);
 
             if (!loginAcesso.mensagem.Equals(""))
             { 
@@ -24,8 +24,14 @@ namespace Empresa.UI.Windows.LoginControle
             return tem;
         }
 
-        public String Cadastrar(String nome, String login, String senha, String departamento)
+        public String Cadastrar(String nomeFunc, String loginFunc, String senhaFunc, String deptFunc, String confSenha)
         {
+            Acesso loginAcesso = new Acesso();
+            this.mensagem = loginAcesso.Cadastrar(nomeFunc, loginFunc, senhaFunc, deptFunc, confSenha);
+            if (loginAcesso.tem)
+            {
+                this.tem = true;
+            }
             return mensagem;
         }
     }

@@ -32,12 +32,14 @@
             this.departamentoLabel = new System.Windows.Forms.Label();
             this.loginLabel = new System.Windows.Forms.Label();
             this.senhaLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.nomeCadastroTextBox = new System.Windows.Forms.TextBox();
+            this.deptTextBox = new System.Windows.Forms.TextBox();
+            this.loginTextBox = new System.Windows.Forms.TextBox();
+            this.senhaTextBox = new System.Windows.Forms.TextBox();
             this.confirmarCadastroButton = new System.Windows.Forms.Button();
             this.voltarButton = new System.Windows.Forms.Button();
+            this.confirSenhaTextBox = new System.Windows.Forms.TextBox();
+            this.confirSenhaLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nomeLabel
@@ -70,52 +72,53 @@
             // senhaLabel
             // 
             this.senhaLabel.AutoSize = true;
-            this.senhaLabel.Location = new System.Drawing.Point(15, 135);
+            this.senhaLabel.Location = new System.Drawing.Point(17, 135);
             this.senhaLabel.Name = "senhaLabel";
             this.senhaLabel.Size = new System.Drawing.Size(41, 13);
             this.senhaLabel.TabIndex = 3;
             this.senhaLabel.Text = "Senha:";
             // 
-            // textBox1
+            // nomeCadastroTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(98, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(274, 20);
-            this.textBox1.TabIndex = 4;
+            this.nomeCadastroTextBox.Location = new System.Drawing.Point(109, 22);
+            this.nomeCadastroTextBox.Name = "nomeCadastroTextBox";
+            this.nomeCadastroTextBox.Size = new System.Drawing.Size(274, 20);
+            this.nomeCadastroTextBox.TabIndex = 1;
             // 
-            // textBox2
+            // deptTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(98, 58);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(274, 20);
-            this.textBox2.TabIndex = 5;
+            this.deptTextBox.Location = new System.Drawing.Point(109, 58);
+            this.deptTextBox.Name = "deptTextBox";
+            this.deptTextBox.Size = new System.Drawing.Size(274, 20);
+            this.deptTextBox.TabIndex = 2;
             // 
-            // textBox3
+            // loginTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(98, 93);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(274, 20);
-            this.textBox3.TabIndex = 6;
+            this.loginTextBox.Location = new System.Drawing.Point(109, 93);
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(274, 20);
+            this.loginTextBox.TabIndex = 3;
             // 
-            // textBox4
+            // senhaTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(98, 132);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(274, 20);
-            this.textBox4.TabIndex = 7;
+            this.senhaTextBox.Location = new System.Drawing.Point(109, 132);
+            this.senhaTextBox.Name = "senhaTextBox";
+            this.senhaTextBox.Size = new System.Drawing.Size(274, 20);
+            this.senhaTextBox.TabIndex = 4;
             // 
             // confirmarCadastroButton
             // 
-            this.confirmarCadastroButton.Location = new System.Drawing.Point(171, 168);
+            this.confirmarCadastroButton.Location = new System.Drawing.Point(174, 223);
             this.confirmarCadastroButton.Name = "confirmarCadastroButton";
             this.confirmarCadastroButton.Size = new System.Drawing.Size(96, 28);
             this.confirmarCadastroButton.TabIndex = 8;
             this.confirmarCadastroButton.Text = "Cadastrar";
             this.confirmarCadastroButton.UseVisualStyleBackColor = true;
+            this.confirmarCadastroButton.Click += new System.EventHandler(this.confirmarCadastroButton_Click);
             // 
             // voltarButton
             // 
-            this.voltarButton.Location = new System.Drawing.Point(273, 168);
+            this.voltarButton.Location = new System.Drawing.Point(276, 223);
             this.voltarButton.Name = "voltarButton";
             this.voltarButton.Size = new System.Drawing.Size(96, 28);
             this.voltarButton.TabIndex = 9;
@@ -123,17 +126,35 @@
             this.voltarButton.UseVisualStyleBackColor = true;
             this.voltarButton.Click += new System.EventHandler(this.voltarButton_Click);
             // 
+            // confirSenhaTextBox
+            // 
+            this.confirSenhaTextBox.Location = new System.Drawing.Point(109, 175);
+            this.confirSenhaTextBox.Name = "confirSenhaTextBox";
+            this.confirSenhaTextBox.Size = new System.Drawing.Size(274, 20);
+            this.confirSenhaTextBox.TabIndex = 5;
+            // 
+            // confirSenhaLabel
+            // 
+            this.confirSenhaLabel.AutoSize = true;
+            this.confirSenhaLabel.Location = new System.Drawing.Point(15, 178);
+            this.confirSenhaLabel.Name = "confirSenhaLabel";
+            this.confirSenhaLabel.Size = new System.Drawing.Size(88, 13);
+            this.confirSenhaLabel.TabIndex = 11;
+            this.confirSenhaLabel.Text = "Confirmar Senha:";
+            // 
             // CadastroUsuarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 208);
+            this.ClientSize = new System.Drawing.Size(392, 263);
+            this.Controls.Add(this.confirSenhaLabel);
+            this.Controls.Add(this.confirSenhaTextBox);
             this.Controls.Add(this.voltarButton);
             this.Controls.Add(this.confirmarCadastroButton);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.senhaTextBox);
+            this.Controls.Add(this.loginTextBox);
+            this.Controls.Add(this.deptTextBox);
+            this.Controls.Add(this.nomeCadastroTextBox);
             this.Controls.Add(this.senhaLabel);
             this.Controls.Add(this.loginLabel);
             this.Controls.Add(this.departamentoLabel);
@@ -154,11 +175,13 @@
         private System.Windows.Forms.Label departamentoLabel;
         private System.Windows.Forms.Label loginLabel;
         private System.Windows.Forms.Label senhaLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox nomeCadastroTextBox;
+        private System.Windows.Forms.TextBox deptTextBox;
+        private System.Windows.Forms.TextBox loginTextBox;
+        private System.Windows.Forms.TextBox senhaTextBox;
         private System.Windows.Forms.Button confirmarCadastroButton;
         private System.Windows.Forms.Button voltarButton;
+        private System.Windows.Forms.TextBox confirSenhaTextBox;
+        private System.Windows.Forms.Label confirSenhaLabel;
     }
 }

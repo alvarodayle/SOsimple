@@ -38,7 +38,6 @@ namespace Empresa.UI.Windows
             { 
                 if (controle.tem)
                 {
-                    MessageBox.Show("Logado com Sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     principalForm telaPrincipal = new principalForm();
                     telaPrincipal.Show();
                     Hide();
