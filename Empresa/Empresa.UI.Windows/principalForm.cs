@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Empresa.UI.Windows.LoginAcesso;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,15 +9,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Empresa.Db;
+using Microsoft.SqlServer.Server;
 
 namespace Empresa.UI.Windows
 {
     public partial class principalForm : Form
     {
+
         public principalForm()
         {
             InitializeComponent();
         }
+
+        public void alcada(String departamento, String nomeFuncionario)
+        {
+            boasVindasLabel.Text = ($"Boas Vindas {nomeFuncionario}");
+
+            if(departamento != "Supervisor")
+            {
+                
+            }
+        }
+
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();

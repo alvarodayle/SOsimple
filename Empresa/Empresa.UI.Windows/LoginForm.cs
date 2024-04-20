@@ -34,11 +34,14 @@ namespace Empresa.UI.Windows
         {
             Controle controle = new Controle();
             controle.Acessar(loginTextBox.Text, senhaTextBox.Text);
+            controle.Alcada(loginTextBox.Text, senhaTextBox.Text);
+
             if (controle.mensagem.Equals(""))
             { 
                 if (controle.tem)
                 {
                     principalForm telaPrincipal = new principalForm();
+                    telaPrincipal.alcada(controle.departamento, controle.nomeFuncionario);
                     telaPrincipal.Show();
                     Hide();
                 }

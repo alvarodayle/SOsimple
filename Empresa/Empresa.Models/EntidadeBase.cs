@@ -21,8 +21,10 @@ namespace Empresa.Models
 
     public abstract class EntidadeFuncionario
     {
+        public string nomeFunc  { get; set; }
         public string loginFunc { get; set; }
         public string senhaFunc { get; set; }
+        public string deptFunc  { get; set; }
     }
 
     public abstract class EntidadeProduto
@@ -32,7 +34,5 @@ namespace Empresa.Models
         public string modeloProduto  { get; set; }
         public string marcaProduto   { get; set; }
         public string numSerie       { get; set; }
-
-    
     }
 }

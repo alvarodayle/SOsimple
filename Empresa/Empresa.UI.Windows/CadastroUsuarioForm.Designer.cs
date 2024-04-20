@@ -40,6 +40,7 @@
             this.voltarButton = new System.Windows.Forms.Button();
             this.confirSenhaTextBox = new System.Windows.Forms.TextBox();
             this.confirSenhaLabel = new System.Windows.Forms.Label();
+            this.erroCadastroLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nomeLabel
@@ -121,7 +122,7 @@
             // 
             // confirmarCadastroButton
             // 
-            this.confirmarCadastroButton.Location = new System.Drawing.Point(232, 274);
+            this.confirmarCadastroButton.Location = new System.Drawing.Point(245, 290);
             this.confirmarCadastroButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.confirmarCadastroButton.Name = "confirmarCadastroButton";
             this.confirmarCadastroButton.Size = new System.Drawing.Size(128, 34);
@@ -132,7 +133,7 @@
             // 
             // voltarButton
             // 
-            this.voltarButton.Location = new System.Drawing.Point(368, 274);
+            this.voltarButton.Location = new System.Drawing.Point(381, 290);
             this.voltarButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.voltarButton.Name = "voltarButton";
             this.voltarButton.Size = new System.Drawing.Size(128, 34);
@@ -144,7 +145,7 @@
             // confirSenhaTextBox
             // 
             this.confirSenhaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.confirSenhaTextBox.Location = new System.Drawing.Point(145, 215);
+            this.confirSenhaTextBox.Location = new System.Drawing.Point(145, 207);
             this.confirSenhaTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.confirSenhaTextBox.Name = "confirSenhaTextBox";
             this.confirSenhaTextBox.Size = new System.Drawing.Size(364, 22);
@@ -154,18 +155,29 @@
             // confirSenhaLabel
             // 
             this.confirSenhaLabel.AutoSize = true;
-            this.confirSenhaLabel.Location = new System.Drawing.Point(20, 219);
+            this.confirSenhaLabel.Location = new System.Drawing.Point(20, 211);
             this.confirSenhaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.confirSenhaLabel.Name = "confirSenhaLabel";
             this.confirSenhaLabel.Size = new System.Drawing.Size(109, 16);
             this.confirSenhaLabel.TabIndex = 11;
             this.confirSenhaLabel.Text = "Confirmar Senha:";
             // 
+            // erroCadastroLabel
+            // 
+            this.erroCadastroLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.erroCadastroLabel.ForeColor = System.Drawing.Color.Red;
+            this.erroCadastroLabel.Location = new System.Drawing.Point(25, 246);
+            this.erroCadastroLabel.Name = "erroCadastroLabel";
+            this.erroCadastroLabel.Size = new System.Drawing.Size(486, 31);
+            this.erroCadastroLabel.TabIndex = 12;
+            this.erroCadastroLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // CadastroUsuarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 324);
+            this.ClientSize = new System.Drawing.Size(523, 339);
+            this.Controls.Add(this.erroCadastroLabel);
             this.Controls.Add(this.confirSenhaLabel);
             this.Controls.Add(this.confirSenhaTextBox);
             this.Controls.Add(this.voltarButton);
@@ -203,5 +215,6 @@
         private System.Windows.Forms.Button voltarButton;
         private System.Windows.Forms.TextBox confirSenhaTextBox;
         private System.Windows.Forms.Label confirSenhaLabel;
+        private System.Windows.Forms.Label erroCadastroLabel;
     }
 }
