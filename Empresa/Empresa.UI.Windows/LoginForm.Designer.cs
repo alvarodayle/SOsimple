@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            this.telefoneTextBox = new System.Windows.Forms.TextBox();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.senhaTextBox = new System.Windows.Forms.TextBox();
+            this.loginTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.sairButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -40,21 +40,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // telefoneTextBox
+            // senhaTextBox
             // 
-            this.telefoneTextBox.Location = new System.Drawing.Point(100, 198);
-            this.telefoneTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.telefoneTextBox.Name = "telefoneTextBox";
-            this.telefoneTextBox.Size = new System.Drawing.Size(198, 20);
-            this.telefoneTextBox.TabIndex = 2;
+            this.senhaTextBox.Location = new System.Drawing.Point(100, 198);
+            this.senhaTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.senhaTextBox.Name = "senhaTextBox";
+            this.senhaTextBox.Size = new System.Drawing.Size(198, 20);
+            this.senhaTextBox.TabIndex = 2;
             // 
-            // emailTextBox
+            // loginTextBox
             // 
-            this.emailTextBox.Location = new System.Drawing.Point(100, 160);
-            this.emailTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(198, 20);
-            this.emailTextBox.TabIndex = 1;
+            this.loginTextBox.Location = new System.Drawing.Point(100, 160);
+            this.loginTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(198, 20);
+            this.loginTextBox.TabIndex = 1;
             // 
             // loginButton
             // 
@@ -65,6 +65,7 @@
             this.loginButton.TabIndex = 3;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // sairButton
             // 
@@ -127,8 +128,8 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.sairButton);
             this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.emailTextBox);
-            this.Controls.Add(this.telefoneTextBox);
+            this.Controls.Add(this.loginTextBox);
+            this.Controls.Add(this.senhaTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
@@ -142,8 +143,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox telefoneTextBox;
-        private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.TextBox senhaTextBox;
+        private System.Windows.Forms.TextBox loginTextBox;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button sairButton;
         private System.Windows.Forms.PictureBox pictureBox1;

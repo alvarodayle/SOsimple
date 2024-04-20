@@ -121,6 +121,7 @@
             this.voltarButton.TabIndex = 9;
             this.voltarButton.Text = "Voltar";
             this.voltarButton.UseVisualStyleBackColor = true;
+            this.voltarButton.Click += new System.EventHandler(this.voltarButton_Click);
             // 
             // CadastroUsuarioForm
             // 

@@ -83,6 +83,7 @@
       <DependentUpon>CadastroUsuarioForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginAcesso\Acesso.cs" />
+    <Compile Include="LoginConexao\Conexao.cs" />
     <Compile Include="LoginControle\Controle.cs" />
     <Compile Include="ProdutoForm.cs">
       <SubType>Form</SubType>

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Empresa.UI.Windows.LoginControle;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,29 @@ namespace Empresa.UI.Windows
         {
             CadastroUsuarioForm cad = new CadastroUsuarioForm();
             cad.ShowDialog();
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            Controle controle = new Controle();
+            controle.Acessar(loginTextBox.Text, senhaTextBox.Text);
+            if (controle.mensagem.Equals(""))
+            { 
+                if (controle.tem)
+                {
+                    MessageBox.Show("Logado com Sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    principalForm telaPrincipal = new principalForm();
+                    telaPrincipal.Show();
+                    Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Login Não Encontrado, Verificar Usuario e Senha", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }else
+            {
+                MessageBox.Show(controle.mensagem);
+            }
         }
     }
 }

@@ -16,5 +16,11 @@ namespace Empresa.UI.Windows
         {
             InitializeComponent();
         }
+
+        private void voltarButton_Click(object sender, EventArgs e)
+        {
+            CadastroUsuarioForm cad = new CadastroUsuarioForm();
+            cad.Close();
+        }
     }
 }
