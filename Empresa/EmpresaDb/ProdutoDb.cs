@@ -30,6 +30,7 @@ namespace Empresa.Db
             string sql = @"UPDATE TPROD SET tipoProduto=@tipoProduto, modeloProduto=@modeloProduto, marcaProduto=@marcaProduto, numSerie=@numSerie WHERE IdProduto=@IdProduto";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
+            cmd.Parameters.AddWithValue("@IdProduto", produto.IdProduto);
             cmd.Parameters.AddWithValue("@tipoProduto", produto.tipoProduto);
             cmd.Parameters.AddWithValue("@modeloProduto", produto.modeloProduto);
             cmd.Parameters.AddWithValue("@marcaProduto", produto.marcaProduto);
