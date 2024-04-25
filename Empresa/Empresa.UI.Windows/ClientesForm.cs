@@ -209,7 +209,7 @@ namespace Empresa.UI.Windows
                 cidadeTextBox.ReadOnly = true;
                 ufTextBox.ReadOnly = true;
 
-                idTextBox.Text = cliente.IdCliente.ToString();
+                idTextBox.Text = cliente.IdCliente.ToString(); ;
                 nomeTextBox.Text = cliente.nomeCliente.ToString();
                 cpfTextBox.Text = cliente.cpfCliente.ToString();
                 telefoneTextBox.Text = cliente.telCliente.ToString();
@@ -248,11 +248,27 @@ namespace Empresa.UI.Windows
             ExibirGrid();
         }
 
+        public String boasvindas;
+
+        public void guardanome(String nomeFuncionario)
+        {
+            boasvindas = nomeFuncionario;
+        }
+
+        public String direitoAcesso;
+
+        public void acesso(String departamento)
+        {
+            direitoAcesso = departamento;
+        }
+
         private void sairButton_Click(object sender, EventArgs e)
         {
             Close();
 
             var pf = new principalForm();
+            pf.guardanome(boasvindas);
+            pf.acesso(direitoAcesso);
             pf.Show();
         }
     }

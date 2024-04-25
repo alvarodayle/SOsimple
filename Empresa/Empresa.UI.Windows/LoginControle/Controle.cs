@@ -37,10 +37,10 @@ namespace Empresa.UI.Windows.LoginControle
 
         }
 
-        public String Cadastrar(String nomeFunc, String loginFunc, String senhaFunc, String deptFunc, String confSenha)
+        public String resetSenha(String loginFunc, String senhaAtualFunc, String novaSenhaFunc, String confirSenhaFunc)
         {
             Acesso loginAcesso = new Acesso();
-            this.mensagem = loginAcesso.Cadastrar(nomeFunc, loginFunc, senhaFunc, deptFunc, confSenha);
+            this.mensagem = loginAcesso.resetSenha(loginFunc, senhaAtualFunc, novaSenhaFunc, confirSenhaFunc);
             if (loginAcesso.tem)
             {
                 this.tem = true;

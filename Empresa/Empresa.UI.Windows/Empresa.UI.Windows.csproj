@@ -76,15 +76,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CadastroUsuarioForm.cs">
+    <Compile Include="ResetSenhaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CadastroUsuarioForm.Designer.cs">
-      <DependentUpon>CadastroUsuarioForm.cs</DependentUpon>
+    <Compile Include="ResetSenhaForm.Designer.cs">
+      <DependentUpon>ResetSenhaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginAcesso\Acesso.cs" />
     <Compile Include="LoginConexao\Conexao.cs" />
     <Compile Include="LoginControle\Controle.cs" />
+    <Compile Include="FuncionarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuncionarioForm.Designer.cs">
+      <DependentUpon>FuncionarioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProdutoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,8 +117,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CadastroUsuarioForm.resx">
-      <DependentUpon>CadastroUsuarioForm.cs</DependentUpon>
+    <EmbeddedResource Include="ResetSenhaForm.resx">
+      <DependentUpon>ResetSenhaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FuncionarioForm.resx">
+      <DependentUpon>FuncionarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProdutoForm.resx">
       <DependentUpon>ProdutoForm.cs</DependentUpon>

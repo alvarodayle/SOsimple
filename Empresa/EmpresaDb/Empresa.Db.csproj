@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FuncionarioDb.cs" />
     <Compile Include="ProdutoDb.cs" />
     <Compile Include="ClienteDb.cs" />
     <Compile Include="Db.cs" />

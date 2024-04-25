@@ -12,9 +12,9 @@ using Empresa.Models;
 
 namespace Empresa.UI.Windows
 {
-    public partial class ProdutoForm : Form
+    public partial class FuncionariosForm : Form
     {
-        public ProdutoForm()
+        public FuncionariosForm()
         {
             InitializeComponent();
         }
@@ -33,7 +33,7 @@ namespace Empresa.UI.Windows
             confirmarNovoButton.Visible = false;
             voltarButton.Visible = false;
 
-            var db = new ProdutoDb();
+            var db = new FuncionariosDb();
             listaDataGridView.DataSource = db.Listar();
             listaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listaDataGridView.ReadOnly = true;
@@ -43,18 +43,18 @@ namespace Empresa.UI.Windows
             
             listaDataGridView.Columns[0].Width = 35;
             listaDataGridView.Columns[1].Width = 200;
-            listaDataGridView.Columns[2].Width = 100;
-            listaDataGridView.Columns[3].Width = 100;
-            listaDataGridView.Columns[4].Width = 90;
+            listaDataGridView.Columns[2].Width = 90;
+            listaDataGridView.Columns[3].Width = 90;
+            listaDataGridView.Columns[4].Width = 100;
 
             listaDataGridView.Columns[0].HeaderText = "ID";
-            listaDataGridView.Columns[1].HeaderText = "Tipo";
-            listaDataGridView.Columns[2].HeaderText = "Modelo";
-            listaDataGridView.Columns[3].HeaderText = "Marca";
-            listaDataGridView.Columns[4].HeaderText = "Número de Série";
+            listaDataGridView.Columns[1].HeaderText = "Nome";
+            listaDataGridView.Columns[2].HeaderText = "Login";
+            listaDataGridView.Columns[3].HeaderText = "Senha";
+            listaDataGridView.Columns[4].HeaderText = "Departamento";
 
         }
-        private void ProdutoForm_Load(object sender, EventArgs e)
+        private void FuncionariosForm_Load(object sender, EventArgs e)
         {
             ExibirGrid();
         }
@@ -86,86 +86,83 @@ namespace Empresa.UI.Windows
         }
         private void LimparFicha()
         {
-            tipoTextBox.Clear();
-            modeloTextBox.Clear();
-            marcaTextBox.Clear();
-            numSerieTextBox.Clear();
+            nomeTextBox.Clear();
+            loginTextBox.Clear();
+            senhaTextBox.Clear();
+            departamentoTextBox.Clear();
 
 
         }
         private void voltarButton_Click(object sender, EventArgs e)
         {
             if (excluirAcionado)
-            { 
-
+            {
                 excluirAcionado = false;
 
-                tipoTextBox.ReadOnly = false;
-                modeloTextBox.ReadOnly = false;
-                marcaTextBox.ReadOnly = false;
-                numSerieTextBox.ReadOnly = false;
+                nomeTextBox.ReadOnly = false;
+                loginTextBox.ReadOnly = false;
+                senhaTextBox.ReadOnly = false;
+                departamentoTextBox.ReadOnly = false;
             }
-
+            
             ExibirGrid();
         }
 
         private void confirmarNovoButton_Click(object sender, EventArgs e)
         {
-            var produto = new Produto();
-            produto.tipoProduto = tipoTextBox.Text;
-            produto.modeloProduto = modeloTextBox.Text;
-            produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = numSerieTextBox.Text;
+            var funcionario = new Funcionario();
+            funcionario.nomeFunc = nomeTextBox.Text;
+            funcionario.loginFunc = loginTextBox.Text;
+            funcionario.senhaFunc = senhaTextBox.Text;
+            funcionario.deptFunc = departamentoTextBox.Text;
 
 
-            var db = new ProdutoDb();
-            db.Incluir(produto);
+            var db = new FuncionariosDb();
+            db.Incluir(funcionario);
 
             ExibirGrid();
         }
 
         private void alterarButton_Click(object sender, EventArgs e)
         {
-
             if (listaDataGridView.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Náo há nenhum registro selecionado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                Produto produto = (Produto)listaDataGridView.CurrentRow.DataBoundItem;
 
-                idTextBox.Text = produto.IdProduto.ToString();
-                tipoTextBox.Text = produto.tipoProduto;
-                modeloTextBox.Text = produto.modeloProduto;
-                marcaTextBox.Text = produto.marcaProduto;
-                numSerieTextBox.Text = produto.numSerie;
+                Funcionario funcionario = (Funcionario)listaDataGridView.CurrentRow.DataBoundItem;
+                idTextBox.Text = funcionario.IdFunc.ToString();
+                nomeTextBox.Text = funcionario.nomeFunc;
+                loginTextBox.Text = funcionario.loginFunc;
+                senhaTextBox.Text = funcionario.senhaFunc;
+                departamentoTextBox.Text = funcionario.deptFunc;
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = true;
                 confirmarExclusaoButton.Visible = false;
                 confirmarNovoButton.Visible = false;
+
             }
         }
 
         private void confirmarAlterarButton_Click(object sender, EventArgs e)
         {
-            var produto = new Produto();
-            produto.IdProduto = Convert.ToInt32(idTextBox.Text);
-            produto.tipoProduto = tipoTextBox.Text;
-            produto.modeloProduto = modeloTextBox.Text;
-            produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = numSerieTextBox.Text;
+            var funcionario = new Funcionario();
+            funcionario.IdFunc = Convert.ToInt32(idTextBox.Text);
+            funcionario.nomeFunc = nomeTextBox.Text;
+            funcionario.loginFunc = loginTextBox.Text;
+            funcionario.senhaFunc = senhaTextBox.Text;
+            funcionario.deptFunc = departamentoTextBox.Text;
 
-
-            var db = new ProdutoDb();
-            db.Alterar(produto);
+            var db = new FuncionariosDb();
+            db.Alterar(funcionario);
 
             ExibirGrid();
         }
 
         bool excluirAcionado = false;
-
 
         private void excluirButton_Click(object sender, EventArgs e)
         {
@@ -176,21 +173,20 @@ namespace Empresa.UI.Windows
             else
             {
 
+                Funcionario funcionario = (Funcionario)listaDataGridView.CurrentRow.DataBoundItem;
+
                 excluirAcionado = true;
 
-                Produto produto = (Produto)listaDataGridView.CurrentRow.DataBoundItem;
+                nomeTextBox.ReadOnly = true;
+                loginTextBox.ReadOnly = true;
+                senhaTextBox.ReadOnly = true;
+                departamentoTextBox.ReadOnly = true;
 
-                tipoTextBox.ReadOnly = true;
-                modeloTextBox.ReadOnly = true;
-                marcaTextBox.ReadOnly = true;
-                numSerieTextBox.ReadOnly = true;
-
-
-                idTextBox.Text = produto.IdProduto.ToString();
-                tipoTextBox.Text = produto.tipoProduto.ToString();
-                modeloTextBox.Text = produto.modeloProduto.ToString();
-                marcaTextBox.Text = produto.marcaProduto.ToString();
-                numSerieTextBox.Text = produto.numSerie.ToString();
+                idTextBox.Text = funcionario.IdFunc.ToString();
+                nomeTextBox.Text = funcionario.nomeFunc.ToString();
+                loginTextBox.Text = funcionario.loginFunc.ToString();
+                senhaTextBox.Text = funcionario.senhaFunc.ToString();
+                departamentoTextBox.Text = funcionario.deptFunc.ToString();
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = false;
@@ -202,36 +198,20 @@ namespace Empresa.UI.Windows
 
         private void confirmarExclusaoButton_Click(object sender, EventArgs e)
         {
+            var funcionario = new Funcionario();
+            funcionario.IdFunc = Convert.ToInt32(idTextBox.Text);
 
-            var produto = new Produto();
-            produto.IdProduto = Convert.ToInt32(idTextBox.Text);
-
-            var db = new ProdutoDb();
-            db.Excluir(produto.IdProduto);
-
-            ExibirGrid();
+            var db = new FuncionariosDb();
+            db.Excluir(funcionario.IdFunc);
 
             excluirAcionado = false;
 
-            tipoTextBox.ReadOnly = false;
-            modeloTextBox.ReadOnly = false;
-            marcaTextBox.ReadOnly = false;
-            numSerieTextBox.ReadOnly = false;
+            nomeTextBox.ReadOnly = false;
+            loginTextBox.ReadOnly = false;
+            senhaTextBox.ReadOnly = false;
+            departamentoTextBox.ReadOnly = false;
 
-        }
-
-        public String boasvindas;
-
-        public void guardanome(String nomeFuncionario)
-        {
-            boasvindas = nomeFuncionario;
-        }
-
-        public String direitoAcesso;
-
-        public void acesso(String departamento)
-        {
-            direitoAcesso = departamento;
+            ExibirGrid();
         }
 
         private void sairButton_Click(object sender, EventArgs e)
@@ -239,8 +219,6 @@ namespace Empresa.UI.Windows
             Close();
 
             var pf = new principalForm();
-            pf.guardanome(boasvindas);
-            pf.acesso(direitoAcesso);
             pf.Show();
         }
     }

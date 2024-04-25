@@ -34,7 +34,7 @@
             this.loginButton = new System.Windows.Forms.Button();
             this.sairButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cadastrarButton = new System.Windows.Forms.Button();
+            this.resetSenhaButton = new System.Windows.Forms.Button();
             this.usuarioLabel = new System.Windows.Forms.Label();
             this.senhaLabel = new System.Windows.Forms.Label();
             this.mensagemErroLabel = new System.Windows.Forms.Label();
@@ -73,10 +73,10 @@
             // 
             // sairButton
             // 
-            this.sairButton.Location = new System.Drawing.Point(289, 305);
+            this.sairButton.Location = new System.Drawing.Point(307, 305);
             this.sairButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sairButton.Name = "sairButton";
-            this.sairButton.Size = new System.Drawing.Size(113, 34);
+            this.sairButton.Size = new System.Drawing.Size(95, 34);
             this.sairButton.TabIndex = 5;
             this.sairButton.Text = "Sair";
             this.sairButton.UseVisualStyleBackColor = true;
@@ -86,23 +86,23 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(133, 13);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(188, 158);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // cadastrarButton
+            // resetSenhaButton
             // 
-            this.cadastrarButton.Location = new System.Drawing.Point(171, 305);
-            this.cadastrarButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cadastrarButton.Name = "cadastrarButton";
-            this.cadastrarButton.Size = new System.Drawing.Size(113, 34);
-            this.cadastrarButton.TabIndex = 4;
-            this.cadastrarButton.Text = "Cadastrar";
-            this.cadastrarButton.UseVisualStyleBackColor = true;
-            this.cadastrarButton.Click += new System.EventHandler(this.cadastrarButton_Click);
+            this.resetSenhaButton.Location = new System.Drawing.Point(171, 305);
+            this.resetSenhaButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.resetSenhaButton.Name = "resetSenhaButton";
+            this.resetSenhaButton.Size = new System.Drawing.Size(130, 34);
+            this.resetSenhaButton.TabIndex = 4;
+            this.resetSenhaButton.Text = "Resetar Senha";
+            this.resetSenhaButton.UseVisualStyleBackColor = true;
+            this.resetSenhaButton.Click += new System.EventHandler(this.resetSenha_Click);
             // 
             // usuarioLabel
             // 
@@ -142,7 +142,7 @@
             this.Controls.Add(this.mensagemErroLabel);
             this.Controls.Add(this.senhaLabel);
             this.Controls.Add(this.usuarioLabel);
-            this.Controls.Add(this.cadastrarButton);
+            this.Controls.Add(this.resetSenhaButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.sairButton);
             this.Controls.Add(this.loginButton);
@@ -166,7 +166,7 @@
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button sairButton;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button cadastrarButton;
+        private System.Windows.Forms.Button resetSenhaButton;
         private System.Windows.Forms.Label usuarioLabel;
         private System.Windows.Forms.Label senhaLabel;
         private System.Windows.Forms.Label mensagemErroLabel;

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Empresa.Db;
 using Microsoft.SqlServer.Server;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Empresa.UI.Windows
 {
@@ -19,15 +20,26 @@ namespace Empresa.UI.Windows
         public principalForm()
         {
             InitializeComponent();
+
         }
 
-        public void alcada(String departamento, String nomeFuncionario)
-        {
-            boasVindasLabel.Text = ($"Boas Vindas {nomeFuncionario}");
+        public String boasvindas;
 
-            if(departamento != "Supervisor")
+        public void guardanome(String nomeFuncionario)
+        {
+            boasvindas = nomeFuncionario;
+            boasVindasLabel.Text = ($"Boas Vindas {boasvindas}");
+        }
+
+        public String direitoAcesso;
+
+        public void acesso(String departamento)
+        {
+            direitoAcesso = departamento;
+
+            if (direitoAcesso != "SUPERVISOR" || direitoAcesso != "GERENTE" || direitoAcesso != "DIRETOR")
             {
-                
+                funcionáriosToolStripMenuItem.Visible = false;
             }
         }
 
@@ -35,6 +47,8 @@ namespace Empresa.UI.Windows
         {
             Hide();
             var f = new ClientesForm();
+            f.guardanome(boasvindas);
+            f.acesso(direitoAcesso);
             f.ShowDialog();
             
         }
@@ -43,8 +57,26 @@ namespace Empresa.UI.Windows
         {
             Hide();
             var f = new ProdutoForm();
+            f.guardanome(boasvindas);
+            f.acesso(direitoAcesso);
             f.ShowDialog();
             
+        }
+
+        private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var f = new FuncionarioForm();
+            f.guardanome(boasvindas);
+            f.acesso(direitoAcesso);
+            f.ShowDialog();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+            var lf = new LoginForm();
+            lf.ShowDialog();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)

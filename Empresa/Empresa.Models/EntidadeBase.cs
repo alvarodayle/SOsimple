@@ -21,9 +21,9 @@ namespace Empresa.Models
 
     public abstract class EntidadeFuncionario
     {
+        public int    IdFunc    { get; set; }
         public string nomeFunc  { get; set; }
         public string loginFunc { get; set; }
-        public string senhaFunc { get; set; }
         public string deptFunc  { get; set; }
     }
 

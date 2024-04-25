@@ -24,41 +24,52 @@ namespace Empresa.UI.Windows
             Application.Exit();
         }
 
-        private void cadastrarButton_Click(object sender, EventArgs e)
+        private void resetSenha_Click(object sender, EventArgs e)
         {
-            CadastroUsuarioForm cad = new CadastroUsuarioForm();
+            ResetSenhaForm cad = new ResetSenhaForm();
             cad.ShowDialog();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            Controle controle = new Controle();
-            controle.Acessar(loginTextBox.Text, senhaTextBox.Text);
-            controle.Alcada(loginTextBox.Text, senhaTextBox.Text);
+            if (senhaTextBox.Text != "SOSIMPLEUSER")
+            {
+                Controle controle = new Controle();
+                controle.Acessar(loginTextBox.Text, senhaTextBox.Text);
+                controle.Alcada(loginTextBox.Text, senhaTextBox.Text);
 
-            if (controle.mensagem.Equals(""))
-            { 
-                if (controle.tem)
+                if (controle.mensagem.Equals(""))
                 {
-                    principalForm telaPrincipal = new principalForm();
-                    telaPrincipal.alcada(controle.departamento, controle.nomeFuncionario);
-                    telaPrincipal.Show();
-                    Hide();
-                }
-                else
-                {
-                    if(loginTextBox.Text == "" || senhaTextBox.Text == "")
+                    if (controle.tem)
                     {
-                        mensagemErroLabel.Text = "Insira as Credênciais de Login";
+                        principalForm telaPrincipal = new principalForm();
+                        telaPrincipal.acesso(controle.departamento);
+                        telaPrincipal.guardanome(controle.nomeFuncionario);
+                        telaPrincipal.Show();
+                        Hide();
                     }
                     else
                     {
-                        mensagemErroLabel.Text = "Login ou Senha Incorretos";
+                        if (loginTextBox.Text == "" || senhaTextBox.Text == "")
+                        {
+                            mensagemErroLabel.Text = "Insira as Credênciais de Login";
+                        }
+                        else
+                        {
+                            mensagemErroLabel.Text = "Login ou Senha Incorretos";
+                        }
                     }
                 }
-            }else
+                else
+                {
+                    MessageBox.Show(controle.mensagem);
+                }
+            }
+            else
             {
-                MessageBox.Show(controle.mensagem);
+                ResetSenhaForm cad = new ResetSenhaForm();
+                cad.autPreenchimento(loginTextBox.Text.ToString());
+                cad.ShowDialog();
             }
         }
     }

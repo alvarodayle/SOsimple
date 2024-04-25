@@ -1,6 +1,6 @@
 ﻿namespace Empresa.UI.Windows
 {
-    partial class ProdutoForm
+    partial class FuncionariosForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,14 +40,14 @@
             this.voltarButton = new System.Windows.Forms.Button();
             this.conteudoPanel = new System.Windows.Forms.Panel();
             this.fichaPanel = new System.Windows.Forms.Panel();
-            this.marcaTextBox = new System.Windows.Forms.TextBox();
-            this.modeloLabel = new System.Windows.Forms.Label();
-            this.numSerieTextBox = new System.Windows.Forms.TextBox();
-            this.numSerieLabel = new System.Windows.Forms.Label();
-            this.tipoTextBox = new System.Windows.Forms.TextBox();
-            this.modeloTextBox = new System.Windows.Forms.TextBox();
-            this.marcaLabel = new System.Windows.Forms.Label();
-            this.tipoLabel = new System.Windows.Forms.Label();
+            this.senhaTextBox = new System.Windows.Forms.TextBox();
+            this.loginLabel = new System.Windows.Forms.Label();
+            this.departamentoTextBox = new System.Windows.Forms.TextBox();
+            this.departamentoLabel = new System.Windows.Forms.Label();
+            this.nomeTextBox = new System.Windows.Forms.TextBox();
+            this.loginTextBox = new System.Windows.Forms.TextBox();
+            this.senhaLabel = new System.Windows.Forms.Label();
+            this.nomeLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.listaDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
@@ -177,87 +177,87 @@
             // 
             // fichaPanel
             // 
-            this.fichaPanel.Controls.Add(this.marcaTextBox);
-            this.fichaPanel.Controls.Add(this.modeloLabel);
-            this.fichaPanel.Controls.Add(this.numSerieTextBox);
-            this.fichaPanel.Controls.Add(this.numSerieLabel);
-            this.fichaPanel.Controls.Add(this.tipoTextBox);
-            this.fichaPanel.Controls.Add(this.modeloTextBox);
-            this.fichaPanel.Controls.Add(this.marcaLabel);
-            this.fichaPanel.Controls.Add(this.tipoLabel);
+            this.fichaPanel.Controls.Add(this.senhaTextBox);
+            this.fichaPanel.Controls.Add(this.loginLabel);
+            this.fichaPanel.Controls.Add(this.departamentoTextBox);
+            this.fichaPanel.Controls.Add(this.departamentoLabel);
+            this.fichaPanel.Controls.Add(this.nomeTextBox);
+            this.fichaPanel.Controls.Add(this.loginTextBox);
+            this.fichaPanel.Controls.Add(this.senhaLabel);
+            this.fichaPanel.Controls.Add(this.nomeLabel);
             this.fichaPanel.Location = new System.Drawing.Point(13, 13);
             this.fichaPanel.Name = "fichaPanel";
             this.fichaPanel.Size = new System.Drawing.Size(461, 367);
             this.fichaPanel.TabIndex = 1;
             // 
-            // marcaTextBox
+            // senhaTextBox
             // 
-            this.marcaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.marcaTextBox.Location = new System.Drawing.Point(81, 203);
-            this.marcaTextBox.Name = "marcaTextBox";
-            this.marcaTextBox.Size = new System.Drawing.Size(365, 22);
-            this.marcaTextBox.TabIndex = 2;
+            this.senhaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.senhaTextBox.Location = new System.Drawing.Point(81, 174);
+            this.senhaTextBox.Name = "senhaTextBox";
+            this.senhaTextBox.Size = new System.Drawing.Size(365, 22);
+            this.senhaTextBox.TabIndex = 2;
             // 
-            // modeloLabel
+            // loginLabel
             // 
-            this.modeloLabel.AutoSize = true;
-            this.modeloLabel.Location = new System.Drawing.Point(11, 170);
-            this.modeloLabel.Name = "modeloLabel";
-            this.modeloLabel.Size = new System.Drawing.Size(56, 16);
-            this.modeloLabel.TabIndex = 22;
-            this.modeloLabel.Text = "Modelo:";
+            this.loginLabel.AutoSize = true;
+            this.loginLabel.Location = new System.Drawing.Point(11, 141);
+            this.loginLabel.Name = "loginLabel";
+            this.loginLabel.Size = new System.Drawing.Size(43, 16);
+            this.loginLabel.TabIndex = 22;
+            this.loginLabel.Text = "Login:";
             // 
-            // numSerieTextBox
+            // departamentoTextBox
             // 
-            this.numSerieTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numSerieTextBox.Location = new System.Drawing.Point(129, 242);
-            this.numSerieTextBox.Name = "numSerieTextBox";
-            this.numSerieTextBox.Size = new System.Drawing.Size(317, 22);
-            this.numSerieTextBox.TabIndex = 3;
+            this.departamentoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.departamentoTextBox.Location = new System.Drawing.Point(113, 213);
+            this.departamentoTextBox.Name = "departamentoTextBox";
+            this.departamentoTextBox.Size = new System.Drawing.Size(333, 22);
+            this.departamentoTextBox.TabIndex = 3;
             // 
-            // numSerieLabel
+            // departamentoLabel
             // 
-            this.numSerieLabel.AutoSize = true;
-            this.numSerieLabel.Location = new System.Drawing.Point(11, 248);
-            this.numSerieLabel.Name = "numSerieLabel";
-            this.numSerieLabel.Size = new System.Drawing.Size(112, 16);
-            this.numSerieLabel.TabIndex = 16;
-            this.numSerieLabel.Text = "Numero de Série:";
+            this.departamentoLabel.AutoSize = true;
+            this.departamentoLabel.Location = new System.Drawing.Point(11, 219);
+            this.departamentoLabel.Name = "departamentoLabel";
+            this.departamentoLabel.Size = new System.Drawing.Size(96, 16);
+            this.departamentoLabel.TabIndex = 16;
+            this.departamentoLabel.Text = "Departamento:";
             // 
-            // tipoTextBox
+            // nomeTextBox
             // 
-            this.tipoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tipoTextBox.Location = new System.Drawing.Point(81, 126);
-            this.tipoTextBox.Name = "tipoTextBox";
-            this.tipoTextBox.Size = new System.Drawing.Size(365, 22);
-            this.tipoTextBox.TabIndex = 0;
+            this.nomeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nomeTextBox.Location = new System.Drawing.Point(81, 97);
+            this.nomeTextBox.Name = "nomeTextBox";
+            this.nomeTextBox.Size = new System.Drawing.Size(365, 22);
+            this.nomeTextBox.TabIndex = 0;
             // 
-            // modeloTextBox
+            // loginTextBox
             // 
-            this.modeloTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.modeloTextBox.Location = new System.Drawing.Point(81, 164);
-            this.modeloTextBox.Name = "modeloTextBox";
-            this.modeloTextBox.Size = new System.Drawing.Size(365, 22);
-            this.modeloTextBox.TabIndex = 1;
+            this.loginTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.loginTextBox.Location = new System.Drawing.Point(81, 135);
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(365, 22);
+            this.loginTextBox.TabIndex = 1;
             // 
-            // marcaLabel
+            // senhaLabel
             // 
-            this.marcaLabel.AutoSize = true;
-            this.marcaLabel.Location = new System.Drawing.Point(11, 209);
-            this.marcaLabel.Name = "marcaLabel";
-            this.marcaLabel.Size = new System.Drawing.Size(48, 16);
-            this.marcaLabel.TabIndex = 11;
-            this.marcaLabel.Text = "Marca:";
+            this.senhaLabel.AutoSize = true;
+            this.senhaLabel.Location = new System.Drawing.Point(11, 180);
+            this.senhaLabel.Name = "senhaLabel";
+            this.senhaLabel.Size = new System.Drawing.Size(49, 16);
+            this.senhaLabel.TabIndex = 11;
+            this.senhaLabel.Text = "Senha:";
             // 
-            // tipoLabel
+            // nomeLabel
             // 
-            this.tipoLabel.AutoSize = true;
-            this.tipoLabel.Location = new System.Drawing.Point(11, 132);
-            this.tipoLabel.Name = "tipoLabel";
-            this.tipoLabel.Size = new System.Drawing.Size(38, 16);
-            this.tipoLabel.TabIndex = 9;
-            this.tipoLabel.Text = "Tipo:";
-            this.tipoLabel.UseWaitCursor = true;
+            this.nomeLabel.AutoSize = true;
+            this.nomeLabel.Location = new System.Drawing.Point(11, 103);
+            this.nomeLabel.Name = "nomeLabel";
+            this.nomeLabel.Size = new System.Drawing.Size(47, 16);
+            this.nomeLabel.TabIndex = 9;
+            this.nomeLabel.Text = "Nome:";
+            this.nomeLabel.UseWaitCursor = true;
             // 
             // idTextBox
             // 
@@ -280,16 +280,16 @@
             this.listaDataGridView.Size = new System.Drawing.Size(381, 368);
             this.listaDataGridView.TabIndex = 0;
             // 
-            // ProdutoForm
+            // FuncionariosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 493);
             this.Controls.Add(this.conteudoPanel);
             this.Controls.Add(this.panel1);
-            this.Name = "ProdutoForm";
-            this.Text = "Produtos";
-            this.Load += new System.EventHandler(this.ProdutoForm_Load);
+            this.Name = "FuncionariosForm";
+            this.Text = "Funcionarios";
+            this.Load += new System.EventHandler(this.FuncionariosForm_Load);
             this.panel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.conteudoPanel.ResumeLayout(false);
@@ -316,14 +316,14 @@
         private System.Windows.Forms.Panel conteudoPanel;
         private System.Windows.Forms.Panel fichaPanel;
         private System.Windows.Forms.DataGridView listaDataGridView;
-        private System.Windows.Forms.TextBox tipoTextBox;
-        private System.Windows.Forms.TextBox modeloTextBox;
+        private System.Windows.Forms.TextBox nomeTextBox;
+        private System.Windows.Forms.TextBox loginTextBox;
         private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.Label marcaLabel;
-        private System.Windows.Forms.Label tipoLabel;
-        private System.Windows.Forms.TextBox marcaTextBox;
-        private System.Windows.Forms.Label modeloLabel;
-        private System.Windows.Forms.TextBox numSerieTextBox;
-        private System.Windows.Forms.Label numSerieLabel;
+        private System.Windows.Forms.Label senhaLabel;
+        private System.Windows.Forms.Label nomeLabel;
+        private System.Windows.Forms.TextBox senhaTextBox;
+        private System.Windows.Forms.Label loginLabel;
+        private System.Windows.Forms.TextBox departamentoTextBox;
+        private System.Windows.Forms.Label departamentoLabel;
     }
 }

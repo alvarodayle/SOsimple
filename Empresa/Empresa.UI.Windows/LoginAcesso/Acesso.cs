@@ -72,11 +72,13 @@ namespace Empresa.UI.Windows.LoginAcesso
             return tem;
         }
 
-        public String Cadastrar(String nomeFunc, String loginFunc, String senhaFunc, String deptFunc, String confSenha)
+        public String validasenha;
+
+        public String resetSenha(String loginFunc, String senhaAtualFunc, String novaSenhaFunc, String confirSenhaFunc)
         {
             tem = false;
 
-            cmd.CommandText = @"SELECT * FROM TFUNC WHERE loginFunc=@loginFunc";
+            cmd.CommandText = @"SELECT senhaFunc FROM TFUNC WHERE loginFunc=@loginFunc";
             cmd.Parameters.AddWithValue("@loginFunc", loginFunc);
             try
             {
@@ -84,39 +86,50 @@ namespace Empresa.UI.Windows.LoginAcesso
                 dados = cmd.ExecuteReader();
                 if (dados.HasRows)
                 {
-                    this.mensagem = "Login de usuário já cadastrado";
-                }
-                else
-                {
-                    dados.Close();
-
-                    if (senhaFunc.Equals(confSenha) && !senhaFunc.Equals("") && !confSenha.Equals(""))
+                    while (dados.Read())
                     {
-                        cmd.CommandText = @"INSERT INTO TFUNC VALUES (@nomeFunc, @loginFunc, @senhaFunc, @deptFunc)";
-                        cmd.Parameters.AddWithValue("@nomeFunc", nomeFunc);
-                        cmd.Parameters.AddWithValue("@senhaFunc", senhaFunc);
-                        cmd.Parameters.AddWithValue("@deptFunc", deptFunc);
+                        validasenha = dados["senhaFunc"].ToString();
+                    }
+                    if (senhaAtualFunc.Equals(validasenha))
+                    {
 
-                        try
+                        if (novaSenhaFunc.Equals(confirSenhaFunc) && !novaSenhaFunc.Equals("") && !confirSenhaFunc.Equals(""))
                         {
-                            cmd.Connection = con.Conectar();
-                            cmd.ExecuteNonQuery();
-                            con.Desconectar();
-                            this.mensagem = "Cadastrado com Sucesso!";
-                            tem = true;
+                            dados.Close();
+
+                            cmd.CommandText = @"UPDATE TFUNC SET senhaFunc=@novaSenhaFunc WHERE loginFunc=@loginFunc";
+                            cmd.Parameters.AddWithValue("@novaSenhaFunc", novaSenhaFunc);
+
+                            try
+                            {
+                                cmd.Connection = con.Conectar();
+                                cmd.ExecuteNonQuery();
+                                con.Desconectar();
+                                this.mensagem = "Senha alterada com sucesso!";
+                                tem = true;
+                            }
+                            catch (SqlException)
+                            {
+                                this.mensagem = "Erro com Banco de Dados";
+                            }
                         }
-                        catch (SqlException)
+                        else
                         {
-                            this.mensagem = "Erro com Banco de Dados";
+                            this.mensagem = "Senhas não correspondem";
                         }
                     }
                     else
                     {
-                        this.mensagem = "Senhas não correspondem";
+                        this.mensagem = "Senha atual incorreta";
                     }
                 }
-          
+                else
+                {
+                    
+                    this.mensagem = "Login de Usuário não encontrado";
 
+                    dados.Close();
+                }
             }
             catch (SqlException)
             {
