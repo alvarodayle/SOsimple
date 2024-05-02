@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PecaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PecaForm.Designer.cs">
+      <DependentUpon>PecaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResetSenhaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="PecaForm.resx">
+      <DependentUpon>PecaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResetSenhaForm.resx">
       <DependentUpon>ResetSenhaForm.cs</DependentUpon>
     </EmbeddedResource>

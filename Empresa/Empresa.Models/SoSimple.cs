@@ -20,4 +20,9 @@ namespace Empresa.Models
     {
 
     }
+
+    public sealed class Peca:EntidadePeca
+    {
+
+    }
 }

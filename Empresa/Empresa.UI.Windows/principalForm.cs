@@ -37,39 +37,53 @@ namespace Empresa.UI.Windows
         {
             direitoAcesso = departamento;
 
-            if (direitoAcesso != "SUPERVISOR" || direitoAcesso != "GERENTE" || direitoAcesso != "DIRETOR")
+            if (direitoAcesso != "SUPERVISOR")
             {
                 funcionáriosToolStripMenuItem.Visible = false;
+            }
+
+            if (direitoAcesso != "ESTOQUE" || direitoAcesso != "SUPERVISOR")
+            {
+                peçasToolStripMenuItem.Visible = false;
             }
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();
-            var f = new ClientesForm();
-            f.guardanome(boasvindas);
-            f.acesso(direitoAcesso);
-            f.ShowDialog();
+            var cli = new ClientesForm();
+            cli.guardanome(boasvindas);
+            cli.acesso(direitoAcesso);
+            cli.ShowDialog();
             
         }
 
         private void produtosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Hide();
-            var f = new ProdutoForm();
-            f.guardanome(boasvindas);
-            f.acesso(direitoAcesso);
-            f.ShowDialog();
+            var prd = new ProdutoForm();
+            prd.guardanome(boasvindas);
+            prd.acesso(direitoAcesso);
+            prd.ShowDialog();
             
+        }
+
+        private void peçasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var pca = new PecaForm();
+            pca.guardanome(boasvindas);
+            pca.acesso(direitoAcesso);
+            pca.ShowDialog();
         }
 
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();
-            var f = new FuncionarioForm();
-            f.guardanome(boasvindas);
-            f.acesso(direitoAcesso);
-            f.ShowDialog();
+            var fun = new FuncionarioForm();
+            fun.guardanome(boasvindas);
+            fun.acesso(direitoAcesso);
+            fun.ShowDialog();
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,5 +97,7 @@ namespace Empresa.UI.Windows
         {
             Application.Exit();
         }
+
+
     }
 }

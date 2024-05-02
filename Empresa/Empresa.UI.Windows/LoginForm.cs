@@ -27,6 +27,7 @@ namespace Empresa.UI.Windows
         private void resetSenha_Click(object sender, EventArgs e)
         {
             ResetSenhaForm cad = new ResetSenhaForm();
+            cad.autPreenchimento(loginTextBox.Text.ToString());
             cad.ShowDialog();
         }
 
@@ -67,6 +68,8 @@ namespace Empresa.UI.Windows
             }
             else
             {
+                senhaTextBox.Clear();
+
                 ResetSenhaForm cad = new ResetSenhaForm();
                 cad.autPreenchimento(loginTextBox.Text.ToString());
                 cad.ShowDialog();

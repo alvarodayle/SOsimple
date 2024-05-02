@@ -59,11 +59,14 @@ namespace Empresa.UI.Windows
                 {
                     MessageBox.Show(mensagem, "Alteração de Senha", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
+                    Hide();
+                    /*
                     erroCadastroLabel.Text = "";
                     loginResetTextBox.Clear();
                     senhaAtualTextBox.Clear();
                     confirmarSenhaTextBox.Clear();
                     novaSenhaTextBox.Clear();
+                    */
                 }
                 else
                 {

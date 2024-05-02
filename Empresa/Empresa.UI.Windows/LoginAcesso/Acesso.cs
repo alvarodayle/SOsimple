@@ -92,30 +92,37 @@ namespace Empresa.UI.Windows.LoginAcesso
                     }
                     if (senhaAtualFunc.Equals(validasenha))
                     {
-
-                        if (novaSenhaFunc.Equals(confirSenhaFunc) && !novaSenhaFunc.Equals("") && !confirSenhaFunc.Equals(""))
+                        if (validasenha != novaSenhaFunc)
                         {
-                            dados.Close();
 
-                            cmd.CommandText = @"UPDATE TFUNC SET senhaFunc=@novaSenhaFunc WHERE loginFunc=@loginFunc";
-                            cmd.Parameters.AddWithValue("@novaSenhaFunc", novaSenhaFunc);
-
-                            try
+                            if (novaSenhaFunc.Equals(confirSenhaFunc) && !novaSenhaFunc.Equals("") && !confirSenhaFunc.Equals(""))
                             {
-                                cmd.Connection = con.Conectar();
-                                cmd.ExecuteNonQuery();
-                                con.Desconectar();
-                                this.mensagem = "Senha alterada com sucesso!";
-                                tem = true;
+                                dados.Close();
+
+                                cmd.CommandText = @"UPDATE TFUNC SET senhaFunc=@novaSenhaFunc WHERE loginFunc=@loginFunc";
+                                cmd.Parameters.AddWithValue("@novaSenhaFunc", novaSenhaFunc);
+
+                                try
+                                {
+                                    cmd.Connection = con.Conectar();
+                                    cmd.ExecuteNonQuery();
+                                    con.Desconectar();
+                                    this.mensagem = "Senha alterada com sucesso!";
+                                    tem = true;
+                                }
+                                catch (SqlException)
+                                {
+                                    this.mensagem = "Erro com Banco de Dados";
+                                }
                             }
-                            catch (SqlException)
+                            else
                             {
-                                this.mensagem = "Erro com Banco de Dados";
+                                this.mensagem = "Senhas não correspondem";
                             }
                         }
                         else
                         {
-                            this.mensagem = "Senhas não correspondem";
+                            this.mensagem = "Nova Senha e Senha Atual são semelhantes";
                         }
                     }
                     else

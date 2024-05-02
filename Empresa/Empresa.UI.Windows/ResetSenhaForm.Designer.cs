@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.senhaAtualLabel = new System.Windows.Forms.Label();
             this.novaSenhaLabel = new System.Windows.Forms.Label();
             this.loginLabel = new System.Windows.Forms.Label();
-            this.senhaAtualTextBox = new System.Windows.Forms.TextBox();
             this.novaSenhaTextBox = new System.Windows.Forms.TextBox();
             this.confirmarSenhaTextBox = new System.Windows.Forms.TextBox();
             this.confirmarCadastroButton = new System.Windows.Forms.Button();
@@ -39,17 +37,9 @@
             this.erroCadastroLabel = new System.Windows.Forms.Label();
             this.loginResetTextBox = new System.Windows.Forms.TextBox();
             this.loginResetLabel = new System.Windows.Forms.Label();
+            this.senhaAtualLabel = new System.Windows.Forms.Label();
+            this.senhaAtualTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // senhaAtualLabel
-            // 
-            this.senhaAtualLabel.AutoSize = true;
-            this.senhaAtualLabel.Location = new System.Drawing.Point(24, 75);
-            this.senhaAtualLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.senhaAtualLabel.Name = "senhaAtualLabel";
-            this.senhaAtualLabel.Size = new System.Drawing.Size(82, 16);
-            this.senhaAtualLabel.TabIndex = 0;
-            this.senhaAtualLabel.Text = "Senha Atual:";
             // 
             // novaSenhaLabel
             // 
@@ -70,16 +60,6 @@
             this.loginLabel.Size = new System.Drawing.Size(109, 16);
             this.loginLabel.TabIndex = 2;
             this.loginLabel.Text = "Confirmar Senha:";
-            // 
-            // senhaAtualTextBox
-            // 
-            this.senhaAtualTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.senhaAtualTextBox.Location = new System.Drawing.Point(149, 69);
-            this.senhaAtualTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.senhaAtualTextBox.Name = "senhaAtualTextBox";
-            this.senhaAtualTextBox.Size = new System.Drawing.Size(184, 22);
-            this.senhaAtualTextBox.TabIndex = 2;
-            this.senhaAtualTextBox.UseSystemPasswordChar = true;
             // 
             // novaSenhaTextBox
             // 
@@ -103,7 +83,7 @@
             // 
             // confirmarCadastroButton
             // 
-            this.confirmarCadastroButton.Location = new System.Drawing.Point(114, 241);
+            this.confirmarCadastroButton.Location = new System.Drawing.Point(114, 298);
             this.confirmarCadastroButton.Margin = new System.Windows.Forms.Padding(4);
             this.confirmarCadastroButton.Name = "confirmarCadastroButton";
             this.confirmarCadastroButton.Size = new System.Drawing.Size(106, 34);
@@ -114,7 +94,7 @@
             // 
             // voltarButton
             // 
-            this.voltarButton.Location = new System.Drawing.Point(228, 241);
+            this.voltarButton.Location = new System.Drawing.Point(228, 298);
             this.voltarButton.Margin = new System.Windows.Forms.Padding(4);
             this.voltarButton.Name = "voltarButton";
             this.voltarButton.Size = new System.Drawing.Size(105, 34);
@@ -129,7 +109,7 @@
             this.erroCadastroLabel.ForeColor = System.Drawing.Color.Red;
             this.erroCadastroLabel.Location = new System.Drawing.Point(24, 194);
             this.erroCadastroLabel.Name = "erroCadastroLabel";
-            this.erroCadastroLabel.Size = new System.Drawing.Size(309, 31);
+            this.erroCadastroLabel.Size = new System.Drawing.Size(309, 91);
             this.erroCadastroLabel.TabIndex = 12;
             this.erroCadastroLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -152,11 +132,31 @@
             this.loginResetLabel.TabIndex = 13;
             this.loginResetLabel.Text = "Login:";
             // 
+            // senhaAtualLabel
+            // 
+            this.senhaAtualLabel.AutoSize = true;
+            this.senhaAtualLabel.Location = new System.Drawing.Point(24, 75);
+            this.senhaAtualLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.senhaAtualLabel.Name = "senhaAtualLabel";
+            this.senhaAtualLabel.Size = new System.Drawing.Size(82, 16);
+            this.senhaAtualLabel.TabIndex = 0;
+            this.senhaAtualLabel.Text = "Senha Atual:";
+            // 
+            // senhaAtualTextBox
+            // 
+            this.senhaAtualTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.senhaAtualTextBox.Location = new System.Drawing.Point(149, 69);
+            this.senhaAtualTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.senhaAtualTextBox.Name = "senhaAtualTextBox";
+            this.senhaAtualTextBox.Size = new System.Drawing.Size(184, 22);
+            this.senhaAtualTextBox.TabIndex = 2;
+            this.senhaAtualTextBox.UseSystemPasswordChar = true;
+            // 
             // ResetSenhaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 288);
+            this.ClientSize = new System.Drawing.Size(346, 345);
             this.Controls.Add(this.loginResetTextBox);
             this.Controls.Add(this.loginResetLabel);
             this.Controls.Add(this.erroCadastroLabel);
@@ -180,11 +180,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label senhaAtualLabel;
         private System.Windows.Forms.Label novaSenhaLabel;
         private System.Windows.Forms.Label loginLabel;
-        private System.Windows.Forms.TextBox senhaAtualTextBox;
         private System.Windows.Forms.TextBox novaSenhaTextBox;
         private System.Windows.Forms.TextBox confirmarSenhaTextBox;
         private System.Windows.Forms.Button confirmarCadastroButton;
@@ -192,5 +189,7 @@
         private System.Windows.Forms.Label erroCadastroLabel;
         private System.Windows.Forms.TextBox loginResetTextBox;
         private System.Windows.Forms.Label loginResetLabel;
+        private System.Windows.Forms.Label senhaAtualLabel;
+        private System.Windows.Forms.TextBox senhaAtualTextBox;
     }
 }

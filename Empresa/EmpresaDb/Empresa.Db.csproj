@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FuncionarioDb.cs" />
+    <Compile Include="PecaDb.cs" />
     <Compile Include="ProdutoDb.cs" />
     <Compile Include="ClienteDb.cs" />
     <Compile Include="Db.cs" />
