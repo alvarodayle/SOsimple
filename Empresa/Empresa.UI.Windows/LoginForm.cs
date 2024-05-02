@@ -33,8 +33,14 @@ namespace Empresa.UI.Windows
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (senhaTextBox.Text != "SOSIMPLEUSER")
+
+            if (loginTextBox.Text == "" || senhaTextBox.Text == "")
             {
+                mensagemErroLabel.Text = "Insira as Credênciais de Login";
+            }
+            else
+            {
+
                 Controle controle = new Controle();
                 controle.Acessar(loginTextBox.Text, senhaTextBox.Text);
                 controle.Alcada(loginTextBox.Text, senhaTextBox.Text);
@@ -51,28 +57,17 @@ namespace Empresa.UI.Windows
                     }
                     else
                     {
-                        if (loginTextBox.Text == "" || senhaTextBox.Text == "")
-                        {
-                            mensagemErroLabel.Text = "Insira as Credênciais de Login";
-                        }
-                        else
-                        {
-                            mensagemErroLabel.Text = "Login ou Senha Incorretos";
-                        }
+                        senhaTextBox.Clear();
+
+                        ResetSenhaForm cad = new ResetSenhaForm();
+                        cad.autPreenchimento(loginTextBox.Text.ToString());
+                        cad.ShowDialog();
                     }
                 }
                 else
                 {
-                    MessageBox.Show(controle.mensagem);
+                    mensagemErroLabel.Text = controle.mensagem;
                 }
-            }
-            else
-            {
-                senhaTextBox.Clear();
-
-                ResetSenhaForm cad = new ResetSenhaForm();
-                cad.autPreenchimento(loginTextBox.Text.ToString());
-                cad.ShowDialog();
             }
         }
     }

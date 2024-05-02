@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace Empresa.UI.Windows.LoginAcesso
         public String mensagem = "";
         public String departamento = "";
         public String nomeFuncionario = "";
+        public String primeiroAcesso;
         SqlCommand cmd = new SqlCommand();
         Conexao con = new Conexao();
         SqlDataReader dados;
@@ -60,7 +62,18 @@ namespace Empresa.UI.Windows.LoginAcesso
                 dados = cmd.ExecuteReader();
                 if (dados.HasRows)
                 {
-                    tem = true;
+                    dados.Read();
+
+                    primeiroAcesso = dados["senhaFunc"].ToString();
+
+                    if (primeiroAcesso != "SOSIMPLEUSER")
+                    {
+                        tem = true;
+                    }
+                }
+                else
+                {
+                    this.mensagem = "Login ou Senha incorretos";
                 }
                 con.Desconectar();
                 dados.Close();

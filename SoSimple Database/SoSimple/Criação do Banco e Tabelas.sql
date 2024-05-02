@@ -53,7 +53,7 @@ CREATE TABLE TPECA (
 	FOREIGN KEY (idProduto)
 	REFERENCES TPROD(idProduto),
 
-	nomePeca varchar(15),
+	nomePeca varchar(30),
 
 	qtdPeca smallint
 );
