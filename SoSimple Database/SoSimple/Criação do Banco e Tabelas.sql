@@ -48,7 +48,7 @@ CREATE TABLE TPROD (
 
 CREATE TABLE TPECA (
 
-	idProduto smallint identity
+	idProduto smallint
 	CONSTRAINT PK_TPECA_idProduto
 	FOREIGN KEY (idProduto)
 	REFERENCES TPROD(idProduto),
