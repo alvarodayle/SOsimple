@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Empresa.Db;
@@ -34,28 +37,53 @@ namespace Empresa.UI.Windows
             confirmarNovoButton.Visible = false;
             voltarButton.Visible = false;
 
-            var db = new ProdutoDb();
-            listaDataGridView.DataSource = db.Listar();
+        }
+
+        private void pesquisarButton_Click(object sender, EventArgs e)
+        {
+
+            bool considerarTipo = false;
+            bool considerarModelo = false;
+            bool considerarMarca = false;
+
+            String tipoProduto = filtroTipoTextBox.Text;
+            String modeloProduto = filtroModeloTextBox.Text;
+            String marcaProduto = filtroMarcaTextBox.Text;
+
+            if (!string.IsNullOrEmpty(filtroTipoTextBox.Text))
+            {
+                considerarTipo = true;
+
+            }
+
+            if (!string.IsNullOrEmpty(filtroMarcaTextBox.Text))
+            {
+                considerarMarca = true;
+
+            }
+
+            if (!string.IsNullOrEmpty(filtroModeloTextBox.Text))
+            {
+                considerarModelo = true;
+
+            }
+
+
+            var db = new PecaDb();
+            listaDataGridView.DataSource = db.Listar(tipoProduto, modeloProduto, marcaProduto, considerarTipo, considerarModelo, considerarMarca );
             listaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listaDataGridView.ReadOnly = true;
             listaDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             listaDataGridView.RowHeadersVisible = false;
             listaDataGridView.EnableHeadersVisualStyles = false;
-            
-            listaDataGridView.Columns[0].Width = 35;
-            listaDataGridView.Columns[1].Width = 200;
-            listaDataGridView.Columns[2].Width = 100;
-            listaDataGridView.Columns[3].Width = 100;
-            listaDataGridView.Columns[4].Width = 90;
 
-            listaDataGridView.Columns[0].HeaderText = "ID";
-            listaDataGridView.Columns[1].HeaderText = "Tipo";
-            listaDataGridView.Columns[2].HeaderText = "Modelo";
-            listaDataGridView.Columns[3].HeaderText = "Marca";
-            listaDataGridView.Columns[4].HeaderText = "Número de Série";
-
+            listaDataGridView.Columns[0].HeaderText = "Tipo do Produto";
+            listaDataGridView.Columns[1].HeaderText = "Modelo";
+            listaDataGridView.Columns[2].HeaderText = "Marca";
+            listaDataGridView.Columns[3].HeaderText = "Descrição da Peça";
+            listaDataGridView.Columns[4].HeaderText = "Quantidade em Estoque";
         }
-        private void ProdutoForm_Load(object sender, EventArgs e)
+        private void PecaForm_Load(object sender, EventArgs e)
         {
             ExibirGrid();
         }
@@ -85,12 +113,13 @@ namespace Empresa.UI.Windows
             LimparFicha();
 
         }
+
         private void LimparFicha()
         {
             tipoTextBox.Clear();
             modeloTextBox.Clear();
             marcaTextBox.Clear();
-            numSerieTextBox.Clear();
+            descPecaTextBox.Clear();
 
 
         }
@@ -104,7 +133,7 @@ namespace Empresa.UI.Windows
                 tipoTextBox.ReadOnly = false;
                 modeloTextBox.ReadOnly = false;
                 marcaTextBox.ReadOnly = false;
-                numSerieTextBox.ReadOnly = false;
+                descPecaTextBox.ReadOnly = false;
             }
 
             ExibirGrid();
@@ -116,7 +145,7 @@ namespace Empresa.UI.Windows
             produto.tipoProduto = tipoTextBox.Text;
             produto.modeloProduto = modeloTextBox.Text;
             produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = numSerieTextBox.Text;
+            produto.numSerie = descPecaTextBox.Text;
 
 
             var db = new ProdutoDb();
@@ -137,10 +166,10 @@ namespace Empresa.UI.Windows
                 Produto produto = (Produto)listaDataGridView.CurrentRow.DataBoundItem;
 
                 idTextBox.Text = produto.IdProduto.ToString();
-                tipoTextBox.Text = produto.tipoProduto;
+                //tipoTextBox.Text = produto.tipoProduto;
                 modeloTextBox.Text = produto.modeloProduto;
                 marcaTextBox.Text = produto.marcaProduto;
-                numSerieTextBox.Text = produto.numSerie;
+                descPecaTextBox.Text = produto.numSerie;
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = true;
@@ -153,10 +182,10 @@ namespace Empresa.UI.Windows
         {
             var produto = new Produto();
             produto.IdProduto = Convert.ToInt32(idTextBox.Text);
-            produto.tipoProduto = tipoTextBox.Text;
+            //produto.tipoProduto = tipoTextBox.Text;
             produto.modeloProduto = modeloTextBox.Text;
             produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = numSerieTextBox.Text;
+            produto.numSerie = descPecaTextBox.Text;
 
 
             var db = new ProdutoDb();
@@ -181,17 +210,17 @@ namespace Empresa.UI.Windows
 
                 Produto produto = (Produto)listaDataGridView.CurrentRow.DataBoundItem;
 
-                tipoTextBox.ReadOnly = true;
+                //tipoTextBox.ReadOnly = true;
                 modeloTextBox.ReadOnly = true;
                 marcaTextBox.ReadOnly = true;
-                numSerieTextBox.ReadOnly = true;
+                descPecaTextBox.ReadOnly = true;
 
 
                 idTextBox.Text = produto.IdProduto.ToString();
-                tipoTextBox.Text = produto.tipoProduto.ToString();
+                //tipoTextBox.Text = produto.tipoProduto.ToString();
                 modeloTextBox.Text = produto.modeloProduto.ToString();
                 marcaTextBox.Text = produto.marcaProduto.ToString();
-                numSerieTextBox.Text = produto.numSerie.ToString();
+                descPecaTextBox.Text = produto.numSerie.ToString();
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = false;
@@ -217,7 +246,7 @@ namespace Empresa.UI.Windows
             tipoTextBox.ReadOnly = false;
             modeloTextBox.ReadOnly = false;
             marcaTextBox.ReadOnly = false;
-            numSerieTextBox.ReadOnly = false;
+            descPecaTextBox.ReadOnly = false;
 
         }
 
@@ -244,5 +273,6 @@ namespace Empresa.UI.Windows
             pf.acesso(direitoAcesso);
             pf.Show();
         }
+
     }
 }
