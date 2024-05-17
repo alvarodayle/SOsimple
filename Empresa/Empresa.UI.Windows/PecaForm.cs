@@ -42,44 +42,21 @@ namespace Empresa.UI.Windows
         private void pesquisarButton_Click(object sender, EventArgs e)
         {
 
-            bool considerarTipo = false;
-            bool considerarModelo = false;
-            bool considerarMarca = false;
-
-            String tipoProduto = filtroTipoTextBox.Text;
-            String modeloProduto = filtroModeloTextBox.Text;
-            String marcaProduto = filtroMarcaTextBox.Text;
-
-            if (!string.IsNullOrEmpty(filtroTipoTextBox.Text))
-            {
-                considerarTipo = true;
-
-            }
-
-            if (!string.IsNullOrEmpty(filtroMarcaTextBox.Text))
-            {
-                considerarMarca = true;
-
-            }
-
-            if (!string.IsNullOrEmpty(filtroModeloTextBox.Text))
-            {
-                considerarModelo = true;
-
-            }
-
+            String filtroTipoProduto = filtroTipoTextBox.Text;
+            String filtroModeloProduto = filtroModeloTextBox.Text;
+            String filtroMarcaProduto = filtroMarcaTextBox.Text;
 
             var db = new PecaDb();
-            listaDataGridView.DataSource = db.Listar(tipoProduto, modeloProduto, marcaProduto, considerarTipo, considerarModelo, considerarMarca );
+            listaDataGridView.DataSource = db.Listar(filtroMarcaProduto, filtroTipoProduto, filtroModeloProduto);
             listaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listaDataGridView.ReadOnly = true;
             listaDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             listaDataGridView.RowHeadersVisible = false;
             listaDataGridView.EnableHeadersVisualStyles = false;
 
-            listaDataGridView.Columns[0].HeaderText = "Tipo do Produto";
-            listaDataGridView.Columns[1].HeaderText = "Modelo";
-            listaDataGridView.Columns[2].HeaderText = "Marca";
+            listaDataGridView.Columns[0].HeaderText = "Marca";
+            listaDataGridView.Columns[1].HeaderText = "Tipo do Produto";
+            listaDataGridView.Columns[2].HeaderText = "Modelo";
             listaDataGridView.Columns[3].HeaderText = "Descrição da Peça";
             listaDataGridView.Columns[4].HeaderText = "Quantidade em Estoque";
         }
@@ -93,6 +70,7 @@ namespace Empresa.UI.Windows
             fichaPanel.Visible = true;
             fichaPanel.Dock = DockStyle.Fill;
             listaDataGridView.Visible = false;
+            filtrosPainel.Visible = false;
             novoButton.Visible = false;
             alterarButton.Visible = false;
             excluirButton.Visible = false;
@@ -106,6 +84,23 @@ namespace Empresa.UI.Windows
         private void novoButton_Click(object sender, EventArgs e)
         {
             ExibirFicha();
+
+            marcaComboBox.Text = null;
+            tipoComboBox.Text = null;
+            modeloComboBox.Text = null;
+
+            marcaComboBox.Items.Clear();
+            tipoComboBox.Items.Clear();
+            modeloComboBox.Items.Clear();
+
+            tipoComboBox.Enabled = false;
+            modeloComboBox.Enabled = false;
+
+            var cb = new PecaDb();
+            List<string> listaMarca = cb.MarcaComboBox();
+
+            marcaComboBox.Items.AddRange(listaMarca.ToArray());
+
             confirmarAlterarButton.Visible = false;
             confirmarExclusaoButton.Visible = false;
             confirmarNovoButton.Visible = true;
@@ -114,14 +109,40 @@ namespace Empresa.UI.Windows
 
         }
 
+        private void marcaComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tipoComboBox.Items.Clear();
+
+            tipoComboBox.Text = null;
+            modeloComboBox.Text = null;
+
+            var cb = new PecaDb();
+
+            tipoComboBox.Enabled = true;
+
+            List<string> listaTipo = cb.TipoComboBox(marcaComboBox.Text);
+
+            tipoComboBox.Items.AddRange(listaTipo.ToArray());
+        }
+
+        private void tipoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            modeloComboBox.Items.Clear();
+            modeloComboBox.Text = null;
+
+            var cb = new PecaDb();
+
+            modeloComboBox.Enabled = true;
+
+            List<string> listaModelo = cb.ModeloComboBox(marcaComboBox.Text, tipoComboBox.Text);
+
+            modeloComboBox.Items.AddRange(listaModelo.ToArray());
+        }
+
         private void LimparFicha()
         {
-            tipoTextBox.Clear();
-            modeloTextBox.Clear();
-            marcaTextBox.Clear();
             descPecaTextBox.Clear();
-
-
+            qtdTextBox.Clear();
         }
         private void voltarButton_Click(object sender, EventArgs e)
         {
@@ -130,28 +151,62 @@ namespace Empresa.UI.Windows
 
                 excluirAcionado = false;
 
-                tipoTextBox.ReadOnly = false;
-                modeloTextBox.ReadOnly = false;
-                marcaTextBox.ReadOnly = false;
+                //tipoTextBox.ReadOnly = false;
+                //modeloTextBox.ReadOnly = false;
+                //marcaTextBox.ReadOnly = false;
                 descPecaTextBox.ReadOnly = false;
+                qtdTextBox.ReadOnly = false;
             }
 
             ExibirGrid();
         }
 
+        string tipoProduto;
+        string modeloProduto;
+        string marcaProduto;
+
         private void confirmarNovoButton_Click(object sender, EventArgs e)
         {
-            var produto = new Produto();
-            produto.tipoProduto = tipoTextBox.Text;
-            produto.modeloProduto = modeloTextBox.Text;
-            produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = descPecaTextBox.Text;
+            if (string.IsNullOrEmpty(marcaComboBox.Text))
+            {
+                mensagemLabel.Text = "Campo Marca do Produto é de preenchimento obrigatório";
+            }
 
+            else if (string.IsNullOrEmpty(tipoComboBox.Text))
+            {
+                mensagemLabel.Text = "Campo Tipo do Produto é de preenchimento obrigatório";
+            }
 
-            var db = new ProdutoDb();
-            db.Incluir(produto);
+            else if (string.IsNullOrEmpty(modeloComboBox.Text))
+            {
+                mensagemLabel.Text = "Campo Modelo do Produto é de preenchimento obrigatório";
+            }
 
-            ExibirGrid();
+            else if (string.IsNullOrEmpty(descPecaTextBox.Text))
+            {
+                mensagemLabel.Text = "Campo Descrição da Peça é de preenchimento obrigatório";
+            }
+
+            else if (string.IsNullOrEmpty(qtdTextBox.Text))
+            {
+                mensagemLabel.Text = "Campo Quantidade de Peças é de preenchimento obrigatório";
+            }
+            else
+            {
+                tipoProduto = tipoComboBox.Text;
+                modeloProduto = modeloComboBox.Text;
+                marcaProduto = marcaComboBox.Text;
+                
+                var peca = new Peca();
+                peca.nomePeca = descPecaTextBox.Text;
+                peca.qtdPeca = Convert.ToInt32(qtdTextBox.Text);
+
+                var db = new PecaDb();
+                db.Incluir(peca,tipoProduto,modeloProduto,marcaProduto);
+
+                ExibirGrid();
+                
+            }
         }
 
         private void alterarButton_Click(object sender, EventArgs e)
@@ -167,8 +222,8 @@ namespace Empresa.UI.Windows
 
                 idTextBox.Text = produto.IdProduto.ToString();
                 //tipoTextBox.Text = produto.tipoProduto;
-                modeloTextBox.Text = produto.modeloProduto;
-                marcaTextBox.Text = produto.marcaProduto;
+                //modeloTextBox.Text = produto.modeloProduto;
+                //marcaTextBox.Text = produto.marcaProduto;
                 descPecaTextBox.Text = produto.numSerie;
 
                 ExibirFicha();
@@ -183,8 +238,8 @@ namespace Empresa.UI.Windows
             var produto = new Produto();
             produto.IdProduto = Convert.ToInt32(idTextBox.Text);
             //produto.tipoProduto = tipoTextBox.Text;
-            produto.modeloProduto = modeloTextBox.Text;
-            produto.marcaProduto = marcaTextBox.Text;
+            //produto.modeloProduto = modeloTextBox.Text;
+            //produto.marcaProduto = marcaTextBox.Text;
             produto.numSerie = descPecaTextBox.Text;
 
 
@@ -211,15 +266,15 @@ namespace Empresa.UI.Windows
                 Produto produto = (Produto)listaDataGridView.CurrentRow.DataBoundItem;
 
                 //tipoTextBox.ReadOnly = true;
-                modeloTextBox.ReadOnly = true;
-                marcaTextBox.ReadOnly = true;
+                //modeloTextBox.ReadOnly = true;
+                //marcaTextBox.ReadOnly = true;
                 descPecaTextBox.ReadOnly = true;
 
 
                 idTextBox.Text = produto.IdProduto.ToString();
                 //tipoTextBox.Text = produto.tipoProduto.ToString();
-                modeloTextBox.Text = produto.modeloProduto.ToString();
-                marcaTextBox.Text = produto.marcaProduto.ToString();
+                //modeloTextBox.Text = produto.modeloProduto.ToString();
+                //marcaTextBox.Text = produto.marcaProduto.ToString();
                 descPecaTextBox.Text = produto.numSerie.ToString();
 
                 ExibirFicha();
@@ -243,9 +298,9 @@ namespace Empresa.UI.Windows
 
             excluirAcionado = false;
 
-            tipoTextBox.ReadOnly = false;
-            modeloTextBox.ReadOnly = false;
-            marcaTextBox.ReadOnly = false;
+            //tipoTextBox.ReadOnly = false;
+            //modeloTextBox.ReadOnly = false;
+            //marcaTextBox.ReadOnly = false;
             descPecaTextBox.ReadOnly = false;
 
         }

@@ -38,9 +38,9 @@ namespace Empresa.Models
 
     public abstract class EntidadePeca
     {
+        public string marcaProduto { get; set; }
         public string tipoProduto { get; set; }
         public string modeloProduto { get; set; }
-        public string marcaProduto { get; set; }
         public string nomePeca { get; set; }
         public int qtdPeca { get; set; }
     }

@@ -13,44 +13,95 @@ namespace Empresa.Db
 {
     public class PecaDb
     {
-        public void Incluir(Produto produto)
+        public List<string> MarcaComboBox()
         {
-            string sql = @"INSERT INTO TPROD(tipoProduto, modeloProduto, marcaProduto, numSerie) VALUES(@tipoProduto, @modeloProduto, @marcaProduto, @numSerie)";
-            var connect = new SqlConnection(Db.Conexao);
-            var cmd = new SqlCommand(sql, connect);
-            cmd.Parameters.AddWithValue("@tipoProduto", produto.tipoProduto);
-            cmd.Parameters.AddWithValue("@modeloProduto", produto.modeloProduto);
-            cmd.Parameters.AddWithValue("@marcaProduto", produto.marcaProduto);
-            cmd.Parameters.AddWithValue("@numSerie", produto.numSerie);
-
-            connect.Open();
-            cmd.ExecuteNonQuery();
-            connect.Close();
-        }
-
-        public List<Produto> comboBoxTipo()
-        {
-            string sql = @"Select tipoProduto FROM TPROD";
+            string sql = @"SELECT DISTINCT(marcaProduto) FROM TPROD;";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
 
-            List<Produto> lista = new List<Produto>();
-            
+            List<string> lista = new List<string>();
+
             connect.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                var produto = new Produto();
-
-                produto.tipoProduto = reader["tipoProduto"].ToString();
-
-                lista.Add(produto);
+                lista.Add(reader["marcaProduto"].ToString());
             }
 
-            reader.Close();
             connect.Close();
             return lista;
+        }
+
+        public List<string> TipoComboBox(String marcaSelecionada)
+        {
+            string sql = @"SELECT tipoProduto FROM TPROD WHERE marcaProduto=@marcaProduto;";
+            var connect = new SqlConnection(Db.Conexao);
+            var cmd = new SqlCommand(sql, connect);
+            cmd.Parameters.AddWithValue("marcaProduto", marcaSelecionada);
+
+            List<string> lista = new List<string>();
+
+            connect.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while(reader.Read())
+            {
+                lista.Add(reader["tipoProduto"].ToString());
+            }
+
+            connect.Close();
+            return lista;
+        }
+
+        public List<string> ModeloComboBox(String marcaSelecionada, String tipoSelecionado)
+        {
+            string sql = @"SELECT modeloProduto FROM TPROD WHERE marcaProduto=@marcaProduto AND tipoProduto=@tipoProduto;";
+            var connect = new SqlConnection(Db.Conexao);
+            var cmd = new SqlCommand(sql, connect);
+            cmd.Parameters.AddWithValue("marcaproduto", marcaSelecionada);
+            cmd.Parameters.AddWithValue("tipoProduto", tipoSelecionado);
+
+            List<string> lista = new List<string>();
+
+            connect.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                lista.Add(reader["modeloProduto"].ToString());
+            }
+
+            connect.Close();
+            return lista;
+        }
+
+        public void Incluir(Peca peca, String tipoSelecionado, String modeloSelecionado, String marcaSelecionada)
+        {
+            int idProduto;
+
+            string sql = @"SELECT idProduto FROM TPROD WHERE tipoProduto=@tipoProduto AND modeloProduto=@modeloProduto AND marcaProduto=@marcaproduto";
+            var connect = new SqlConnection(Db.Conexao);
+            var cmd = new SqlCommand(sql, connect);
+            cmd.Parameters.AddWithValue("tipoProduto", tipoSelecionado);
+            cmd.Parameters.AddWithValue("modeloProduto", modeloSelecionado);
+            cmd.Parameters.AddWithValue("marcaProduto", marcaSelecionada);
+
+            connect.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            reader.Read();
+            idProduto = Convert.ToInt32(reader["idProduto"]);
+
+            reader.Close();
+
+            cmd.CommandText = @"INSERT INTO TPECA (idProduto, nomePeca, qtdPeca) VALUES (@idProduto, @nomePeca, @qtdPeca)";
+            cmd.Parameters.AddWithValue("idProduto", idProduto);
+            cmd.Parameters.AddWithValue("nomePeca", peca.nomePeca);
+            cmd.Parameters.AddWithValue("qtdPeca", peca.qtdPeca);
+            
+            cmd.ExecuteNonQuery();
+            connect.Close();
 
         }
 
@@ -82,30 +133,31 @@ namespace Empresa.Db
             connect.Close();
         }
 
-        public List<Peca> Listar(String tipoProduto, String modeloProduto, String marcaProduto, bool considerarTipo, bool considerarModelo, bool considerarMarca)
+        public List<Peca> Listar(String marcaProduto, String tipoProduto, String modeloProduto)
         {
 
-            string sql = @"SELECT PD.tipoProduto,
+            string sql = @"SELECT PD.marcaProduto,
+	                    PD.tipoProduto,
 	                    PD.modeloProduto,
-	                    PD.marcaProduto,
 	                    P.nomePeca,
 	                    P.qtdPeca
                         From TPECA P INNER JOIN TPROD PD
                         ON P.idProduto = PD.idProduto
-                        WHERE 1=1"
+                        WHERE 1=1
+                        ORDER BY PD.marcaProduto"
             ;
 
-            if (considerarTipo == true)
+            if (!string.IsNullOrEmpty(tipoProduto))
             {
                 sql += " AND tipoProduto = @TipoProduto";
             }
 
-            if (considerarModelo == true)
+            if (!string.IsNullOrEmpty(modeloProduto))
             {
                 sql += " AND modeloProduto = @Modelo";
             }
 
-            if (considerarMarca == true)
+            if (!string.IsNullOrEmpty(marcaProduto))
             {
                 sql += " AND marcaProduto = @Marca";
             }
@@ -113,17 +165,17 @@ namespace Empresa.Db
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
 
-            if (considerarTipo == true)
+            if (!string.IsNullOrEmpty(tipoProduto))
             {
                 cmd.Parameters.AddWithValue("@TipoProduto", tipoProduto);
             }
 
-            if (considerarModelo == true)
+            if (!string.IsNullOrEmpty(modeloProduto))
             {
                 cmd.Parameters.AddWithValue("@Modelo", modeloProduto);
             }
 
-            if (considerarMarca == true)
+            if (!string.IsNullOrEmpty(marcaProduto))
             {
                 cmd.Parameters.AddWithValue("@Marca", marcaProduto);
             }
@@ -138,9 +190,9 @@ namespace Empresa.Db
             {
                 var peca = new Peca();
 
+                peca.marcaProduto = reader["marcaProduto"].ToString();
                 peca.tipoProduto = reader["tipoProduto"].ToString();
                 peca.modeloProduto = reader["modeloProduto"].ToString();
-                peca.marcaProduto = reader["marcaProduto"].ToString();
                 peca.nomePeca = reader["nomePeca"].ToString();
                 peca.qtdPeca = Convert.ToInt32(reader["qtdPeca"]);
 

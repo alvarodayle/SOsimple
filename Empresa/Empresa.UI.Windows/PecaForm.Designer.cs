@@ -41,26 +41,27 @@
             this.conteudoPanel = new System.Windows.Forms.Panel();
             this.filtrosPainel = new System.Windows.Forms.Panel();
             this.filtroMarcaTextBox = new System.Windows.Forms.TextBox();
+            this.filtroTipoTextBox = new System.Windows.Forms.TextBox();
+            this.filtroTipolabel = new System.Windows.Forms.Label();
             this.filtroMarcaLabel = new System.Windows.Forms.Label();
             this.filtroModeloTextBox = new System.Windows.Forms.TextBox();
             this.filtroModeloLabel = new System.Windows.Forms.Label();
-            this.filtroTipoTextBox = new System.Windows.Forms.TextBox();
-            this.filtroTipolabel = new System.Windows.Forms.Label();
             this.pesquisarButton = new System.Windows.Forms.Button();
             this.fichaPanel = new System.Windows.Forms.Panel();
-            this.marcaTextBox = new System.Windows.Forms.TextBox();
+            this.marcaComboBox = new System.Windows.Forms.ComboBox();
+            this.mensagemLabel = new System.Windows.Forms.Label();
+            this.modeloComboBox = new System.Windows.Forms.ComboBox();
+            this.tipoComboBox = new System.Windows.Forms.ComboBox();
+            this.qtdPecaLabel = new System.Windows.Forms.Label();
+            this.qtdTextBox = new System.Windows.Forms.TextBox();
             this.modeloLabel = new System.Windows.Forms.Label();
             this.descPecaTextBox = new System.Windows.Forms.TextBox();
             this.descPecaLabel = new System.Windows.Forms.Label();
-            this.modeloTextBox = new System.Windows.Forms.TextBox();
             this.marcaLabel = new System.Windows.Forms.Label();
             this.tipoLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listaDataGridView = new System.Windows.Forms.DataGridView();
             this.idTextBox = new System.Windows.Forms.TextBox();
-            this.tipoTextBox = new System.Windows.Forms.TextBox();
-            this.qtdTextBox = new System.Windows.Forms.TextBox();
-            this.qtdPecaLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.conteudoPanel.SuspendLayout();
@@ -192,11 +193,11 @@
             // filtrosPainel
             // 
             this.filtrosPainel.Controls.Add(this.filtroMarcaTextBox);
+            this.filtrosPainel.Controls.Add(this.filtroTipoTextBox);
+            this.filtrosPainel.Controls.Add(this.filtroTipolabel);
             this.filtrosPainel.Controls.Add(this.filtroMarcaLabel);
             this.filtrosPainel.Controls.Add(this.filtroModeloTextBox);
             this.filtrosPainel.Controls.Add(this.filtroModeloLabel);
-            this.filtrosPainel.Controls.Add(this.filtroTipoTextBox);
-            this.filtrosPainel.Controls.Add(this.filtroTipolabel);
             this.filtrosPainel.Controls.Add(this.pesquisarButton);
             this.filtrosPainel.Location = new System.Drawing.Point(13, 13);
             this.filtrosPainel.Name = "filtrosPainel";
@@ -206,15 +207,33 @@
             // filtroMarcaTextBox
             // 
             this.filtroMarcaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.filtroMarcaTextBox.Location = new System.Drawing.Point(711, 31);
+            this.filtroMarcaTextBox.Location = new System.Drawing.Point(70, 31);
             this.filtroMarcaTextBox.Name = "filtroMarcaTextBox";
             this.filtroMarcaTextBox.Size = new System.Drawing.Size(204, 22);
-            this.filtroMarcaTextBox.TabIndex = 15;
+            this.filtroMarcaTextBox.TabIndex = 3;
+            // 
+            // filtroTipoTextBox
+            // 
+            this.filtroTipoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.filtroTipoTextBox.Location = new System.Drawing.Point(411, 31);
+            this.filtroTipoTextBox.Name = "filtroTipoTextBox";
+            this.filtroTipoTextBox.Size = new System.Drawing.Size(204, 22);
+            this.filtroTipoTextBox.TabIndex = 1;
+            // 
+            // filtroTipolabel
+            // 
+            this.filtroTipolabel.AutoSize = true;
+            this.filtroTipolabel.Location = new System.Drawing.Point(298, 37);
+            this.filtroTipolabel.Name = "filtroTipolabel";
+            this.filtroTipolabel.Size = new System.Drawing.Size(107, 16);
+            this.filtroTipolabel.TabIndex = 10;
+            this.filtroTipolabel.Text = "Tipo do Porduto:";
+            this.filtroTipolabel.UseWaitCursor = true;
             // 
             // filtroMarcaLabel
             // 
             this.filtroMarcaLabel.AutoSize = true;
-            this.filtroMarcaLabel.Location = new System.Drawing.Point(657, 37);
+            this.filtroMarcaLabel.Location = new System.Drawing.Point(16, 37);
             this.filtroMarcaLabel.Name = "filtroMarcaLabel";
             this.filtroMarcaLabel.Size = new System.Drawing.Size(48, 16);
             this.filtroMarcaLabel.TabIndex = 14;
@@ -224,45 +243,27 @@
             // filtroModeloTextBox
             // 
             this.filtroModeloTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.filtroModeloTextBox.Location = new System.Drawing.Point(426, 31);
+            this.filtroModeloTextBox.Location = new System.Drawing.Point(720, 31);
             this.filtroModeloTextBox.Name = "filtroModeloTextBox";
             this.filtroModeloTextBox.Size = new System.Drawing.Size(204, 22);
-            this.filtroModeloTextBox.TabIndex = 13;
+            this.filtroModeloTextBox.TabIndex = 2;
             // 
             // filtroModeloLabel
             // 
             this.filtroModeloLabel.AutoSize = true;
-            this.filtroModeloLabel.Location = new System.Drawing.Point(364, 37);
+            this.filtroModeloLabel.Location = new System.Drawing.Point(658, 37);
             this.filtroModeloLabel.Name = "filtroModeloLabel";
             this.filtroModeloLabel.Size = new System.Drawing.Size(56, 16);
             this.filtroModeloLabel.TabIndex = 12;
             this.filtroModeloLabel.Text = "Modelo:";
             this.filtroModeloLabel.UseWaitCursor = true;
             // 
-            // filtroTipoTextBox
-            // 
-            this.filtroTipoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.filtroTipoTextBox.Location = new System.Drawing.Point(129, 31);
-            this.filtroTipoTextBox.Name = "filtroTipoTextBox";
-            this.filtroTipoTextBox.Size = new System.Drawing.Size(204, 22);
-            this.filtroTipoTextBox.TabIndex = 11;
-            // 
-            // filtroTipolabel
-            // 
-            this.filtroTipolabel.AutoSize = true;
-            this.filtroTipolabel.Location = new System.Drawing.Point(11, 37);
-            this.filtroTipolabel.Name = "filtroTipolabel";
-            this.filtroTipolabel.Size = new System.Drawing.Size(107, 16);
-            this.filtroTipolabel.TabIndex = 10;
-            this.filtroTipolabel.Text = "Tipo do Porduto:";
-            this.filtroTipolabel.UseWaitCursor = true;
-            // 
             // pesquisarButton
             // 
-            this.pesquisarButton.Location = new System.Drawing.Point(952, 20);
+            this.pesquisarButton.Location = new System.Drawing.Point(952, 25);
             this.pesquisarButton.Name = "pesquisarButton";
             this.pesquisarButton.Size = new System.Drawing.Size(206, 33);
-            this.pesquisarButton.TabIndex = 0;
+            this.pesquisarButton.TabIndex = 4;
             this.pesquisarButton.Text = "Pesquisar";
             this.pesquisarButton.UseVisualStyleBackColor = true;
             this.pesquisarButton.Click += new System.EventHandler(this.pesquisarButton_Click);
@@ -270,33 +271,78 @@
             // fichaPanel
             // 
             this.fichaPanel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fichaPanel.Controls.Add(this.marcaComboBox);
+            this.fichaPanel.Controls.Add(this.mensagemLabel);
+            this.fichaPanel.Controls.Add(this.modeloComboBox);
+            this.fichaPanel.Controls.Add(this.tipoComboBox);
             this.fichaPanel.Controls.Add(this.qtdPecaLabel);
             this.fichaPanel.Controls.Add(this.qtdTextBox);
-            this.fichaPanel.Controls.Add(this.tipoTextBox);
-            this.fichaPanel.Controls.Add(this.marcaTextBox);
             this.fichaPanel.Controls.Add(this.modeloLabel);
             this.fichaPanel.Controls.Add(this.descPecaTextBox);
             this.fichaPanel.Controls.Add(this.descPecaLabel);
-            this.fichaPanel.Controls.Add(this.modeloTextBox);
             this.fichaPanel.Controls.Add(this.marcaLabel);
             this.fichaPanel.Controls.Add(this.tipoLabel);
             this.fichaPanel.Location = new System.Drawing.Point(13, 12);
             this.fichaPanel.Name = "fichaPanel";
-            this.fichaPanel.Size = new System.Drawing.Size(420, 368);
+            this.fichaPanel.Size = new System.Drawing.Size(437, 368);
             this.fichaPanel.TabIndex = 1;
             // 
-            // marcaTextBox
+            // marcaComboBox
             // 
-            this.marcaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.marcaTextBox.Location = new System.Drawing.Point(162, 193);
-            this.marcaTextBox.Name = "marcaTextBox";
-            this.marcaTextBox.Size = new System.Drawing.Size(250, 22);
-            this.marcaTextBox.TabIndex = 2;
+            this.marcaComboBox.FormattingEnabled = true;
+            this.marcaComboBox.Location = new System.Drawing.Point(162, 115);
+            this.marcaComboBox.Name = "marcaComboBox";
+            this.marcaComboBox.Size = new System.Drawing.Size(258, 24);
+            this.marcaComboBox.TabIndex = 1;
+            this.marcaComboBox.SelectedIndexChanged += new System.EventHandler(this.marcaComboBox_SelectedIndexChanged);
+            // 
+            // mensagemLabel
+            // 
+            this.mensagemLabel.ForeColor = System.Drawing.Color.Red;
+            this.mensagemLabel.Location = new System.Drawing.Point(14, 303);
+            this.mensagemLabel.Name = "mensagemLabel";
+            this.mensagemLabel.Size = new System.Drawing.Size(406, 52);
+            this.mensagemLabel.TabIndex = 27;
+            this.mensagemLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // modeloComboBox
+            // 
+            this.modeloComboBox.FormattingEnabled = true;
+            this.modeloComboBox.Location = new System.Drawing.Point(162, 193);
+            this.modeloComboBox.Name = "modeloComboBox";
+            this.modeloComboBox.Size = new System.Drawing.Size(258, 24);
+            this.modeloComboBox.TabIndex = 2;
+            // 
+            // tipoComboBox
+            // 
+            this.tipoComboBox.FormattingEnabled = true;
+            this.tipoComboBox.Location = new System.Drawing.Point(162, 154);
+            this.tipoComboBox.Name = "tipoComboBox";
+            this.tipoComboBox.Size = new System.Drawing.Size(258, 24);
+            this.tipoComboBox.TabIndex = 3;
+            this.tipoComboBox.SelectedIndexChanged += new System.EventHandler(this.tipoComboBox_SelectedIndexChanged);
+            // 
+            // qtdPecaLabel
+            // 
+            this.qtdPecaLabel.AutoSize = true;
+            this.qtdPecaLabel.Location = new System.Drawing.Point(11, 276);
+            this.qtdPecaLabel.Name = "qtdPecaLabel";
+            this.qtdPecaLabel.Size = new System.Drawing.Size(141, 16);
+            this.qtdPecaLabel.TabIndex = 25;
+            this.qtdPecaLabel.Text = "Quantidade de Peças:";
+            // 
+            // qtdTextBox
+            // 
+            this.qtdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.qtdTextBox.Location = new System.Drawing.Point(162, 270);
+            this.qtdTextBox.Name = "qtdTextBox";
+            this.qtdTextBox.Size = new System.Drawing.Size(258, 22);
+            this.qtdTextBox.TabIndex = 5;
             // 
             // modeloLabel
             // 
             this.modeloLabel.AutoSize = true;
-            this.modeloLabel.Location = new System.Drawing.Point(11, 156);
+            this.modeloLabel.Location = new System.Drawing.Point(11, 201);
             this.modeloLabel.Name = "modeloLabel";
             this.modeloLabel.Size = new System.Drawing.Size(125, 16);
             this.modeloLabel.TabIndex = 22;
@@ -305,32 +351,24 @@
             // descPecaTextBox
             // 
             this.descPecaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.descPecaTextBox.Location = new System.Drawing.Point(162, 230);
+            this.descPecaTextBox.Location = new System.Drawing.Point(162, 233);
             this.descPecaTextBox.Name = "descPecaTextBox";
-            this.descPecaTextBox.Size = new System.Drawing.Size(250, 22);
-            this.descPecaTextBox.TabIndex = 3;
+            this.descPecaTextBox.Size = new System.Drawing.Size(258, 22);
+            this.descPecaTextBox.TabIndex = 4;
             // 
             // descPecaLabel
             // 
             this.descPecaLabel.AutoSize = true;
-            this.descPecaLabel.Location = new System.Drawing.Point(11, 230);
+            this.descPecaLabel.Location = new System.Drawing.Point(11, 239);
             this.descPecaLabel.Name = "descPecaLabel";
             this.descPecaLabel.Size = new System.Drawing.Size(126, 16);
             this.descPecaLabel.TabIndex = 16;
             this.descPecaLabel.Text = "Descrição da Peça:";
             // 
-            // modeloTextBox
-            // 
-            this.modeloTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.modeloTextBox.Location = new System.Drawing.Point(162, 156);
-            this.modeloTextBox.Name = "modeloTextBox";
-            this.modeloTextBox.Size = new System.Drawing.Size(250, 22);
-            this.modeloTextBox.TabIndex = 1;
-            // 
             // marcaLabel
             // 
             this.marcaLabel.AutoSize = true;
-            this.marcaLabel.Location = new System.Drawing.Point(11, 193);
+            this.marcaLabel.Location = new System.Drawing.Point(11, 123);
             this.marcaLabel.Name = "marcaLabel";
             this.marcaLabel.Size = new System.Drawing.Size(117, 16);
             this.marcaLabel.TabIndex = 11;
@@ -339,7 +377,7 @@
             // tipoLabel
             // 
             this.tipoLabel.AutoSize = true;
-            this.tipoLabel.Location = new System.Drawing.Point(11, 120);
+            this.tipoLabel.Location = new System.Drawing.Point(11, 162);
             this.tipoLabel.Name = "tipoLabel";
             this.tipoLabel.Size = new System.Drawing.Size(107, 16);
             this.tipoLabel.TabIndex = 9;
@@ -374,31 +412,6 @@
             this.idTextBox.TabIndex = 12;
             this.idTextBox.TabStop = false;
             this.idTextBox.Visible = false;
-            // 
-            // tipoTextBox
-            // 
-            this.tipoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tipoTextBox.Location = new System.Drawing.Point(162, 114);
-            this.tipoTextBox.Name = "tipoTextBox";
-            this.tipoTextBox.Size = new System.Drawing.Size(250, 22);
-            this.tipoTextBox.TabIndex = 23;
-            // 
-            // qtdTextBox
-            // 
-            this.qtdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.qtdTextBox.Location = new System.Drawing.Point(162, 267);
-            this.qtdTextBox.Name = "qtdTextBox";
-            this.qtdTextBox.Size = new System.Drawing.Size(250, 22);
-            this.qtdTextBox.TabIndex = 24;
-            // 
-            // qtdPecaLabel
-            // 
-            this.qtdPecaLabel.AutoSize = true;
-            this.qtdPecaLabel.Location = new System.Drawing.Point(11, 267);
-            this.qtdPecaLabel.Name = "qtdPecaLabel";
-            this.qtdPecaLabel.Size = new System.Drawing.Size(141, 16);
-            this.qtdPecaLabel.TabIndex = 25;
-            this.qtdPecaLabel.Text = "Quantidade de Peças:";
             // 
             // PecaForm
             // 
@@ -439,11 +452,9 @@
         private System.Windows.Forms.Panel conteudoPanel;
         private System.Windows.Forms.Panel fichaPanel;
         private System.Windows.Forms.DataGridView listaDataGridView;
-        private System.Windows.Forms.TextBox modeloTextBox;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.Label marcaLabel;
         private System.Windows.Forms.Label tipoLabel;
-        private System.Windows.Forms.TextBox marcaTextBox;
         private System.Windows.Forms.Label modeloLabel;
         private System.Windows.Forms.TextBox descPecaTextBox;
         private System.Windows.Forms.Label descPecaLabel;
@@ -456,8 +467,11 @@
         private System.Windows.Forms.TextBox filtroModeloTextBox;
         private System.Windows.Forms.Label filtroModeloLabel;
         private System.Windows.Forms.TextBox filtroTipoTextBox;
-        private System.Windows.Forms.TextBox tipoTextBox;
         private System.Windows.Forms.Label qtdPecaLabel;
         private System.Windows.Forms.TextBox qtdTextBox;
+        private System.Windows.Forms.Label mensagemLabel;
+        private System.Windows.Forms.ComboBox tipoComboBox;
+        private System.Windows.Forms.ComboBox marcaComboBox;
+        private System.Windows.Forms.ComboBox modeloComboBox;
     }
 }
