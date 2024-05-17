@@ -76,16 +76,16 @@ namespace Empresa.Db
             return lista;
         }
 
-        public void Incluir(Peca peca, String tipoSelecionado, String modeloSelecionado, String marcaSelecionada)
+        public void Incluir(Peca peca)
         {
             int idProduto;
 
             string sql = @"SELECT idProduto FROM TPROD WHERE tipoProduto=@tipoProduto AND modeloProduto=@modeloProduto AND marcaProduto=@marcaproduto";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
-            cmd.Parameters.AddWithValue("tipoProduto", tipoSelecionado);
-            cmd.Parameters.AddWithValue("modeloProduto", modeloSelecionado);
-            cmd.Parameters.AddWithValue("marcaProduto", marcaSelecionada);
+            cmd.Parameters.AddWithValue("tipoProduto", peca.tipoProduto);
+            cmd.Parameters.AddWithValue("modeloProduto", peca.modeloProduto);
+            cmd.Parameters.AddWithValue("marcaProduto", peca.marcaProduto);
 
             connect.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -105,20 +105,34 @@ namespace Empresa.Db
 
         }
 
-        public void Alterar(Produto produto)
+        public void Alterar(Peca peca)
         {
-            string sql = @"UPDATE TPROD SET tipoProduto=@tipoProduto, modeloProduto=@modeloProduto, marcaProduto=@marcaProduto, numSerie=@numSerie WHERE IdProduto=@IdProduto";
+            int idProduto;
+
+            string sql = @"SELECT idProduto FROM TPROD WHERE tipoProduto=@tipoProduto AND modeloProduto=@modeloProduto AND marcaProduto=@marcaproduto";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
-            cmd.Parameters.AddWithValue("@IdProduto", produto.IdProduto);
-            cmd.Parameters.AddWithValue("@tipoProduto", produto.tipoProduto);
-            cmd.Parameters.AddWithValue("@modeloProduto", produto.modeloProduto);
-            cmd.Parameters.AddWithValue("@marcaProduto", produto.marcaProduto);
-            cmd.Parameters.AddWithValue("@numSerie", produto.numSerie);
+            cmd.Parameters.AddWithValue("tipoProduto", peca.tipoProduto);
+            cmd.Parameters.AddWithValue("modeloProduto", peca.modeloProduto);
+            cmd.Parameters.AddWithValue("marcaProduto", peca.marcaProduto);
 
             connect.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            reader.Read();
+            idProduto = Convert.ToInt32(reader["idProduto"]);
+
+            reader.Close();
+
+            cmd.CommandText = @"UPDATE TPECA SET idProduto=@idProduto, nomePeca=@nomePeca, qtdPeca=@qtdPeca WHERE idPeca=@idPeca";
+            cmd.Parameters.AddWithValue("idProduto", idProduto);
+            cmd.Parameters.AddWithValue("idPeca", peca.idPeca);
+            cmd.Parameters.AddWithValue("nomePeca", peca.nomePeca);
+            cmd.Parameters.AddWithValue("qtdPeca", peca.qtdPeca);
+
             cmd.ExecuteNonQuery();
             connect.Close();
+
         }
 
         public void Excluir(int Id)
@@ -139,12 +153,13 @@ namespace Empresa.Db
             string sql = @"SELECT PD.marcaProduto,
 	                    PD.tipoProduto,
 	                    PD.modeloProduto,
+                        P.idPeca,
 	                    P.nomePeca,
 	                    P.qtdPeca
                         From TPECA P INNER JOIN TPROD PD
                         ON P.idProduto = PD.idProduto
                         WHERE 1=1
-                        ORDER BY PD.marcaProduto"
+                        ORDER BY P.idPeca"
             ;
 
             if (!string.IsNullOrEmpty(tipoProduto))
@@ -190,6 +205,7 @@ namespace Empresa.Db
             {
                 var peca = new Peca();
 
+                peca.idPeca = Convert.ToInt32(reader["idPeca"]);
                 peca.marcaProduto = reader["marcaProduto"].ToString();
                 peca.tipoProduto = reader["tipoProduto"].ToString();
                 peca.modeloProduto = reader["modeloProduto"].ToString();

@@ -42,14 +42,16 @@ CREATE TABLE TPROD (
 	modeloProduto varchar(20),
 
 	marcaProduto varchar(20),
-
-	numSerie varchar(15)
 );
 
 CREATE TABLE TPECA (
+	
+	idPeca smallint identity
+	CONSTRAINT PK_TPECA_idPeca
+	PRIMARY KEY (idPeca),
 
 	idProduto smallint
-	CONSTRAINT PK_TPECA_idProduto
+	CONSTRAINT FK_TPECA_idProduto
 	FOREIGN KEY (idProduto)
 	REFERENCES TPROD(idProduto),
 

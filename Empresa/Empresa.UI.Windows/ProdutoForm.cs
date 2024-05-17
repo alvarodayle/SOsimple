@@ -45,13 +45,11 @@ namespace Empresa.UI.Windows
             listaDataGridView.Columns[1].Width = 200;
             listaDataGridView.Columns[2].Width = 100;
             listaDataGridView.Columns[3].Width = 100;
-            listaDataGridView.Columns[4].Width = 90;
 
             listaDataGridView.Columns[0].HeaderText = "ID";
             listaDataGridView.Columns[1].HeaderText = "Tipo";
             listaDataGridView.Columns[2].HeaderText = "Modelo";
             listaDataGridView.Columns[3].HeaderText = "Marca";
-            listaDataGridView.Columns[4].HeaderText = "Número de Série";
 
         }
         private void ProdutoForm_Load(object sender, EventArgs e)
@@ -89,7 +87,6 @@ namespace Empresa.UI.Windows
             tipoTextBox.Clear();
             modeloTextBox.Clear();
             marcaTextBox.Clear();
-            numSerieTextBox.Clear();
 
 
         }
@@ -103,7 +100,6 @@ namespace Empresa.UI.Windows
                 tipoTextBox.ReadOnly = false;
                 modeloTextBox.ReadOnly = false;
                 marcaTextBox.ReadOnly = false;
-                numSerieTextBox.ReadOnly = false;
             }
 
             ExibirGrid();
@@ -115,7 +111,6 @@ namespace Empresa.UI.Windows
             produto.tipoProduto = tipoTextBox.Text;
             produto.modeloProduto = modeloTextBox.Text;
             produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = numSerieTextBox.Text;
 
 
             var db = new ProdutoDb();
@@ -139,7 +134,6 @@ namespace Empresa.UI.Windows
                 tipoTextBox.Text = produto.tipoProduto;
                 modeloTextBox.Text = produto.modeloProduto;
                 marcaTextBox.Text = produto.marcaProduto;
-                numSerieTextBox.Text = produto.numSerie;
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = true;
@@ -155,7 +149,6 @@ namespace Empresa.UI.Windows
             produto.tipoProduto = tipoTextBox.Text;
             produto.modeloProduto = modeloTextBox.Text;
             produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = numSerieTextBox.Text;
 
 
             var db = new ProdutoDb();
@@ -183,14 +176,12 @@ namespace Empresa.UI.Windows
                 tipoTextBox.ReadOnly = true;
                 modeloTextBox.ReadOnly = true;
                 marcaTextBox.ReadOnly = true;
-                numSerieTextBox.ReadOnly = true;
 
 
                 idTextBox.Text = produto.IdProduto.ToString();
                 tipoTextBox.Text = produto.tipoProduto.ToString();
                 modeloTextBox.Text = produto.modeloProduto.ToString();
                 marcaTextBox.Text = produto.marcaProduto.ToString();
-                numSerieTextBox.Text = produto.numSerie.ToString();
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = false;
@@ -216,7 +207,6 @@ namespace Empresa.UI.Windows
             tipoTextBox.ReadOnly = false;
             modeloTextBox.ReadOnly = false;
             marcaTextBox.ReadOnly = false;
-            numSerieTextBox.ReadOnly = false;
 
         }
 

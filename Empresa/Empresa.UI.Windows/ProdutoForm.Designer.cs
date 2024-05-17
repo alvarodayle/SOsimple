@@ -42,8 +42,6 @@
             this.fichaPanel = new System.Windows.Forms.Panel();
             this.marcaTextBox = new System.Windows.Forms.TextBox();
             this.modeloLabel = new System.Windows.Forms.Label();
-            this.numSerieTextBox = new System.Windows.Forms.TextBox();
-            this.numSerieLabel = new System.Windows.Forms.Label();
             this.tipoTextBox = new System.Windows.Forms.TextBox();
             this.modeloTextBox = new System.Windows.Forms.TextBox();
             this.marcaLabel = new System.Windows.Forms.Label();
@@ -179,8 +177,6 @@
             // 
             this.fichaPanel.Controls.Add(this.marcaTextBox);
             this.fichaPanel.Controls.Add(this.modeloLabel);
-            this.fichaPanel.Controls.Add(this.numSerieTextBox);
-            this.fichaPanel.Controls.Add(this.numSerieLabel);
             this.fichaPanel.Controls.Add(this.tipoTextBox);
             this.fichaPanel.Controls.Add(this.modeloTextBox);
             this.fichaPanel.Controls.Add(this.marcaLabel);
@@ -206,23 +202,6 @@
             this.modeloLabel.Size = new System.Drawing.Size(56, 16);
             this.modeloLabel.TabIndex = 22;
             this.modeloLabel.Text = "Modelo:";
-            // 
-            // numSerieTextBox
-            // 
-            this.numSerieTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numSerieTextBox.Location = new System.Drawing.Point(129, 242);
-            this.numSerieTextBox.Name = "numSerieTextBox";
-            this.numSerieTextBox.Size = new System.Drawing.Size(317, 22);
-            this.numSerieTextBox.TabIndex = 3;
-            // 
-            // numSerieLabel
-            // 
-            this.numSerieLabel.AutoSize = true;
-            this.numSerieLabel.Location = new System.Drawing.Point(11, 248);
-            this.numSerieLabel.Name = "numSerieLabel";
-            this.numSerieLabel.Size = new System.Drawing.Size(112, 16);
-            this.numSerieLabel.TabIndex = 16;
-            this.numSerieLabel.Text = "Numero de Série:";
             // 
             // tipoTextBox
             // 
@@ -323,7 +302,5 @@
         private System.Windows.Forms.Label tipoLabel;
         private System.Windows.Forms.TextBox marcaTextBox;
         private System.Windows.Forms.Label modeloLabel;
-        private System.Windows.Forms.TextBox numSerieTextBox;
-        private System.Windows.Forms.Label numSerieLabel;
     }
 }

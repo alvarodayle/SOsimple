@@ -24,6 +24,7 @@ namespace Empresa.UI.Windows
 
         private void ExibirGrid()
         {
+            listaDataGridView.Columns.Clear();
             listaDataGridView.Visible = true;
             filtrosPainel.Visible = true;
             listaDataGridView.Dock = DockStyle.Fill;
@@ -54,11 +55,14 @@ namespace Empresa.UI.Windows
             listaDataGridView.RowHeadersVisible = false;
             listaDataGridView.EnableHeadersVisualStyles = false;
 
-            listaDataGridView.Columns[0].HeaderText = "Marca";
-            listaDataGridView.Columns[1].HeaderText = "Tipo do Produto";
-            listaDataGridView.Columns[2].HeaderText = "Modelo";
-            listaDataGridView.Columns[3].HeaderText = "Descrição da Peça";
-            listaDataGridView.Columns[4].HeaderText = "Quantidade em Estoque";
+            listaDataGridView.Columns[0].Width = 35;
+
+            listaDataGridView.Columns[0].HeaderText = "ID";
+            listaDataGridView.Columns[1].HeaderText = "Marca";
+            listaDataGridView.Columns[2].HeaderText = "Tipo do Produto";
+            listaDataGridView.Columns[3].HeaderText = "Modelo";
+            listaDataGridView.Columns[4].HeaderText = "Descrição da Peça";
+            listaDataGridView.Columns[5].HeaderText = "Quantidade em Estoque";
         }
         private void PecaForm_Load(object sender, EventArgs e)
         {
@@ -161,10 +165,6 @@ namespace Empresa.UI.Windows
             ExibirGrid();
         }
 
-        string tipoProduto;
-        string modeloProduto;
-        string marcaProduto;
-
         private void confirmarNovoButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(marcaComboBox.Text))
@@ -193,16 +193,16 @@ namespace Empresa.UI.Windows
             }
             else
             {
-                tipoProduto = tipoComboBox.Text;
-                modeloProduto = modeloComboBox.Text;
-                marcaProduto = marcaComboBox.Text;
                 
                 var peca = new Peca();
+                peca.marcaProduto = marcaComboBox.Text;
+                peca.tipoProduto = tipoComboBox.Text;
+                peca.modeloProduto = modeloComboBox.Text;
                 peca.nomePeca = descPecaTextBox.Text;
                 peca.qtdPeca = Convert.ToInt32(qtdTextBox.Text);
 
                 var db = new PecaDb();
-                db.Incluir(peca,tipoProduto,modeloProduto,marcaProduto);
+                db.Incluir(peca);
 
                 ExibirGrid();
                 
@@ -218,13 +218,23 @@ namespace Empresa.UI.Windows
             }
             else
             {
-                Produto produto = (Produto)listaDataGridView.CurrentRow.DataBoundItem;
+                marcaComboBox.Items.Clear();
+                tipoComboBox.Items.Clear();
+                modeloComboBox.Items.Clear();
 
-                idTextBox.Text = produto.IdProduto.ToString();
-                //tipoTextBox.Text = produto.tipoProduto;
-                //modeloTextBox.Text = produto.modeloProduto;
-                //marcaTextBox.Text = produto.marcaProduto;
-                descPecaTextBox.Text = produto.numSerie;
+                var cb = new PecaDb();
+                List<string> listaMarca = cb.MarcaComboBox();
+
+                marcaComboBox.Items.AddRange(listaMarca.ToArray());
+
+                Peca peca = (Peca)listaDataGridView.CurrentRow.DataBoundItem;
+
+                idPecaTextBox.Text = peca.idPeca.ToString();
+                marcaComboBox.Text = peca.marcaProduto;
+                tipoComboBox.Text = peca.tipoProduto;
+                modeloComboBox.Text = peca.modeloProduto;
+                descPecaTextBox.Text = peca.nomePeca;
+                qtdTextBox.Text = Convert.ToString(peca.qtdPeca);
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = true;
@@ -235,16 +245,18 @@ namespace Empresa.UI.Windows
 
         private void confirmarAlterarButton_Click(object sender, EventArgs e)
         {
-            var produto = new Produto();
-            produto.IdProduto = Convert.ToInt32(idTextBox.Text);
-            //produto.tipoProduto = tipoTextBox.Text;
-            //produto.modeloProduto = modeloTextBox.Text;
-            //produto.marcaProduto = marcaTextBox.Text;
-            produto.numSerie = descPecaTextBox.Text;
+            var peca = new Peca();
+
+            peca.idPeca = Convert.ToInt32(idPecaTextBox.Text);
+            peca.tipoProduto = tipoComboBox.Text;
+            peca.modeloProduto = modeloComboBox.Text;
+            peca.marcaProduto = marcaComboBox.Text;
+            peca.nomePeca = descPecaTextBox.Text;
+            peca.qtdPeca = Convert.ToInt32(qtdTextBox.Text);
 
 
-            var db = new ProdutoDb();
-            db.Alterar(produto);
+            var db = new PecaDb();
+            db.Alterar(peca);
 
             ExibirGrid();
         }
@@ -275,7 +287,6 @@ namespace Empresa.UI.Windows
                 //tipoTextBox.Text = produto.tipoProduto.ToString();
                 //modeloTextBox.Text = produto.modeloProduto.ToString();
                 //marcaTextBox.Text = produto.marcaProduto.ToString();
-                descPecaTextBox.Text = produto.numSerie.ToString();
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = false;

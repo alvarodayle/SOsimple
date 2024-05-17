@@ -29,15 +29,15 @@ namespace Empresa.Models
 
     public abstract class EntidadeProduto
     {
-        public int IdProduto { get; set; }
+        public int    IdProduto { get; set; }
         public string tipoProduto { get; set; }
         public string modeloProduto { get; set; }
         public string marcaProduto { get; set; }
-        public string numSerie { get; set; }
     }
 
     public abstract class EntidadePeca
     {
+        public int    idPeca {  get; set; }
         public string marcaProduto { get; set; }
         public string tipoProduto { get; set; }
         public string modeloProduto { get; set; }

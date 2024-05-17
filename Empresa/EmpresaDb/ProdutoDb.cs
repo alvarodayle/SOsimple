@@ -12,13 +12,12 @@ namespace Empresa.Db
     {
         public void Incluir(Produto produto)
         {
-            string sql = @"INSERT INTO TPROD(tipoProduto, modeloProduto, marcaProduto, numSerie) VALUES(@tipoProduto, @modeloProduto, @marcaProduto, @numSerie)";
+            string sql = @"INSERT INTO TPROD(tipoProduto, modeloProduto, marcaProduto) VALUES(@tipoProduto, @modeloProduto, @marcaProduto)";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
             cmd.Parameters.AddWithValue("@tipoProduto", produto.tipoProduto);
             cmd.Parameters.AddWithValue("@modeloProduto", produto.modeloProduto);
             cmd.Parameters.AddWithValue("@marcaProduto", produto.marcaProduto);
-            cmd.Parameters.AddWithValue("@numSerie", produto.numSerie);
 
             connect.Open();
             cmd.ExecuteNonQuery();
@@ -27,14 +26,13 @@ namespace Empresa.Db
 
         public void Alterar(Produto produto)
         {
-            string sql = @"UPDATE TPROD SET tipoProduto=@tipoProduto, modeloProduto=@modeloProduto, marcaProduto=@marcaProduto, numSerie=@numSerie WHERE IdProduto=@IdProduto";
+            string sql = @"UPDATE TPROD SET tipoProduto=@tipoProduto, modeloProduto=@modeloProduto, marcaProduto=@marcaProduto WHERE IdProduto=@IdProduto";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
             cmd.Parameters.AddWithValue("@IdProduto", produto.IdProduto);
             cmd.Parameters.AddWithValue("@tipoProduto", produto.tipoProduto);
             cmd.Parameters.AddWithValue("@modeloProduto", produto.modeloProduto);
             cmd.Parameters.AddWithValue("@marcaProduto", produto.marcaProduto);
-            cmd.Parameters.AddWithValue("@numSerie", produto.numSerie);
 
             connect.Open();
             cmd.ExecuteNonQuery();
@@ -55,7 +53,7 @@ namespace Empresa.Db
 
         public List<Produto> Listar()
         {
-            string sql = @"SELECT IdProduto, tipoProduto, modeloProduto, marcaProduto, numSerie FROM TPROD";
+            string sql = @"SELECT IdProduto, tipoProduto, modeloProduto, marcaProduto FROM TPROD";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
             
@@ -72,7 +70,6 @@ namespace Empresa.Db
                 produto.tipoProduto = reader["tipoProduto"].ToString();
                 produto.modeloProduto = reader["modeloProduto"].ToString();
                 produto.marcaProduto = reader["marcaProduto"].ToString();
-                produto.numSerie = reader["numSerie"].ToString();
 
                 lista.Add(produto);
             }

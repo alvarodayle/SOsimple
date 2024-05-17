@@ -62,6 +62,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.listaDataGridView = new System.Windows.Forms.DataGridView();
             this.idTextBox = new System.Windows.Forms.TextBox();
+            this.idPecaTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.conteudoPanel.SuspendLayout();
@@ -386,6 +387,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.idPecaTextBox);
             this.panel2.Controls.Add(this.listaDataGridView);
             this.panel2.Location = new System.Drawing.Point(13, 94);
             this.panel2.Name = "panel2";
@@ -413,6 +415,15 @@
             this.idTextBox.TabStop = false;
             this.idTextBox.Visible = false;
             // 
+            // idPecaTextBox
+            // 
+            this.idPecaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.idPecaTextBox.Location = new System.Drawing.Point(443, 10);
+            this.idPecaTextBox.Name = "idPecaTextBox";
+            this.idPecaTextBox.Size = new System.Drawing.Size(55, 22);
+            this.idPecaTextBox.TabIndex = 6;
+            this.idPecaTextBox.Visible = false;
+            // 
             // PecaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -432,6 +443,7 @@
             this.fichaPanel.ResumeLayout(false);
             this.fichaPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaDataGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -473,5 +485,6 @@
         private System.Windows.Forms.ComboBox tipoComboBox;
         private System.Windows.Forms.ComboBox marcaComboBox;
         private System.Windows.Forms.ComboBox modeloComboBox;
+        private System.Windows.Forms.TextBox idPecaTextBox;
     }
 }
