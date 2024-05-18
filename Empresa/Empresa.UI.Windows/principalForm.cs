@@ -40,14 +40,7 @@ namespace Empresa.UI.Windows
             if (direitoAcesso != "SUPERVISOR")
             {
                 funcionáriosToolStripMenuItem.Visible = false;
-                peçasToolStripMenuItem.Visible = false;
             }
-
-            if (direitoAcesso == "ESTOQUE")
-            {
-                peçasToolStripMenuItem.Visible = true;
-            }
-
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
