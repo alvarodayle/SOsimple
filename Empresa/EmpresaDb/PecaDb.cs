@@ -137,17 +137,17 @@ namespace Empresa.Db
 
         public void Excluir(int Id)
         {
-            string sql = @"DELETE TPROD WHERE IdProduto=@IdProduto";
+            string sql = @"DELETE TPECA WHERE IdPeca=@IdPeca";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
-            cmd.Parameters.AddWithValue("@IdProduto", Id);
+            cmd.Parameters.AddWithValue("@IdPeca", Id);
 
             connect.Open();
             cmd.ExecuteNonQuery();
             connect.Close();
         }
 
-        public List<Peca> Listar(String marcaProduto, String tipoProduto, String modeloProduto)
+        public List<Peca> Listar(String marcaProduto, String tipoProduto, String modeloProduto, String descPeca)
         {
 
             string sql = @"SELECT PD.marcaProduto,
@@ -158,23 +158,27 @@ namespace Empresa.Db
 	                    P.qtdPeca
                         From TPECA P INNER JOIN TPROD PD
                         ON P.idProduto = PD.idProduto
-                        WHERE 1=1
-                        ORDER BY P.idPeca"
+                        WHERE 1=1"
             ;
 
             if (!string.IsNullOrEmpty(tipoProduto))
             {
-                sql += " AND tipoProduto = @TipoProduto";
+                sql += " AND tipoProduto LIKE @TipoProduto";
             }
 
             if (!string.IsNullOrEmpty(modeloProduto))
             {
-                sql += " AND modeloProduto = @Modelo";
+                sql += " AND modeloProduto LIKE @Modelo";
             }
 
             if (!string.IsNullOrEmpty(marcaProduto))
             {
-                sql += " AND marcaProduto = @Marca";
+                sql += " AND marcaProduto LIKE @Marca";
+            }
+
+            if (!string.IsNullOrEmpty(descPeca))
+            {
+                sql += " AND nomePeca LIKE @nomePeca";
             }
 
             var connect = new SqlConnection(Db.Conexao);
@@ -193,6 +197,11 @@ namespace Empresa.Db
             if (!string.IsNullOrEmpty(marcaProduto))
             {
                 cmd.Parameters.AddWithValue("@Marca", marcaProduto);
+            }
+
+            if (!string.IsNullOrEmpty(descPeca))
+            {
+                cmd.Parameters.AddWithValue("nomePeca", descPeca);
             }
 
             List<Peca> lista = new List<Peca>();

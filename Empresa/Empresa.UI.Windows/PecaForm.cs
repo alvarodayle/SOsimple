@@ -43,12 +43,13 @@ namespace Empresa.UI.Windows
         private void pesquisarButton_Click(object sender, EventArgs e)
         {
 
-            String filtroTipoProduto = filtroTipoTextBox.Text;
-            String filtroModeloProduto = filtroModeloTextBox.Text;
-            String filtroMarcaProduto = filtroMarcaTextBox.Text;
+            string filtroTipoProduto = ($"%{filtroTipoTextBox.Text}%");
+            string filtroModeloProduto = ($"%{filtroModeloTextBox.Text}%");
+            string filtroMarcaProduto = ($"%{filtroMarcaTextBox.Text}%");
+            string filtroDescPeca = ($"%{filtroDescPecaTextBox.Text}%");
 
             var db = new PecaDb();
-            listaDataGridView.DataSource = db.Listar(filtroMarcaProduto, filtroTipoProduto, filtroModeloProduto);
+            listaDataGridView.DataSource = db.Listar(filtroMarcaProduto, filtroTipoProduto, filtroModeloProduto, filtroDescPeca);
             listaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listaDataGridView.ReadOnly = true;
             listaDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -155,9 +156,9 @@ namespace Empresa.UI.Windows
 
                 excluirAcionado = false;
 
-                //tipoTextBox.ReadOnly = false;
-                //modeloTextBox.ReadOnly = false;
-                //marcaTextBox.ReadOnly = false;
+                marcaComboBox.Enabled = true;
+                tipoComboBox.Enabled = true;
+                modeloComboBox.Enabled = true;
                 descPecaTextBox.ReadOnly = false;
                 qtdTextBox.ReadOnly = false;
             }
@@ -275,18 +276,24 @@ namespace Empresa.UI.Windows
 
                 excluirAcionado = true;
 
-                Produto produto = (Produto)listaDataGridView.CurrentRow.DataBoundItem;
+                Peca peca = (Peca)listaDataGridView.CurrentRow.DataBoundItem;
 
-                //tipoTextBox.ReadOnly = true;
-                //modeloTextBox.ReadOnly = true;
-                //marcaTextBox.ReadOnly = true;
+                marcaComboBox.Items.Clear();
+                tipoComboBox.Items.Clear();
+                modeloComboBox.Items.Clear();
+
+                marcaComboBox.Enabled = false;
+                tipoComboBox.Enabled = false;
+                modeloComboBox.Enabled = false;
                 descPecaTextBox.ReadOnly = true;
+                qtdTextBox.ReadOnly = true;
 
-
-                idTextBox.Text = produto.IdProduto.ToString();
-                //tipoTextBox.Text = produto.tipoProduto.ToString();
-                //modeloTextBox.Text = produto.modeloProduto.ToString();
-                //marcaTextBox.Text = produto.marcaProduto.ToString();
+                idPecaTextBox.Text = peca.idPeca.ToString();
+                marcaComboBox.Text = peca.marcaProduto;
+                tipoComboBox.Text = peca.tipoProduto;
+                modeloComboBox.Text = peca.modeloProduto;
+                descPecaTextBox.Text = peca.nomePeca;
+                qtdTextBox.Text = Convert.ToString(peca.qtdPeca);
 
                 ExibirFicha();
                 confirmarAlterarButton.Visible = false;
@@ -299,20 +306,21 @@ namespace Empresa.UI.Windows
         private void confirmarExclusaoButton_Click(object sender, EventArgs e)
         {
 
-            var produto = new Produto();
-            produto.IdProduto = Convert.ToInt32(idTextBox.Text);
+            var peca = new Peca();
+            peca.idPeca = Convert.ToInt32(idPecaTextBox.Text);
 
-            var db = new ProdutoDb();
-            db.Excluir(produto.IdProduto);
+            var db = new PecaDb();
+            db.Excluir(peca.idPeca);
 
             ExibirGrid();
 
             excluirAcionado = false;
 
-            //tipoTextBox.ReadOnly = false;
-            //modeloTextBox.ReadOnly = false;
-            //marcaTextBox.ReadOnly = false;
+            marcaComboBox.Enabled = true;
+            tipoComboBox.Enabled = true;
+            modeloComboBox.Enabled = true;
             descPecaTextBox.ReadOnly = false;
+            qtdTextBox.ReadOnly = false;
 
         }
 
@@ -339,6 +347,5 @@ namespace Empresa.UI.Windows
             pf.acesso(direitoAcesso);
             pf.Show();
         }
-
     }
 }
