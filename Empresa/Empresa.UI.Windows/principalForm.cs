@@ -43,6 +43,17 @@ namespace Empresa.UI.Windows
             }
         }
 
+        private void gerenciamentoDeOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*
+            Hide();
+            var os = new ServiceOrderForm();
+            os.guardanome(boasvindas);
+            os.acesso(direitoAcesso);
+            os.ShowDialog();
+            */
+        }
+
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();
@@ -92,7 +103,5 @@ namespace Empresa.UI.Windows
         {
             Application.Exit();
         }
-
-
     }
 }
