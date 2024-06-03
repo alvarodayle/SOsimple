@@ -74,3 +74,47 @@ CREATE TABLE TFUNC (
 
 	deptFunc varchar(20)
 );
+
+CREATE TABLE TORDE (
+
+	OS	smallint identity
+	CONSTRAINT PK_TORDE_OS
+	PRIMARY KEY (OS),
+
+	idClienteOS	smallint
+	CONSTRAINT FK_TORDE_idClienteOS
+	FOREIGN KEY (idClienteOS)
+	REFERENCES TCLIE(idCliente),
+
+	idProdutoOS smallint
+	CONSTRAINT FK_TORDE_idProdutoOS
+	FOREIGN KEY (idProdutoOS)
+	REFERENCES TPROD(idProduto),
+
+	aparenciaProd varchar(80),
+
+	numSerieProd varchar(20),
+
+	descDefeitoProd varchar(80),
+
+	statusOS varchar(20)
+);
+
+CREATE TABLE TSLTP (
+
+	idSolicitacao	smallint identity
+	CONSTRAINT PK_TSLTP_idSolicitacao
+	PRIMARY KEY (idSolicitacao),
+
+	osSolicitante	smallint
+	CONSTRAINT FK_TSLTP_osSolicitante
+	FOREIGN KEY (osSolicitante)
+	REFERENCES TORDE(OS),
+
+	idPecaSolicitada smallint
+	CONSTRAINT FK_TSLTP_idPecaSolicitada
+	FOREIGN KEY (idPecaSolicitada)
+	REFERENCES TPECA(idPeca),
+
+	qtdPecaSolicitadas	smallint
+);
