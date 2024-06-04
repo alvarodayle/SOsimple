@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,12 +17,14 @@ namespace Empresa.UI.Windows
         {
             InitializeComponent();
         }
-    }
 
-    variavel = textBoxTab
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0 )
+            {
+                tabControl1.TabPages.Remove(tabPage2);
+            }
 
-    public void TestarTabControl()
-    { 
-        if(String.IsNullOrEmpty(textBoxTabControl.Text))
+        }
     }
 }
