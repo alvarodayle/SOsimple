@@ -16,15 +16,18 @@ namespace Empresa.UI.Windows
         public GerenciarOsForm()
         {
             InitializeComponent();
+            confAlterarButtonPanel.Visible = false;
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0 )
-            {
-                tabControl1.TabPages.Remove(tabPage2);
-            }
+            Application.Exit();
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NovoOsForm novoForm = new NovoOsForm();
+            novoForm.ShowDialog();
         }
     }
 }
