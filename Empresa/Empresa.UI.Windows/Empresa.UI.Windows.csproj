@@ -81,12 +81,6 @@
     <Compile Include="GerenciarOsForm.Designer.cs">
       <DependentUpon>GerenciarOsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NovoOsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NovoOsForm.Designer.cs">
-      <DependentUpon>NovoOsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="PecaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,9 +130,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GerenciarOsForm.resx">
       <DependentUpon>GerenciarOsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NovoOsForm.resx">
-      <DependentUpon>NovoOsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PecaForm.resx">
       <DependentUpon>PecaForm.cs</DependentUpon>

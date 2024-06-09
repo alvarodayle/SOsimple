@@ -16,18 +16,81 @@ namespace Empresa.UI.Windows
         public GerenciarOsForm()
         {
             InitializeComponent();
-            confAlterarButtonPanel.Visible = false;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void GerenciarOsForm_Load_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            ExibirTela();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ExibirTela()
         {
-            NovoOsForm novoForm = new NovoOsForm();
-            novoForm.ShowDialog();
+
+            buscarOsTabControl.Visible = true;
+            buscarOsTabControl.TabPages.Remove(tabOrdemDeServico);
+            
+
+            novaOsButton.Visible = true;
+            alterarOsButton.Visible = true;
+            sairButton.Visible = true;
+            gravarButton.Visible = false;
+            confAlterarButton.Visible = false;
+            voltarButton.Visible = false;
+        }
+
+        private void DesabilitarBotoes()
+        {
+            novaOsButton.Visible = false;
+            alterarOsButton.Visible = false;
+            sairButton.Visible = false;
+            gravarButton.Visible = false;
+            confAlterarButton.Visible = false;
+            voltarButton.Visible = false;
+        }
+
+        private void sairButton_Click(object sender, EventArgs e)
+        {
+            Close();
+
+            var pf = new principalForm();
+            pf.Show();
+        }
+
+        private void novaOsButton_Click(object sender, EventArgs e)
+        {
+            DesabilitarBotoes();
+            gravarButton.Visible = true;
+            voltarButton.Visible = true;
+
+            buscarOsTabControl.SelectedTab = tabOrdemDeServico;
+            buscarOsTabControl.TabPages.Remove(tabBuscar);
+            buscarOsTabControl.TabPages.Add(tabOrdemDeServico);
+
+
+
+            //ExibirTela();
+        }
+
+        private void alterarOsButton_Click(object sender, EventArgs e)
+        {
+            DesabilitarBotoes();
+            confAlterarButton.Visible = true;
+            voltarButton.Visible = true;
+
+            buscarOsTabControl.SelectedTab = tabOrdemDeServico;
+            buscarOsTabControl.TabPages.Remove(tabBuscar);
+            buscarOsTabControl.TabPages.Add(tabOrdemDeServico);
+
+
+            //Configurar o autopreenchimento dos campos
+
+            //ExibirTela();
+        }
+
+        private void voltarButton_Click(object sender, EventArgs e)
+        {
+            buscarOsTabControl.TabPages.Add(tabBuscar);
+            ExibirTela();
         }
     }
 }
