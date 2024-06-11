@@ -30,10 +30,10 @@
         {
             this.buscarOsTabControl = new System.Windows.Forms.TabControl();
             this.tabBuscar = new System.Windows.Forms.TabPage();
+            this.osDataGridView = new System.Windows.Forms.DataGridView();
             this.pesquisarButton = new System.Windows.Forms.Button();
             this.filtroTextBox = new System.Windows.Forms.TextBox();
             this.filtroComboBox = new System.Windows.Forms.ComboBox();
-            this.osDataGridView = new System.Windows.Forms.DataGridView();
             this.tabOrdemDeServico = new System.Windows.Forms.TabPage();
             this.numeroSerialTextBox = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
@@ -119,9 +119,23 @@
             this.tabBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.tabBuscar.Name = "tabBuscar";
             this.tabBuscar.Padding = new System.Windows.Forms.Padding(4);
-            this.tabBuscar.Size = new System.Drawing.Size(1306, 456);
+            this.tabBuscar.Size = new System.Drawing.Size(1298, 479);
             this.tabBuscar.TabIndex = 0;
             this.tabBuscar.Text = "Buscar";
+            // 
+            // osDataGridView
+            // 
+            this.osDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.osDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.osDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.osDataGridView.Location = new System.Drawing.Point(8, 51);
+            this.osDataGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.osDataGridView.Name = "osDataGridView";
+            this.osDataGridView.RowHeadersWidth = 51;
+            this.osDataGridView.Size = new System.Drawing.Size(1282, 397);
+            this.osDataGridView.TabIndex = 0;
             // 
             // pesquisarButton
             // 
@@ -129,7 +143,7 @@
             this.pesquisarButton.Location = new System.Drawing.Point(1109, 8);
             this.pesquisarButton.Margin = new System.Windows.Forms.Padding(4);
             this.pesquisarButton.Name = "pesquisarButton";
-            this.pesquisarButton.Size = new System.Drawing.Size(189, 29);
+            this.pesquisarButton.Size = new System.Drawing.Size(181, 29);
             this.pesquisarButton.TabIndex = 3;
             this.pesquisarButton.Text = "Pesquisar";
             this.pesquisarButton.UseVisualStyleBackColor = true;
@@ -151,20 +165,6 @@
             this.filtroComboBox.Name = "filtroComboBox";
             this.filtroComboBox.Size = new System.Drawing.Size(196, 28);
             this.filtroComboBox.TabIndex = 1;
-            // 
-            // osDataGridView
-            // 
-            this.osDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.osDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.osDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.osDataGridView.Location = new System.Drawing.Point(8, 51);
-            this.osDataGridView.Margin = new System.Windows.Forms.Padding(4);
-            this.osDataGridView.Name = "osDataGridView";
-            this.osDataGridView.RowHeadersWidth = 51;
-            this.osDataGridView.Size = new System.Drawing.Size(1290, 397);
-            this.osDataGridView.TabIndex = 0;
             // 
             // tabOrdemDeServico
             // 
@@ -277,6 +277,7 @@
             this.marcaComboBox.Name = "marcaComboBox";
             this.marcaComboBox.Size = new System.Drawing.Size(238, 28);
             this.marcaComboBox.TabIndex = 30;
+            this.marcaComboBox.SelectedIndexChanged += new System.EventHandler(this.marcaComboBox_SelectedIndexChanged);
             // 
             // tipoComboBox
             // 
@@ -285,6 +286,7 @@
             this.tipoComboBox.Name = "tipoComboBox";
             this.tipoComboBox.Size = new System.Drawing.Size(225, 28);
             this.tipoComboBox.TabIndex = 32;
+            this.tipoComboBox.SelectedIndexChanged += new System.EventHandler(this.tipoComboBox_SelectedIndexChanged_1);
             // 
             // descDefeitoTextBox
             // 
@@ -369,9 +371,9 @@
             // 
             // solicitarPecaButton
             // 
-            this.solicitarPecaButton.Location = new System.Drawing.Point(436, 9);
+            this.solicitarPecaButton.Location = new System.Drawing.Point(408, 9);
             this.solicitarPecaButton.Name = "solicitarPecaButton";
-            this.solicitarPecaButton.Size = new System.Drawing.Size(86, 33);
+            this.solicitarPecaButton.Size = new System.Drawing.Size(114, 33);
             this.solicitarPecaButton.TabIndex = 39;
             this.solicitarPecaButton.Text = "Solicitar";
             this.solicitarPecaButton.UseVisualStyleBackColor = true;
@@ -399,16 +401,16 @@
             // statusComboBox
             // 
             this.statusComboBox.FormattingEnabled = true;
-            this.statusComboBox.Location = new System.Drawing.Point(1068, 16);
+            this.statusComboBox.Location = new System.Drawing.Point(976, 16);
             this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(214, 28);
+            this.statusComboBox.Size = new System.Drawing.Size(306, 28);
             this.statusComboBox.TabIndex = 35;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label17.Location = new System.Drawing.Point(948, 24);
+            this.label17.Location = new System.Drawing.Point(856, 24);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(114, 20);
             this.label17.TabIndex = 34;
@@ -416,12 +418,13 @@
             // 
             // osTextBox
             // 
+            this.osTextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.osTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.osTextBox.Location = new System.Drawing.Point(68, 18);
             this.osTextBox.Name = "osTextBox";
-            this.osTextBox.ReadOnly = true;
             this.osTextBox.Size = new System.Drawing.Size(214, 26);
             this.osTextBox.TabIndex = 33;
+            this.osTextBox.TabStop = false;
             // 
             // label18
             // 
