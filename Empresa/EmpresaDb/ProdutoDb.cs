@@ -78,5 +78,30 @@ namespace Empresa.Db
             connect.Close();
             return lista;
         }
+
+        int IdProdutoEncontrado;
+
+        public int ProcurarID(string tipoProduto,string marcaProduto,string modeloProduto)
+        {
+            string sql = @"SELECT idProduto FROM TPROD WHERE tipoProduto=@tipoProduto and marcaProduto=@marcaProduto and modeloProduto=@modeloProduto";
+            var connect = new SqlConnection(Db.Conexao);
+            var cmd = new SqlCommand(sql, connect);
+            cmd.Parameters.AddWithValue("@tipoProduto", tipoProduto);
+            cmd.Parameters.AddWithValue("@marcaProduto", marcaProduto);
+            cmd.Parameters.AddWithValue("@modeloProduto", modeloProduto);
+
+            connect.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                IdProdutoEncontrado = Convert.ToInt32(reader["IdProduto"]);
+            }
+
+            reader.Close();
+            connect.Close();
+
+            return IdProdutoEncontrado;
+        }
     }
 }

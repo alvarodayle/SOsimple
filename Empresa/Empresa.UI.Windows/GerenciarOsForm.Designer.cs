@@ -269,6 +269,7 @@
             this.modeloComboBox.Name = "modeloComboBox";
             this.modeloComboBox.Size = new System.Drawing.Size(211, 28);
             this.modeloComboBox.TabIndex = 31;
+            this.modeloComboBox.SelectedIndexChanged += new System.EventHandler(this.modeloComboBox_SelectedIndexChanged);
             // 
             // marcaComboBox
             // 

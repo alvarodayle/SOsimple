@@ -58,6 +58,8 @@ namespace Empresa.UI.Windows
             pf.Show();
         }
 
+        public int IdClienteArmazenado;
+
         private void novaOsButton_Click(object sender, EventArgs e)
         {
             //CONFIGURAÇÃO DE APARECIMENTO DOS BOTÕES E ABAS NO TAB CONTROL.
@@ -75,6 +77,9 @@ namespace Empresa.UI.Windows
 
 
             statusComboBox.Text = "Cadastrando Ordem de Serviço";
+
+            //Autopreenchimento dos dados do cliente
+
 
 
             //DISPONIBILIZAR AS INFOS. DE PRODUTOS NO COMBO BOX
@@ -126,6 +131,14 @@ namespace Empresa.UI.Windows
             modeloComboBox.Items.AddRange(listaModelo.ToArray());
         }
 
+        public int IdProdutoArmazenado;
+
+        private void modeloComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProdutoDb pd = new ProdutoDb();
+            IdProdutoArmazenado = pd.ProcurarID(tipoComboBox.Text, marcaComboBox.Text, modeloComboBox.Text);
+        }
+
         private void alterarOsButton_Click(object sender, EventArgs e)
         {
             DesabilitarBotoes();
@@ -152,6 +165,5 @@ namespace Empresa.UI.Windows
             ExibirTela();
         }
 
-        
     }
 }
