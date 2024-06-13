@@ -80,6 +80,8 @@
             this.novaOsButton = new System.Windows.Forms.Button();
             this.voltarButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.numeroTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.buscarOsTabControl.SuspendLayout();
             this.tabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.osDataGridView)).BeginInit();
@@ -169,6 +171,8 @@
             // tabOrdemDeServico
             // 
             this.tabOrdemDeServico.BackColor = System.Drawing.Color.SteelBlue;
+            this.tabOrdemDeServico.Controls.Add(this.label1);
+            this.tabOrdemDeServico.Controls.Add(this.numeroTextBox);
             this.tabOrdemDeServico.Controls.Add(this.numeroSerialTextBox);
             this.tabOrdemDeServico.Controls.Add(this.label31);
             this.tabOrdemDeServico.Controls.Add(this.produtoPecaTabControl);
@@ -199,7 +203,7 @@
             // numeroSerialTextBox
             // 
             this.numeroSerialTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numeroSerialTextBox.Location = new System.Drawing.Point(786, 167);
+            this.numeroSerialTextBox.Location = new System.Drawing.Point(1063, 168);
             this.numeroSerialTextBox.Name = "numeroSerialTextBox";
             this.numeroSerialTextBox.Size = new System.Drawing.Size(219, 26);
             this.numeroSerialTextBox.TabIndex = 38;
@@ -208,7 +212,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label31.Location = new System.Drawing.Point(504, 170);
+            this.label31.Location = new System.Drawing.Point(795, 174);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(249, 20);
             this.label31.TabIndex = 37;
@@ -440,7 +444,7 @@
             // ufTextBox
             // 
             this.ufTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ufTextBox.Location = new System.Drawing.Point(421, 164);
+            this.ufTextBox.Location = new System.Drawing.Point(708, 168);
             this.ufTextBox.Name = "ufTextBox";
             this.ufTextBox.Size = new System.Drawing.Size(68, 26);
             this.ufTextBox.TabIndex = 31;
@@ -449,7 +453,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label19.Location = new System.Drawing.Point(379, 170);
+            this.label19.Location = new System.Drawing.Point(652, 170);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(36, 20);
             this.label19.TabIndex = 30;
@@ -458,7 +462,7 @@
             // cidadeTextBox
             // 
             this.cidadeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cidadeTextBox.Location = new System.Drawing.Point(86, 164);
+            this.cidadeTextBox.Location = new System.Drawing.Point(354, 168);
             this.cidadeTextBox.Name = "cidadeTextBox";
             this.cidadeTextBox.Size = new System.Drawing.Size(287, 26);
             this.cidadeTextBox.TabIndex = 29;
@@ -467,7 +471,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label20.Location = new System.Drawing.Point(14, 170);
+            this.label20.Location = new System.Drawing.Point(264, 170);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(66, 20);
             this.label20.TabIndex = 28;
@@ -549,9 +553,11 @@
             // 
             this.cpfTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cpfTextBox.Location = new System.Drawing.Point(68, 68);
+            this.cpfTextBox.MaxLength = 11;
             this.cpfTextBox.Name = "cpfTextBox";
             this.cpfTextBox.Size = new System.Drawing.Size(214, 26);
             this.cpfTextBox.TabIndex = 19;
+            this.cpfTextBox.TextChanged += new System.EventHandler(this.cpfTextBox_TextChanged);
             // 
             // label25
             // 
@@ -591,6 +597,7 @@
             this.gravarButton.TabIndex = 17;
             this.gravarButton.Text = "Gravar";
             this.gravarButton.UseVisualStyleBackColor = true;
+            this.gravarButton.Click += new System.EventHandler(this.gravarButton_Click);
             // 
             // confAlterarButton
             // 
@@ -633,6 +640,24 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 84);
             this.flowLayoutPanel1.TabIndex = 19;
+            // 
+            // numeroTextBox
+            // 
+            this.numeroTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numeroTextBox.Location = new System.Drawing.Point(107, 168);
+            this.numeroTextBox.Name = "numeroTextBox";
+            this.numeroTextBox.Size = new System.Drawing.Size(151, 26);
+            this.numeroTextBox.TabIndex = 39;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(19, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Numero:";
             // 
             // GerenciarOsForm
             // 
@@ -720,5 +745,7 @@
         private System.Windows.Forms.Button sairButton;
         private System.Windows.Forms.Button alterarOsButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox numeroTextBox;
     }
 }

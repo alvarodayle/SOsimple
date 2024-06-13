@@ -25,4 +25,9 @@ namespace Empresa.Models
     {
 
     }
+
+    public sealed class ClienteGerenciamentoDeOS: EntidadeClienteGerenciamentoDeOS
+    {
+
+    }
 }

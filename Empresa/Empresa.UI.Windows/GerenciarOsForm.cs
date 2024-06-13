@@ -1,8 +1,10 @@
 ﻿using Empresa.Db;
+using Empresa.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
@@ -40,6 +42,28 @@ namespace Empresa.UI.Windows
             voltarButton.Visible = false;
         }
 
+        private void LimparCampos()
+        {
+            osTextBox.Clear();
+            statusComboBox.Items.Clear();
+            cpfTextBox.Clear();
+            nomeTextBox.Clear();
+            telefoneTextBox.Clear();
+            cidadeTextBox.Clear();
+            ufTextBox.Clear();
+            cidadeTextBox.Clear();
+            enderecoTextBox.Clear();
+            numeroSerialTextBox.Clear();
+            aparenciaTextBox.Clear();
+            descDefeitoTextBox.Clear();
+            quantidadeTextBox.Clear();
+            tipoComboBox.Items.Clear();
+            marcaComboBox.Items.Clear();
+            modeloComboBox.Items.Clear();
+            cepTextBox.Clear();
+            numeroTextBox.Clear();
+        }
+
         private void DesabilitarBotoes()
         {
             novaOsButton.Visible = false;
@@ -62,7 +86,6 @@ namespace Empresa.UI.Windows
 
         private void novaOsButton_Click(object sender, EventArgs e)
         {
-            //CONFIGURAÇÃO DE APARECIMENTO DOS BOTÕES E ABAS NO TAB CONTROL.
 
             DesabilitarBotoes();
             gravarButton.Visible = true;
@@ -73,16 +96,7 @@ namespace Empresa.UI.Windows
             buscarOsTabControl.TabPages.Remove(tabBuscar);
             buscarOsTabControl.TabPages.Add(tabOrdemDeServico);
 
-            //LISTAGEM DE INFORMAÇÕES DO STATUS NO COMBO BOX
-
-
-            statusComboBox.Text = "Cadastrando Ordem de Serviço";
-
-            //Autopreenchimento dos dados do cliente
-
-
-
-            //DISPONIBILIZAR AS INFOS. DE PRODUTOS NO COMBO BOX
+            statusComboBox.Text = "Cadastrando uma OS";
 
             marcaComboBox.Text = null;
             tipoComboBox.Text = null;
@@ -139,6 +153,39 @@ namespace Empresa.UI.Windows
             IdProdutoArmazenado = pd.ProcurarID(tipoComboBox.Text, marcaComboBox.Text, modeloComboBox.Text);
         }
 
+        private void cpfTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (cpfTextBox.Text.Length == 11)
+            {
+                OsDb cd = new OsDb();
+  
+                ClienteGerenciamentoDeOS cliente = cd.ProcurarCliente(cpfTextBox.Text);
+
+                if (cliente != null)
+                {
+
+                    IdClienteArmazenado = cliente.IdCliente;
+                    nomeTextBox.Text = cliente.nomeCliente;
+                    cpfTextBox.Text = cliente.cpfCliente;
+                    telefoneTextBox.Text = cliente.telCliente;
+                    cepTextBox.Text = cliente.cepCliente;
+                    enderecoTextBox.Text = cliente.endCliente;
+                    numeroTextBox.Text = cliente.numEndCliente;
+                    cidadeTextBox.Text = cliente.cidCliente;
+                    ufTextBox.Text = cliente.ufCliente;
+
+                    nomeTextBox.ReadOnly = true;
+                    cpfTextBox.ReadOnly = true;
+                    telefoneTextBox.ReadOnly = true;
+                    enderecoTextBox.ReadOnly = true;
+                    numeroTextBox.ReadOnly = true;
+                    cidadeTextBox.ReadOnly = true;
+                    ufTextBox.ReadOnly = true;
+                }
+                
+            }
+        }
+
         private void alterarOsButton_Click(object sender, EventArgs e)
         {
             DesabilitarBotoes();
@@ -161,9 +208,28 @@ namespace Empresa.UI.Windows
 
         private void voltarButton_Click(object sender, EventArgs e)
         {
+            LimparCampos();
+
+            IdClienteArmazenado = 0;
+            IdProdutoArmazenado = 0;
+
             buscarOsTabControl.TabPages.Add(tabBuscar);
             ExibirTela();
         }
 
+        private void gravarButton_Click(object sender, EventArgs e)
+        {
+            OsDb os = new OsDb();
+            os.Incluir(IdClienteArmazenado, IdProdutoArmazenado, aparenciaTextBox.Text, numeroSerialTextBox.Text, descDefeitoTextBox.Text, statusComboBox.Text);
+
+            LimparCampos();
+
+            IdClienteArmazenado = 0;
+            IdProdutoArmazenado = 0;
+
+            buscarOsTabControl.TabPages.Add(tabBuscar);
+            ExibirTela();
+
+        }
     }
 }
