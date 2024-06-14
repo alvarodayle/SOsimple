@@ -35,6 +35,8 @@
             this.filtroTextBox = new System.Windows.Forms.TextBox();
             this.filtroComboBox = new System.Windows.Forms.ComboBox();
             this.tabOrdemDeServico = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numeroTextBox = new System.Windows.Forms.TextBox();
             this.numeroSerialTextBox = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.produtoPecaTabControl = new System.Windows.Forms.TabControl();
@@ -80,8 +82,6 @@
             this.novaOsButton = new System.Windows.Forms.Button();
             this.voltarButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.numeroTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.buscarOsTabControl.SuspendLayout();
             this.tabBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.osDataGridView)).BeginInit();
@@ -149,6 +149,7 @@
             this.pesquisarButton.TabIndex = 3;
             this.pesquisarButton.Text = "Pesquisar";
             this.pesquisarButton.UseVisualStyleBackColor = true;
+            this.pesquisarButton.Click += new System.EventHandler(this.pesquisarButton_Click);
             // 
             // filtroTextBox
             // 
@@ -199,6 +200,24 @@
             this.tabOrdemDeServico.Size = new System.Drawing.Size(1298, 479);
             this.tabOrdemDeServico.TabIndex = 3;
             this.tabOrdemDeServico.Text = "Ordem de Serviço";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(19, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Numero:";
+            // 
+            // numeroTextBox
+            // 
+            this.numeroTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numeroTextBox.Location = new System.Drawing.Point(107, 168);
+            this.numeroTextBox.Name = "numeroTextBox";
+            this.numeroTextBox.Size = new System.Drawing.Size(151, 26);
+            this.numeroTextBox.TabIndex = 39;
             // 
             // numeroSerialTextBox
             // 
@@ -640,24 +659,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 84);
             this.flowLayoutPanel1.TabIndex = 19;
-            // 
-            // numeroTextBox
-            // 
-            this.numeroTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numeroTextBox.Location = new System.Drawing.Point(107, 168);
-            this.numeroTextBox.Name = "numeroTextBox";
-            this.numeroTextBox.Size = new System.Drawing.Size(151, 26);
-            this.numeroTextBox.TabIndex = 39;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(19, 170);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 20);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Numero:";
             // 
             // GerenciarOsForm
             // 

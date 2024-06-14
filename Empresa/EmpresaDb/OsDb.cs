@@ -63,7 +63,36 @@ namespace Empresa.Db
             connect.Close();
         }
 
+        public List<OrdemGerencioamentoDeOS> Listar()
+        {
+            string sql = @"SELECT OS, idClienteOS, idProdutoOS, aparenciaProd, numSerieProd, descDefeitoProd, statusOS FROM TORDE";
+            var connect = new SqlConnection(Db.Conexao);
+            var cmd = new SqlCommand(sql, connect);
 
+            List<OrdemGerencioamentoDeOS> lista = new List<OrdemGerencioamentoDeOS>();
+
+            connect.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var ordem = new OrdemGerencioamentoDeOS();
+                ordem.OS = Convert.ToInt32(reader["OS"]);
+                ordem.idClienteOS = Convert.ToInt32(reader["idClienteOS"]);
+                ordem.idProdutoOS = Convert.ToInt32(reader["idProdutoOS"]);
+                ordem.aparenciaProd = reader["aparenciaProd"].ToString();
+                ordem.numSerieProd = reader["numSerieProd"].ToString();
+                ordem.descDefeitoProd = reader["descDefeitoProd"].ToString();
+                ordem.statusOS = reader["statusOS"].ToString();
+
+                lista.Add(ordem);
+            }
+
+            reader.Close();
+            connect.Close();
+            return lista;
+        }
 
 
 

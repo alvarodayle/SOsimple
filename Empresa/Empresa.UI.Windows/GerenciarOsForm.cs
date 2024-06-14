@@ -6,8 +6,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +27,8 @@ namespace Empresa.UI.Windows
         private void GerenciarOsForm_Load_1(object sender, EventArgs e)
         {
             ExibirTela();
+            ExibirGrid();
+            osDataGridView.AllowUserToAddRows = false;
         }
 
         private void ExibirTela()
@@ -33,6 +37,7 @@ namespace Empresa.UI.Windows
             buscarOsTabControl.Visible = true;
             buscarOsTabControl.TabPages.Remove(tabOrdemDeServico);
 
+            filtroComboBox.Items.AddRange(new string[] { "OS" });
 
             novaOsButton.Visible = true;
             alterarOsButton.Visible = true;
@@ -42,6 +47,33 @@ namespace Empresa.UI.Windows
             voltarButton.Visible = false;
         }
 
+        private void ExibirGrid()
+        {
+            osDataGridView.Visible = true;
+
+            var db = new OsDb();
+            osDataGridView.DataSource = db.Listar();
+            osDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            osDataGridView.ReadOnly = true;
+            osDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            osDataGridView.RowHeadersVisible = false;
+            osDataGridView.EnableHeadersVisualStyles = false;
+
+            osDataGridView.Columns[0].Width = 50;
+            osDataGridView.Columns[1].Width = 30;
+            osDataGridView.Columns[2].Width = 30;
+
+            osDataGridView.Columns[0].Name = "OS";
+            osDataGridView.Columns[1].Name = "ID Cliente";
+            osDataGridView.Columns[2].Name = "ID Produto";
+            osDataGridView.Columns[3].Name = "Aparência";
+            osDataGridView.Columns[4].Name = "Número de Série";
+            osDataGridView.Columns[5].Name = "Descrição do Defeito";
+            osDataGridView.Columns[6].Name = "Status OS";
+
+
+
+        }
         private void LimparCampos()
         {
             osTextBox.Clear();
@@ -113,7 +145,8 @@ namespace Empresa.UI.Windows
             buscarOsTabControl.TabPages.Remove(tabBuscar);
             buscarOsTabControl.TabPages.Add(tabOrdemDeServico);
 
-            statusComboBox.Text = "Cadastrando uma OS";
+            statusComboBox.Text = "Cadastrando Ordem de Serviço";
+            statusComboBox.Enabled = false;
 
             marcaComboBox.Text = null;
             tipoComboBox.Text = null;
@@ -247,7 +280,7 @@ namespace Empresa.UI.Windows
             buscarOsTabControl.TabPages.Remove(tabBuscar);
             buscarOsTabControl.TabPages.Add(tabOrdemDeServico);
 
-
+            statusComboBox.Enabled = true;
             statusComboBox.Items.AddRange(new string[] { "Cadastrando Ordem de Serviço", "Aguardando Peças", "Em Manutenção",
             "Ordem de Serviço Finalizada"});
 
@@ -295,9 +328,54 @@ namespace Empresa.UI.Windows
 
                 buscarOsTabControl.TabPages.Add(tabBuscar);
                 ExibirTela();
+                cpfTextBox.ReadOnly = false;
 
             }
 
+        }
+
+        private void pesquisarButton_Click(object sender, EventArgs e)
+        {
+            string textBoxText = filtroTextBox.Text;
+
+            if (!string.IsNullOrEmpty(textBoxText))
+            {
+                // Verifica se o item existe em pelo menos um dos dois campos no banco de dados
+                string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=SoSimple;Integrated Security=True;Encrypt=False;";
+                string query = "SELECT * FROM TORDE WHERE OS = @value";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@value", textBoxText);
+
+                    try
+                    {
+                        connection.Open();
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            // Exibe os resultados no DataGridView
+                            osDataGridView.DataSource = dataTable;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nenhum dado encontrado no banco de dados.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao acessar o banco de dados: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, insira um dado no filtro.");
+            }
         }
     }
 }

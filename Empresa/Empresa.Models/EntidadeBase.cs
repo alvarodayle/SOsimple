@@ -29,7 +29,7 @@ namespace Empresa.Models
 
     public abstract class EntidadeProduto
     {
-        public int    IdProduto { get; set; }
+        public int IdProduto { get; set; }
         public string tipoProduto { get; set; }
         public string modeloProduto { get; set; }
         public string marcaProduto { get; set; }
@@ -37,14 +37,14 @@ namespace Empresa.Models
 
     public abstract class EntidadePeca
     {
-        public int    idPeca {  get; set; }
+        public int idPeca { get; set; }
         public string marcaProduto { get; set; }
         public string tipoProduto { get; set; }
         public string modeloProduto { get; set; }
         public string nomePeca { get; set; }
         public int qtdPeca { get; set; }
     }
-    
+
     public abstract class EntidadeClienteGerenciamentoDeOS
     {
         public int IdCliente { get; set; }
@@ -56,5 +56,16 @@ namespace Empresa.Models
         public string numEndCliente { get; set; }
         public string cidCliente { get; set; }
         public string ufCliente { get; set; }
+    }
+
+    public abstract class EntidadeOrdemGerenciamentoDeOS
+    {
+        public int OS { get; set; }
+        public int idClienteOS { get; set; }
+        public int idProdutoOS { get; set; }
+        public string aparenciaProd { get; set; }
+        public string numSerieProd {  get; set; }
+        public string descDefeitoProd { get; set; }
+        public string statusOS { get; set; }
     }
 }

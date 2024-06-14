@@ -35,7 +35,7 @@ namespace Empresa.Db
 
         public List<string> TipoComboBox(String marcaSelecionada)
         {
-            string sql = @"SELECT tipoProduto FROM TPROD WHERE marcaProduto=@marcaProduto;";
+            string sql = @"SELECT DISTINCT(tipoProduto) FROM TPROD WHERE marcaProduto=@marcaProduto;";
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
             cmd.Parameters.AddWithValue("marcaProduto", marcaSelecionada);

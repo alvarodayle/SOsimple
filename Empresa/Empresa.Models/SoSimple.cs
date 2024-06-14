@@ -30,4 +30,9 @@ namespace Empresa.Models
     {
 
     }
+
+    public sealed class OrdemGerencioamentoDeOS: EntidadeOrdemGerenciamentoDeOS
+    {
+
+    }
 }
