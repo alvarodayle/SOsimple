@@ -32,7 +32,7 @@ namespace Empresa.UI.Windows
 
             buscarOsTabControl.Visible = true;
             buscarOsTabControl.TabPages.Remove(tabOrdemDeServico);
-            
+
 
             novaOsButton.Visible = true;
             alterarOsButton.Visible = true;
@@ -91,6 +91,23 @@ namespace Empresa.UI.Windows
             gravarButton.Visible = true;
             voltarButton.Visible = true;
             osTextBox.ReadOnly = true;
+            nomeTextBox.ReadOnly = true;
+            telefoneTextBox.ReadOnly = true;
+            cepTextBox.ReadOnly = true;
+            enderecoTextBox.ReadOnly = true;
+            numeroTextBox.ReadOnly = true;
+            cidadeTextBox.ReadOnly = true;
+            ufTextBox.ReadOnly = true;
+            numeroSerialTextBox.ReadOnly = true;
+
+            nomeTextBox.BackColor = SystemColors.InactiveCaption;
+            telefoneTextBox.BackColor = SystemColors.InactiveCaption;
+            cepTextBox.BackColor = SystemColors.InactiveCaption;
+            enderecoTextBox.BackColor = SystemColors.InactiveCaption;
+            numeroTextBox.BackColor = SystemColors.InactiveCaption;
+            cidadeTextBox.BackColor = SystemColors.InactiveCaption;
+            ufTextBox.BackColor = SystemColors.InactiveCaption;
+            numeroSerialTextBox.BackColor = SystemColors.InactiveCaption;
 
             buscarOsTabControl.SelectedTab = tabOrdemDeServico;
             buscarOsTabControl.TabPages.Remove(tabBuscar);
@@ -158,7 +175,7 @@ namespace Empresa.UI.Windows
             if (cpfTextBox.Text.Length == 11)
             {
                 OsDb cd = new OsDb();
-  
+
                 ClienteGerenciamentoDeOS cliente = cd.ProcurarCliente(cpfTextBox.Text);
 
                 if (cliente != null)
@@ -174,15 +191,49 @@ namespace Empresa.UI.Windows
                     cidadeTextBox.Text = cliente.cidCliente;
                     ufTextBox.Text = cliente.ufCliente;
 
+                    nomeTextBox.BackColor = SystemColors.InactiveCaption;
+                    telefoneTextBox.BackColor = SystemColors.InactiveCaption;
+                    cepTextBox.BackColor = SystemColors.InactiveCaption;
+                    enderecoTextBox.BackColor = SystemColors.InactiveCaption;
+                    numeroTextBox.BackColor = SystemColors.InactiveCaption;
+                    cidadeTextBox.BackColor = SystemColors.InactiveCaption;
+                    ufTextBox.BackColor = SystemColors.InactiveCaption;
+                    numeroSerialTextBox.BackColor = SystemColors.InactiveCaption;
+
                     nomeTextBox.ReadOnly = true;
                     cpfTextBox.ReadOnly = true;
                     telefoneTextBox.ReadOnly = true;
+                    cepTextBox.ReadOnly = true;
                     enderecoTextBox.ReadOnly = true;
                     numeroTextBox.ReadOnly = true;
                     cidadeTextBox.ReadOnly = true;
                     ufTextBox.ReadOnly = true;
+                    numeroSerialTextBox.ReadOnly = false;
+                    numeroSerialTextBox.BackColor = SystemColors.Window;
+
                 }
-                
+                else
+                {
+
+                    nomeTextBox.BackColor = SystemColors.Window;
+                    telefoneTextBox.BackColor = SystemColors.Window;
+                    cepTextBox.BackColor = SystemColors.Window;
+                    enderecoTextBox.BackColor = SystemColors.Window;
+                    numeroTextBox.BackColor = SystemColors.Window;
+                    cidadeTextBox.BackColor = SystemColors.Window;
+                    ufTextBox.BackColor = SystemColors.Window;
+                    numeroSerialTextBox.BackColor = SystemColors.Window;
+
+                    nomeTextBox.ReadOnly = false;
+                    telefoneTextBox.ReadOnly = false;
+                    cepTextBox.ReadOnly = false;
+                    enderecoTextBox.ReadOnly = false;
+                    numeroTextBox.ReadOnly = false;
+                    cidadeTextBox.ReadOnly = false;
+                    ufTextBox.ReadOnly = false;
+                    numeroSerialTextBox.ReadOnly = false;
+                }
+
             }
         }
 
@@ -200,8 +251,14 @@ namespace Empresa.UI.Windows
             statusComboBox.Items.AddRange(new string[] { "Cadastrando Ordem de Serviço", "Aguardando Peças", "Em Manutenção",
             "Ordem de Serviço Finalizada"});
 
+            marcaComboBox.Text = null;
+            tipoComboBox.Text = null;
+            modeloComboBox.Text = null;
 
-            //Configurar o autopreenchimento dos campos
+            marcaComboBox.Items.Clear();
+            tipoComboBox.Items.Clear();
+            modeloComboBox.Items.Clear();
+
 
             //ExibirTela();
         }
@@ -215,20 +272,31 @@ namespace Empresa.UI.Windows
 
             buscarOsTabControl.TabPages.Add(tabBuscar);
             ExibirTela();
+            cpfTextBox.ReadOnly = false;
         }
 
         private void gravarButton_Click(object sender, EventArgs e)
         {
-            OsDb os = new OsDb();
-            os.Incluir(IdClienteArmazenado, IdProdutoArmazenado, aparenciaTextBox.Text, numeroSerialTextBox.Text, descDefeitoTextBox.Text, statusComboBox.Text);
+            if (cpfTextBox.Text == null || cpfTextBox.Text.Length != 11) 
+            {
 
-            LimparCampos();
+                MessageBox.Show("Necessário digitar CPF");
 
-            IdClienteArmazenado = 0;
-            IdProdutoArmazenado = 0;
+            }
+            else
+            {
+                OsDb os = new OsDb();
+                os.Incluir(IdClienteArmazenado, IdProdutoArmazenado, aparenciaTextBox.Text, numeroSerialTextBox.Text, descDefeitoTextBox.Text, statusComboBox.Text);
 
-            buscarOsTabControl.TabPages.Add(tabBuscar);
-            ExibirTela();
+                LimparCampos();
+
+                IdClienteArmazenado = 0;
+                IdProdutoArmazenado = 0;
+
+                buscarOsTabControl.TabPages.Add(tabBuscar);
+                ExibirTela();
+
+            }
 
         }
     }
