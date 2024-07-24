@@ -5,11 +5,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Empresa.Models;
+using System.Drawing;
 
 namespace Empresa.Db
 {
     public class ClienteDb
     {
+
+        public bool verificaClienteExistente(String cpfCliente)
+        {
+            string sql = @"SELECT * FROM TCLIE WHERE cpfCliente=@cpfCliente";
+            var connect = new SqlConnection(Db.Conexao);
+            var cmd = new SqlCommand(sql, connect);
+            var tem = false;
+            cmd.Parameters.AddWithValue("@cpfCliente", cpfCliente);
+
+            connect.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                tem = true;
+                    
+            }
+
+            reader.Close();
+            connect.Close();
+            
+            return tem;
+        }
+
         public void Incluir(Cliente cliente)
         {
             string sql = @"INSERT INTO TCLIE(nomeCliente, cpfCliente, telCliente, cepCliente, endCliente, numEndCliente, cidCliente, ufCliente) VALUES(@nomeCliente, @cpfCliente, @telCliente, @cepCliente, @endCliente, @numEndCliente, @cidCliente, @ufCliente)";

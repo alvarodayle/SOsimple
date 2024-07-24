@@ -101,6 +101,10 @@ namespace Empresa.UI.Windows
             tipoComboBox.Enabled = false;
             modeloComboBox.Enabled = false;
 
+            marcaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            tipoComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            modeloComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
             var cb = new PecaDb();
             List<string> listaMarca = cb.MarcaComboBox();
 
@@ -117,6 +121,7 @@ namespace Empresa.UI.Windows
         private void marcaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             tipoComboBox.Items.Clear();
+            modeloComboBox.Items.Clear();
 
             tipoComboBox.Text = null;
             modeloComboBox.Text = null;

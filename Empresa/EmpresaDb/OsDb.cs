@@ -84,7 +84,19 @@ namespace Empresa.Db
 
         public List<OrdemGerencioamentoDeOS> Listar()
         {
-            string sql = @"SELECT OS, idClienteOS, idProdutoOS, aparenciaProd, numSerieProd, descDefeitoProd, statusOS FROM TORDE";
+            string sql = @"SELECT O.OS,
+		                          O.aparenciaProd,
+                                  O.descDefeitoProd,
+                                  O.numSerieProd,
+                                  O.statusOS,
+                                  C.nomeCliente,
+                                  C.cpfCliente,
+                                  P.marcaProduto,
+                                  P.modeloProduto 
+                                  FROM TORDE AS O 
+                                  INNER JOIN TCLIE AS C ON O.idClienteOS = C.idCliente 
+                                  INNER JOIN TPROD AS P ON O.idClienteOS = P.idProduto";
+
             var connect = new SqlConnection(Db.Conexao);
             var cmd = new SqlCommand(sql, connect);
 
@@ -98,8 +110,10 @@ namespace Empresa.Db
             {
                 var ordem = new OrdemGerencioamentoDeOS();
                 ordem.OS = Convert.ToInt32(reader["OS"]);
-                ordem.idClienteOS = Convert.ToInt32(reader["idClienteOS"]);
-                ordem.idProdutoOS = Convert.ToInt32(reader["idProdutoOS"]);
+                ordem.nomeCliente = reader["nomeCliente"].ToString();
+                ordem.cpfCliente = reader["cpfCliente"].ToString();
+                ordem.marcaProduto = reader["marcaProduto"].ToString();
+                ordem.modeloProduto = reader["modeloProduto"].ToString();
                 ordem.aparenciaProd = reader["aparenciaProd"].ToString();
                 ordem.numSerieProd = reader["numSerieProd"].ToString();
                 ordem.descDefeitoProd = reader["descDefeitoProd"].ToString();

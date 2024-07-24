@@ -57,31 +57,18 @@ namespace Empresa.UI.Windows
             osDataGridView.DataSource = db.Listar();
             osDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             osDataGridView.ReadOnly = true;
-            osDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             osDataGridView.RowHeadersVisible = false;
             osDataGridView.EnableHeadersVisualStyles = false;
 
-            osDataGridView.Columns[0].Width = 50;
-            osDataGridView.Columns[1].Width = 30;
-            osDataGridView.Columns[2].Width = 30;
-
-            osDataGridView.Columns[0].Name = "OS";
-            osDataGridView.Columns[1].Name = "ID Cliente";
-            osDataGridView.Columns[2].Name = "ID Produto";
-            osDataGridView.Columns[3].Name = "Aparência";
-            osDataGridView.Columns[4].Name = "Número de Série";
-            osDataGridView.Columns[5].Name = "Descrição do Defeito";
-            osDataGridView.Columns[6].Name = "Status OS";
-
             osDataGridView.Columns[0].HeaderText = "OS";
-            osDataGridView.Columns[1].HeaderText = "ID Cliente";
-            osDataGridView.Columns[2].HeaderText = "ID Produto";
-            osDataGridView.Columns[3].HeaderText = "Aparência";
-            osDataGridView.Columns[4].HeaderText = "Número de Série";
-            osDataGridView.Columns[5].HeaderText = "Descrição do Defeito";
-            osDataGridView.Columns[6].HeaderText= "Status OS";
-
-
+            osDataGridView.Columns[1].HeaderText = "Nome";
+            osDataGridView.Columns[2].HeaderText = "CPF";
+            osDataGridView.Columns[3].HeaderText = "Marca";
+            osDataGridView.Columns[4].HeaderText = "Modelo";
+            osDataGridView.Columns[5].HeaderText = "Aparência do Produto";
+            osDataGridView.Columns[6].HeaderText = "Número de Série";
+            osDataGridView.Columns[7].HeaderText = "Descrição do Defeito";
+            osDataGridView.Columns[8].HeaderText = "Status da OS";
 
         }
 
@@ -141,7 +128,7 @@ namespace Empresa.UI.Windows
             numeroTextBox.ReadOnly = true;
             cidadeTextBox.ReadOnly = true;
             ufTextBox.ReadOnly = true;
-            numeroSerialTextBox.ReadOnly = false;
+            numeroSerialTextBox.ReadOnly = true;
 
             nomeTextBox.BackColor = SystemColors.InactiveCaption;
             telefoneTextBox.BackColor = SystemColors.InactiveCaption;
@@ -150,12 +137,13 @@ namespace Empresa.UI.Windows
             numeroTextBox.BackColor = SystemColors.InactiveCaption;
             cidadeTextBox.BackColor = SystemColors.InactiveCaption;
             ufTextBox.BackColor = SystemColors.InactiveCaption;
+            numeroSerialTextBox.BackColor = SystemColors.InactiveCaption;
 
             buscarOsTabControl.SelectedTab = tabOrdemDeServico;
             buscarOsTabControl.TabPages.Remove(tabBuscar);
             buscarOsTabControl.TabPages.Add(tabOrdemDeServico);
 
-            statusComboBox.Text = "Cadastrando Uma OS";
+            statusComboBox.Text = "Cadastrando uma OS";
             statusComboBox.Enabled = false;
 
             marcaComboBox.Text = null;
@@ -169,6 +157,11 @@ namespace Empresa.UI.Windows
             tipoComboBox.Enabled = false;
             modeloComboBox.Enabled = false;
 
+            marcaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            tipoComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            modeloComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
             var cb = new PecaDb();
             List<string> listaMarca = cb.MarcaComboBox();
 
@@ -178,6 +171,7 @@ namespace Empresa.UI.Windows
         private void marcaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             tipoComboBox.Items.Clear();
+            modeloComboBox.Items.Clear();
 
             tipoComboBox.Text = null;
             modeloComboBox.Text = null;
@@ -218,80 +212,56 @@ namespace Empresa.UI.Windows
             if (cpfTextBox.Text.Length == 11)
             {
 
-                string cpfText = cpfTextBox.Text;
+                OsDb cd = new OsDb();
 
-                if (!string.IsNullOrEmpty(cpfText))
+                ClienteGerenciamentoDeOS cliente = cd.ProcurarCliente(cpfTextBox.Text);
+
+                if (cliente != null)
                 {
-                    // Verifica se o item existe em pelo menos um dos dois campos no banco de dados
-                    string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=SoSimple;Integrated Security=True;Encrypt=False;";
-                    string query = "SELECT * FROM TCLIE WHERE cpfCliente = @value";
 
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        SqlCommand command = new SqlCommand(query, connection);
-                        command.Parameters.AddWithValue("@value", cpfText);
 
-                        try
-                        {
-                            connection.Open();
-                            SqlDataAdapter adapter = new SqlDataAdapter(command);
-                            DataTable dataTable = new DataTable();
-                            adapter.Fill(dataTable);
+                    IdClienteArmazenado = cliente.IdCliente;
+                    nomeTextBox.Text = cliente.nomeCliente;
+                    cpfTextBox.Text = cliente.cpfCliente;
+                    telefoneTextBox.Text = cliente.telCliente;
+                    cepTextBox.Text = cliente.cepCliente;
+                    enderecoTextBox.Text = cliente.endCliente;
+                    numeroTextBox.Text = cliente.numEndCliente;
+                    cidadeTextBox.Text = cliente.cidCliente;
+                    ufTextBox.Text = cliente.ufCliente;
 
-                            if (dataTable.Rows.Count > 0)
-                            {
-                                OsDb cd = new OsDb();
+                    nomeTextBox.BackColor = SystemColors.InactiveCaption;
+                    telefoneTextBox.BackColor = SystemColors.InactiveCaption;
+                    cepTextBox.BackColor = SystemColors.InactiveCaption;
+                    enderecoTextBox.BackColor = SystemColors.InactiveCaption;
+                    numeroTextBox.BackColor = SystemColors.InactiveCaption;
+                    cidadeTextBox.BackColor = SystemColors.InactiveCaption;
+                    ufTextBox.BackColor = SystemColors.InactiveCaption;
+                    numeroSerialTextBox.BackColor = SystemColors.Window;
 
-                                ClienteGerenciamentoDeOS cliente = cd.ProcurarCliente(cpfTextBox.Text);
+                    numeroSerialTextBox.ReadOnly = false;
 
-                                IdClienteArmazenado = cliente.IdCliente;
-                                nomeTextBox.Text = cliente.nomeCliente;
-                                cpfTextBox.Text = cliente.cpfCliente;
-                                telefoneTextBox.Text = cliente.telCliente;
-                                cepTextBox.Text = cliente.cepCliente;
-                                enderecoTextBox.Text = cliente.endCliente;
-                                numeroTextBox.Text = cliente.numEndCliente;
-                                cidadeTextBox.Text = cliente.cidCliente;
-                                ufTextBox.Text = cliente.ufCliente;
-
-                                nomeTextBox.BackColor = SystemColors.InactiveCaption;
-                                telefoneTextBox.BackColor = SystemColors.InactiveCaption;
-                                cepTextBox.BackColor = SystemColors.InactiveCaption;
-                                enderecoTextBox.BackColor = SystemColors.InactiveCaption;
-                                numeroTextBox.BackColor = SystemColors.InactiveCaption;
-                                cidadeTextBox.BackColor = SystemColors.InactiveCaption;
-                                ufTextBox.BackColor = SystemColors.InactiveCaption;
-                                numeroSerialTextBox.BackColor = SystemColors.InactiveCaption;
-
-                                nomeTextBox.ReadOnly = true;
-                                cpfTextBox.ReadOnly = true;
-                                telefoneTextBox.ReadOnly = true;
-                                cepTextBox.ReadOnly = true;
-                                enderecoTextBox.ReadOnly = true;
-                                numeroTextBox.ReadOnly = true;
-                                cidadeTextBox.ReadOnly = true;
-                                ufTextBox.ReadOnly = true;
-                                numeroSerialTextBox.ReadOnly = false;
-                                numeroSerialTextBox.BackColor = SystemColors.Window;
-
-                                connection.Close();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Cpf não encontrado no banco de dados.");
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Erro ao acessar o banco de dados: " + ex.Message);
-                        }
-                    }
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, insira um Cpf no filtro.");
-                }
+                    nomeTextBox.BackColor = SystemColors.Window;
+                    telefoneTextBox.BackColor = SystemColors.Window;
+                    cepTextBox.BackColor = SystemColors.Window;
+                    enderecoTextBox.BackColor = SystemColors.Window;
+                    numeroTextBox.BackColor = SystemColors.Window;
+                    cidadeTextBox.BackColor = SystemColors.Window;
+                    ufTextBox.BackColor = SystemColors.Window;
+                    numeroSerialTextBox.BackColor = SystemColors.Window;
 
+                    nomeTextBox.ReadOnly = false;
+                    telefoneTextBox.ReadOnly = false;
+                    cepTextBox.ReadOnly = false;
+                    enderecoTextBox.ReadOnly = false;
+                    numeroTextBox.ReadOnly = false;
+                    cidadeTextBox.ReadOnly = false;
+                    ufTextBox.ReadOnly = false;
+                    numeroSerialTextBox.ReadOnly = false;
+                }
             }
         }
 
@@ -394,11 +364,36 @@ namespace Empresa.UI.Windows
             if (cpfTextBox.Text == null || cpfTextBox.Text.Length != 11) 
             {
 
-                MessageBox.Show("Necessário digitar CPF");
+                MessageBox.Show("Campo CPF é de preenchimento obrigatório");
 
             }
             else
-            {
+            {   
+
+                ClienteDb cl = new ClienteDb();
+                var tem = cl.verificaClienteExistente(cpfTextBox.Text);
+                
+                if(tem == false)
+                {
+                    var cliente = new Cliente();
+                    cliente.nomeCliente = nomeTextBox.Text;
+                    cliente.cpfCliente = cpfTextBox.Text;
+                    cliente.telCliente = telefoneTextBox.Text;
+                    cliente.cepCliente = cepTextBox.Text;
+                    cliente.endCliente = enderecoTextBox.Text;
+                    cliente.numEndCliente = numeroTextBox.Text;
+                    cliente.cidCliente = cidadeTextBox.Text;
+                    cliente.ufCliente = ufTextBox.Text;
+
+                    cl.Incluir(cliente);
+
+                    OsDb cd = new OsDb();
+
+                    ClienteGerenciamentoDeOS registra = cd.ProcurarCliente(cpfTextBox.Text);
+
+                    IdClienteArmazenado = registra.IdCliente;
+                }
+
                 OsDb os = new OsDb();
                 os.Incluir(IdClienteArmazenado, IdProdutoArmazenado, aparenciaTextBox.Text, numeroSerialTextBox.Text, descDefeitoTextBox.Text, statusComboBox.Text);
 
